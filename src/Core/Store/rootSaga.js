@@ -15,7 +15,6 @@ function *rootSaga(){
     yield takeEvery(productItemsTypes.PRODUCT_ITEMS_GET, productItemsSaga);
     yield takeEvery(productItemsTypes.ITEM_DETAILS_GET, itemDetailSaga);
 
-    yield takeEvery(cartItem.CART_ITEM_ADD, addToCartSaga);
     yield takeEvery(cartItem.CART_ITEM_GET, getCartSaga);
 }
 

@@ -1,11 +1,16 @@
 import NavBar from '../../Components/NavBar';
-import ButtonC from '../../Components/Button'
+import ButtonC from '../../Components/Button';
+import Dropdown from '../../Components/Dropdown';
 import { connect } from 'react-redux';
-import { getCartStart } from '../../Core/Actions/cartItemsAction';
+import { getCartStart, deleteFromCart } from '../../Core/Actions/cartItemsAction';
 import './Styles/index.css';
 import { useEffect } from 'react';
 
 const Cart = (props) => {
+
+    const handleRemoveFromCart = (item) => {
+        props.deleteFromCart(item);
+    }
 
     useEffect(() => {
         props.getCartStart();
@@ -24,13 +29,15 @@ const Cart = (props) => {
                                     </div>
                                     <div className="item-details">
                                         <h2>{ele.name}</h2>
+                                        <Dropdown label='Quantity' value={ele.quantity} />
+                                        <Dropdown label='Sizes' value={ele.size} itemArr={ele.sizeAvailable} />
                                     </div>
                                     <div className="item-price">
-                                        <p>{ele.price}</p>
+                                        <p>{ele.price * ele.quantity}</p>
                                     </div>
                                 </div>
                                 <div className="itemSection-item-action">
-                                    <ButtonC text="Remove" />
+                                    <ButtonC text="Remove" handleBtnClick={()=>{handleRemoveFromCart(ele)}} />
                                 </div>
                             </div>
                         ))
@@ -51,6 +58,7 @@ const mapStateToProps = ({ cart }) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getCartStart: () => dispatch(getCartStart()),
+        deleteFromCart: (item) => dispatch(deleteFromCart(item)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

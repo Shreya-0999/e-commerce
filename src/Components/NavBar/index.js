@@ -10,7 +10,9 @@ import { useNavigate } from 'react-router-dom';
 const settings = ['Profile', 'Order History', 'Logout'];
 
 const NavBar = (props) => {
+
     const navigate = useNavigate();
+    console.log(props.cartItems)
     // const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -28,6 +30,15 @@ const NavBar = (props) => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleCartBtn=()=>{
+        navigate("/cart")
+    }
+
+    const handleCartCount =() =>{
+        let cartArr = JSON.parse(window.localStorage.getItem('cart'));
+        return cartArr.length
+    }
 
     return (
         <AppBar position="static">
@@ -52,8 +63,8 @@ const NavBar = (props) => {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <IconButton sx={{ p: 0, mx: 2 }}>
-                            <Badge badgeContent={4} color="secondary">
+                        <IconButton sx={{ p: 0, mx: 2 }} onClick={handleCartBtn}>
+                            <Badge badgeContent={handleCartCount()} color="secondary">
                             <ShoppingCartRoundedIcon fontSize="medium" style={{ color: 'white' }} />
                             </Badge>
                         </IconButton>
@@ -103,9 +114,10 @@ const NavBar = (props) => {
         </AppBar>
     );
 };
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = ({ user, cart }) => {
     return {
-        currentUser: user.currentUser
+        currentUser: user.currentUser,
+        cartItems: cart.cartItems
     }
 }
 export default connect(mapStateToProps)(NavBar);

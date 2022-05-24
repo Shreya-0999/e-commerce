@@ -22,5 +22,5 @@ export const cartLoadFail = (err) => ({
 
 export const deleteFromCart = (item) =>({
     type: cartItems.CART_ITEM_DELETE,
-    payload: item
+    item
 })

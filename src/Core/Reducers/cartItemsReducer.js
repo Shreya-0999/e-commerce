@@ -1,4 +1,5 @@
 import cartItems from '../Types/cartItemstype';
+import {addToCart, deleteFromCart} from './Utils/functions';
 const INITIAL_STATE = {
     cartItems: [],
     orderList:[]
@@ -9,7 +10,7 @@ const cartItemsReducer = (state = INITIAL_STATE, action) => {
         case cartItems.CART_ITEM_ADD:
             return{
                 ...state,
-                cartItems: action.payload
+                cartItems: addToCart(action)
             } 
         case cartItems.CART_ITEM_GET:
             return{
@@ -23,7 +24,7 @@ const cartItemsReducer = (state = INITIAL_STATE, action) => {
         case cartItems.CART_ITEM_DELETE:
             return{
                 ...state,
-                cartItems: action.payload
+                cartItems: deleteFromCart(action)
             }
         default: return state
     }

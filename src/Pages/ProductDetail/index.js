@@ -62,7 +62,7 @@ const ProductDetail = (props) => {
                         <RadioButtons itemDetail={props?.itemDetail[0]?.details} setItemSize={setItemSize} setCardValidation={setCardValidation} />
                     </div>
                     <div className="detail-item-quantitySection">
-                        <Dropdown itemQuantity={itemQuantity} setItemQuantity={setItemQuantity} />
+                        <Dropdown label = 'Quantity' value={itemQuantity} setValue={setItemQuantity} />
                     </div>
                     <div className="detail-item-buttonSection">
                         {cartValidation ? <p className="detail-validation">Select a size.</p> : <></>}
