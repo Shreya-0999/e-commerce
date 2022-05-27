@@ -7,6 +7,17 @@ import Select from '@mui/material/Select';
 
 const Dropdown = (props) => {
   let quantitynumber = 5;
+  const [value, setValue] = useState(props?.value);
+  
+  const handleDropdownChange = (e)=>{
+    setValue(e.target.value);
+    if(props?.section){
+      props.handleDropdownChange(e.target.value, props?.label);
+    }
+    else{
+      props?.setValue(e.target.value)
+    }
+  }
 
   return (
     <Box sx={{ minWidth: 50 }}>
@@ -15,11 +26,11 @@ const Dropdown = (props) => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={props?.value}
-          label="Quantity"
-          onChange={(e) => { props?.setValue(e.target.value) }}
+          value={value}
+          label={props?.label}
+          onChange={(e) => { handleDropdownChange(e) }}
         >
-          {props?.label === "Quantity"
+          {props?.label === "quantity"
             ?
               [...Array(quantitynumber)].map((ele, key)=>(
                 <MenuItem key={key} value={key+1}>{key+1}</MenuItem>

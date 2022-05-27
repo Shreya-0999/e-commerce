@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import { Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem, Badge } from '@mui/material';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useNavigate } from 'react-router-dom';
 
 const settings = ['Profile', 'Order History', 'Logout'];
@@ -31,13 +32,16 @@ const NavBar = (props) => {
         setAnchorElUser(null);
     };
 
-    const handleCartBtn=()=>{
+    const handleCartBtn = () => {
         navigate("/cart")
     }
 
-    const handleCartCount =() =>{
+    const handleCartCount = () => {
         let cartArr = JSON.parse(window.localStorage.getItem('cart'));
-        return cartArr.length
+        if (cartArr)
+            return cartArr.length
+        else
+            return 0;
     }
 
     return (
@@ -65,7 +69,12 @@ const NavBar = (props) => {
                     <Box sx={{ flexGrow: 0 }}>
                         <IconButton sx={{ p: 0, mx: 2 }} onClick={handleCartBtn}>
                             <Badge badgeContent={handleCartCount()} color="secondary">
-                            <ShoppingCartRoundedIcon fontSize="medium" style={{ color: 'white' }} />
+                                <ShoppingCartRoundedIcon fontSize="medium" style={{ color: 'white' }} />
+                            </Badge>
+                        </IconButton>
+                        <IconButton sx={{ p: 0, mx: 2 }} onClick={handleCartBtn}>
+                            <Badge  color="secondary">
+                                <FavoriteIcon fontSize="medium" style={{ color: 'white' }} />
                             </Badge>
                         </IconButton>
                         {
