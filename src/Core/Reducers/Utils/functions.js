@@ -74,3 +74,47 @@ export function emptyCart() {
     localStorage.removeItem('cart');
     return null;
 }
+
+export function addtoWishlist(action) {
+    let wishlistArr = JSON.parse(window.localStorage.getItem('wishlist'));
+    let itemPresent = false;
+    if (wishlistArr) {
+        wishlistArr.map((ele, key) => {
+            if (ele.id == action.id) {
+                itemPresent = true;
+            }
+        })
+    }
+    if (!itemPresent) {
+        let itemObj = getItemFromJSON(action.id);
+        const wishlistObj = {
+            id: action.id,
+            section: itemObj.section,
+            image: itemObj.image,
+            name: itemObj.name,
+            price: itemObj.price,
+        }
+        wishlistArr ? wishlistArr.push(wishlistObj) : wishlistArr = [wishlistObj];
+    }
+    window.localStorage.setItem("wishlist", JSON.stringify(wishlistArr));
+    return wishlistArr;
+}
+
+export function deleteFromWishlist(action) {
+    let wishlistArr = JSON.parse(window.localStorage.getItem("wishlist"));
+    let newWishlistArr = wishlistArr.filter(ele => {
+        if (action.id == ele.id) {
+            console.log();
+        }
+        else {
+            return ele;
+        }
+    })
+    if(newWishlistArr.length == 0){
+        localStorage.removeItem('wishlist');
+        return null;
+    }
+    console.log("yo",newWishlistArr);
+    window.localStorage.setItem("wishlist", JSON.stringify(newWishlistArr));
+    return  newWishlistArr;
+}

@@ -4,7 +4,9 @@ import {loginSaga, signupSaga, logoutSaga} from '../Sagas/authSaga';
 import user from '../Types/userTypes';
 import productItemsTypes from '../Types/productItemsTypes';
 import cartItem from '../Types/cartItemstype';
-import {addToCartSaga, getCartSaga} from '../Sagas/cartSaga';
+import wishlist from'../Types/wishlistItemTypes';
+import {getCartSaga} from '../Sagas/cartSaga';
+import {getWishlistSaga} from '../Sagas/wishlistSaga';
 
 function *rootSaga(){
     // yield all([authSaga()])
@@ -16,6 +18,7 @@ function *rootSaga(){
     yield takeEvery(productItemsTypes.ITEM_DETAILS_GET, itemDetailSaga);
 
     yield takeEvery(cartItem.CART_ITEM_GET, getCartSaga);
+    yield takeEvery(wishlist.WISHLIST_ITEM_GET, getWishlistSaga);
 }
 
 export default rootSaga;

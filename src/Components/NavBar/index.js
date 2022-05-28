@@ -44,6 +44,10 @@ const NavBar = (props) => {
             return 0;
     }
 
+    const handleWishlistBtn = ()=>{
+        navigate('/wishlist')
+    }
+
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
@@ -72,7 +76,7 @@ const NavBar = (props) => {
                                 <ShoppingCartRoundedIcon fontSize="medium" style={{ color: 'white' }} />
                             </Badge>
                         </IconButton>
-                        <IconButton sx={{ p: 0, mx: 2 }} onClick={handleCartBtn}>
+                        <IconButton sx={{ p: 0, mx: 2 }} onClick={handleWishlistBtn}>
                             <Badge  color="secondary">
                                 <FavoriteIcon fontSize="medium" style={{ color: 'white' }} />
                             </Badge>

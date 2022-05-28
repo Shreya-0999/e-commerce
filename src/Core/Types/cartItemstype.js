@@ -4,7 +4,6 @@ const cartItemsTypes ={
     CART_ITEM_GET: 'CART_ITEM_GET',
     CART_ITEM_DELETE: 'CART_ITEM_DELETE',
     CART_ITEM_UPDATE: 'CART_ITEM_UPDATE',
-    
     CART_ITEM_EMPTY: 'CART_ITEM_EMPTY',
 }
 export default cartItemsTypes;

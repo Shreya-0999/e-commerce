@@ -2,6 +2,7 @@ import NavBar from "../../Components/NavBar/index";
 import { useParams, useNavigate } from 'react-router-dom';
 import { getItemDetails } from '../../Core/Actions/productItemsAction';
 import { addToCart } from '../../Core/Actions/cartItemsAction';
+import { addtoWishlist } from '../../Core/Actions/wishlistAction';
 import { connect } from 'react-redux';
 import { useEffect, useState } from "react";
 import ButtonC from "../../Components/Button";
@@ -18,17 +19,21 @@ const ProductDetail = (props) => {
     const [goCartVisible, setGoCartVisible] = useState(false);
 
     const handleAddToCart = () => {
-        if(itemSize){
+        if (itemSize) {
             props.addToCart(id, itemQuantity, itemSize);
             setGoCartVisible(true)
         }
-        else{
+        else {
             setCardValidation(true)
         }
         // props.addToCart(id, itemQuantity, itemSize);
     }
-    
-    const handleGoToCart = ()=>{
+    const handleAddToWishlist = () => {
+        console.log("hello");
+        props.addtoWishlist(id);
+    }
+
+    const handleGoToCart = () => {
         navigate("/cart");
     }
 
@@ -62,18 +67,18 @@ const ProductDetail = (props) => {
                         <RadioButtons itemDetail={props?.itemDetail[0]?.details} setItemSize={setItemSize} setCardValidation={setCardValidation} />
                     </div>
                     <div className="detail-item-quantitySection">
-                        <Dropdown label = 'quantity' value={itemQuantity} setValue={setItemQuantity} />
+                        <Dropdown label='quantity' value={itemQuantity} setValue={setItemQuantity} />
                     </div>
                     <div className="detail-item-buttonSection">
                         {cartValidation ? <p className="detail-validation">Select a size.</p> : <></>}
                         {
                             goCartVisible ?
-                            <ButtonC text={'Go to Cart'} handleBtnClick={handleGoToCart}/>
-                            :
-                            <ButtonC text={'Add to Cart'} handleBtnClick={handleAddToCart} />
+                                <ButtonC text={'Go to Cart'} handleBtnClick={handleGoToCart} />
+                                :
+                                <ButtonC text={'Add to Cart'} handleBtnClick={handleAddToCart} />
 
                         }
-                        <ButtonC text={'Add to Wishlist'} />
+                        <ButtonC text={'Add to Wishlist'} handleBtnClick={handleAddToWishlist} />
                     </div>
                     <div className="detail-item-description">
                         <p>{props?.itemDetail[0]?.details.description}</p>
@@ -91,7 +96,8 @@ const mapStateToProps = ({ productItems }) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getItemDetails: (section, id) => dispatch(getItemDetails(section, id)),
-        addToCart: (id, quantity, size) => dispatch(addToCart(id, quantity, size))
+        addToCart: (id, quantity, size) => dispatch(addToCart(id, quantity, size)),
+        addtoWishlist: (id) => dispatch(addtoWishlist(id)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);

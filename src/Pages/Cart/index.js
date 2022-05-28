@@ -33,7 +33,6 @@ const Cart = (props) => {
     }, [])
     return (
         <>
-            {console.log("hello")}
             <NavBar />
             {props?.cartItems
                 ? <div className="cart">
