@@ -13,7 +13,6 @@ const settings = ['Profile', 'Order History', 'Logout'];
 const NavBar = (props) => {
 
     const navigate = useNavigate();
-    console.log(props.cartItems)
     // const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -43,9 +42,16 @@ const NavBar = (props) => {
         else
             return 0;
     }
+    const handleWishlistCount = () => {
+        let wishlistArr = JSON.parse(window.localStorage.getItem('wishlist'));
+        if (wishlistArr)
+            return wishlistArr.length
+        else
+            return 0;
+    }
 
     const handleWishlistBtn = ()=>{
-        navigate('/wishlist')
+        navigate('/wishlist');
     }
 
     return (
@@ -77,7 +83,7 @@ const NavBar = (props) => {
                             </Badge>
                         </IconButton>
                         <IconButton sx={{ p: 0, mx: 2 }} onClick={handleWishlistBtn}>
-                            <Badge  color="secondary">
+                            <Badge badgeContent={handleWishlistCount()} color="secondary">
                                 <FavoriteIcon fontSize="medium" style={{ color: 'white' }} />
                             </Badge>
                         </IconButton>
@@ -127,10 +133,11 @@ const NavBar = (props) => {
         </AppBar>
     );
 };
-const mapStateToProps = ({ user, cart }) => {
+const mapStateToProps = ({ user, cart, wishlist }) => {
     return {
         currentUser: user.currentUser,
-        cartItems: cart.cartItems
+        cartItems: cart.cartItems,
+        wishlistItems: wishlist.wishlistItems
     }
 }
 export default connect(mapStateToProps)(NavBar);

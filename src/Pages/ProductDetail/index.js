@@ -2,7 +2,7 @@ import NavBar from "../../Components/NavBar/index";
 import { useParams, useNavigate } from 'react-router-dom';
 import { getItemDetails } from '../../Core/Actions/productItemsAction';
 import { addToCart } from '../../Core/Actions/cartItemsAction';
-import { addtoWishlist } from '../../Core/Actions/wishlistAction';
+import { addtoWishlist, deleteFromWishlist } from '../../Core/Actions/wishlistAction';
 import { connect } from 'react-redux';
 import { useEffect, useState } from "react";
 import ButtonC from "../../Components/Button";
@@ -13,10 +13,11 @@ import './Styles/index.css';
 const ProductDetail = (props) => {
     const navigate = useNavigate();
     const { section, id } = useParams();
-    const [itemSize, setItemSize] = useState('');
+    const [itemSize, setItemSize] = useState('L');
     const [itemQuantity, setItemQuantity] = useState(1);
     const [cartValidation, setCardValidation] = useState(false);
     const [goCartVisible, setGoCartVisible] = useState(false);
+    const [wishlisted, setWishlisted] = useState(false);
 
     const handleAddToCart = () => {
         if (itemSize) {
@@ -29,8 +30,14 @@ const ProductDetail = (props) => {
         // props.addToCart(id, itemQuantity, itemSize);
     }
     const handleAddToWishlist = () => {
-        console.log("hello");
-        props.addtoWishlist(id);
+        if (wishlisted) {
+            props.deleteFromWishlist(id);
+            setWishlisted(false);
+        }
+        else {
+            props.addtoWishlist(id);
+            setWishlisted(true);
+        }
     }
 
     const handleGoToCart = () => {
@@ -39,6 +46,15 @@ const ProductDetail = (props) => {
 
     useEffect(() => {
         props.getItemDetails({ section, id });
+        let wishlistArr = JSON.parse(window.localStorage.getItem("wishlist"));
+        let newWishlistArr = wishlistArr?.map(ele => {
+            if (id == ele.id) {
+                setWishlisted(true);
+            }
+            else {
+                setWishlisted(false);
+            }
+        })
     }, [])
 
     return (
@@ -78,7 +94,11 @@ const ProductDetail = (props) => {
                                 <ButtonC text={'Add to Cart'} handleBtnClick={handleAddToCart} />
 
                         }
-                        <ButtonC text={'Add to Wishlist'} handleBtnClick={handleAddToWishlist} />
+                        {
+                            wishlisted
+                                ? <ButtonC text={'Wishlisted'} handleBtnClick={handleAddToWishlist} />
+                                : <ButtonC text={'Add to Wishlist'} handleBtnClick={handleAddToWishlist} />
+                        }
                     </div>
                     <div className="detail-item-description">
                         <p>{props?.itemDetail[0]?.details.description}</p>
@@ -98,6 +118,7 @@ const mapDispatchToProps = (dispatch) => {
         getItemDetails: (section, id) => dispatch(getItemDetails(section, id)),
         addToCart: (id, quantity, size) => dispatch(addToCart(id, quantity, size)),
         addtoWishlist: (id) => dispatch(addtoWishlist(id)),
+        deleteFromWishlist: (id) => dispatch(deleteFromWishlist(id))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);
