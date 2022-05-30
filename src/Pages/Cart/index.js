@@ -2,6 +2,7 @@ import NavBar from '../../Components/NavBar';
 import ButtonC from '../../Components/Button';
 import Dropdown from '../../Components/Dropdown';
 import BasicTable from '../../Components/BasicTable';
+import Message from '../../Components/Message';
 import { connect } from 'react-redux';
 import { getCartStart, deleteFromCart, updateCartItem, emptyCart } from '../../Core/Actions/cartItemsAction';
 import './Styles/index.css';
@@ -9,7 +10,6 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = (props) => {
-    const navigate = useNavigate();
 
     const handleRemoveFromCart = (item) => {
         props.deleteFromCart(item);
@@ -22,10 +22,6 @@ const Cart = (props) => {
 
     const handleEmptyCart = () => {
         props.emptyCart();
-    }
-
-    const handleContinueShopping = ()=>{
-        navigate('/');
     }
 
     useEffect(() => {
@@ -72,10 +68,9 @@ const Cart = (props) => {
                         <ButtonC text="Place Order" />
                     </div>
                 </div>
-                : <>
-                    <h1>Your cart is empty</h1>
-                    <ButtonC text="Continue Shopping" handleBtnClick={handleContinueShopping} />
-                </>
+                : <Message
+                    text="Your cart is empty"                      
+                />
             }
 
         </>

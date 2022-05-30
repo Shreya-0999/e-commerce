@@ -1,26 +1,25 @@
 import NavBar from "../../Components/NavBar";
+import Message from "../../Components/Message";
 import ProductCard from "../../Components/ProductCard"
 import { connect } from 'react-redux';
 import { getWishlistStart, deleteFromWishlist } from '../../Core/Actions/wishlistAction';
 import { useEffect, useState } from "react";
 import "./Styles/index.css";
 const Wishlist = (props) => {
-    const handleMoveToCart = ()=>{
+    const handleMoveToCart = () => {
 
     }
 
-    const handleRemove= (id)=>{
+    const handleRemove = (id) => {
         props.deleteFromWishlist(id);
-        console.log("hello",id)
-
     }
-    let action=[
+    let action = [
         {
-            text:'Move To Cart',
+            text: 'Move To Cart',
             // handleBtn: handleRemove
         },
         {
-            text:'Remove',
+            text: 'Remove',
             handleBtn: handleRemove
         }
     ]
@@ -32,22 +31,29 @@ const Wishlist = (props) => {
     return (
         <>
             <NavBar />
-            <div className="container">
-                {
-                    props?.wishlist.map((item, index) => (
-                        <>
-                            <ProductCard
-                                key={index}
-                                id={item.id}
-                                image={item.image}
-                                name={item.name}
-                                price={item.price}
-                                action={action}
-                            />
-                        </>
-                    ))
-                }
-            </div>
+            {
+                props?.wishlist
+                    ? <div className="container">
+                        {
+                            props?.wishlist.map((item, index) => (
+                                <>
+                                    <ProductCard
+                                        key={index}
+                                        id={item.id}
+                                        image={item.image}
+                                        name={item.name}
+                                        price={item.price}
+                                        action={action}
+                                    />
+                                </>
+                            ))
+                        }
+                    </div>
+                    : <Message
+                        text='Your wishlist is empty'
+                    />
+            }
+
         </>
     )
 }
