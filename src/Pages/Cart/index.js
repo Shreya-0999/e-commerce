@@ -7,11 +7,16 @@ import { connect } from 'react-redux';
 import { getCartStart, deleteFromCart, updateCartItem, emptyCart } from '../../Core/Actions/cartItemsAction';
 import './Styles/index.css';
 import { useEffect } from 'react';
+import { addtoWishlist } from '../../Core/Actions/wishlistAction';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = (props) => {
 
     const handleRemoveFromCart = (item) => {
+        props.deleteFromCart(item);
+    }
+    const handleMoveToWishlist=(item) =>{
+        props.addtoWishlist(item.id);
         props.deleteFromCart(item);
     }
 
@@ -56,6 +61,7 @@ const Cart = (props) => {
                                     </div>
                                     <div className="itemSection-item-action">
                                         <ButtonC text="Remove" handleBtnClick={() => { handleRemoveFromCart(ele) }} />
+                                        <ButtonC text="Move to wishlist" handleBtnClick={() => { handleMoveToWishlist(ele) }} />
                                     </div>
                                 </div>
                             ))
@@ -86,7 +92,8 @@ const mapDispatchToProps = (dispatch) => {
         getCartStart: () => dispatch(getCartStart()),
         deleteFromCart: (item) => dispatch(deleteFromCart(item)),
         updateCartItem: (item) => dispatch(updateCartItem(item)),
-        emptyCart: () => dispatch(emptyCart())
+        emptyCart: () => dispatch(emptyCart()),
+        addtoWishlist: (id) => dispatch(addtoWishlist(id)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -13,7 +13,7 @@ import './Styles/index.css';
 const ProductDetail = (props) => {
     const navigate = useNavigate();
     const { section, id } = useParams();
-    const [itemSize, setItemSize] = useState('L');
+    const [itemSize, setItemSize] = useState('');
     const [itemQuantity, setItemQuantity] = useState(1);
     const [cartValidation, setCardValidation] = useState(false);
     const [goCartVisible, setGoCartVisible] = useState(false);
