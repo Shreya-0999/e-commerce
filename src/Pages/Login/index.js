@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
-import { loginStart } from '../../Core/Actions/userActions';
+import { loginStart, loginSuccess } from '../../Core/Actions/userActions';
 import TextFields from '../../Components/TextField';
 import PasswordField from '../../Components/PasswordField';
 import NavBar from '../../Components/NavBar';
@@ -15,13 +15,16 @@ const Login = (props) => {
 
     const handleLogin = () => {
         props.loginStart({ email, password });
+        navigate('/');
     }
 
-    useEffect(() => {
-        if (props?.currentUser) {
-            navigate('/');
-        }
-    }, [props?.currentUser])
+    // useEffect(() => {
+    //     let user = JSON.parse(localStorage.getItem('user'));
+    //     if(user){
+    //         props.loginSuccess(user);
+    //         navigate('/');
+    //     }
+    // }, [])
 
     return (
         <>
@@ -73,6 +76,7 @@ const mapStateToProps = ({ user }) => {
 const mapDispatchtoProps = (dispatch) => {
     return {
         loginStart: (email, password) => dispatch(loginStart(email, password)),
+        loginSuccess: (user)=> dispatch(loginSuccess(user))
     }
 }
 

@@ -2,7 +2,7 @@ import user from '../Types/userTypes';
 const INITIAL_STATE = {
     currentUser: null,
     error: '',
-    isLoading: false
+    isLoading: false,
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {

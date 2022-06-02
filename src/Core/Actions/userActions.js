@@ -5,9 +5,9 @@ export const loginStart = ({email,password})=>({
     payload: {email, password}
 })
 
-export const loginSucess = (user)=>({
+export const loginSuccess = (userData)=>({
     type: user.LOGIN_SUCCESS,
-    payload: user
+    payload: userData
 })
 
 export const loginError = (error)=>({
@@ -20,9 +20,9 @@ export const signupStart = ({name,email,password})=>({
     payload: {name, email, password}
 })
 
-export const signupSucess = (user)=>({
+export const signupSucess = (userData)=>({
     type: user.SIGNUP_SUCCESS,
-    payload: user
+    payload: userData
 })
 
 export const signupError = (error)=>({

@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './Styles/index.css';
+import { connect } from 'react-redux';
 import NavBar from "../../Components/NavBar/index";
+import { loginSuccess } from '../../Core/Actions/userActions';
 import Sample from '../../Assets/Home/Sample.jpg';
 import { useNavigate } from "react-router-dom";
 
-const Home = () => {
+const Home = (props) => {
     const section = ['women', 'men'];
     const navigate = useNavigate();
     
     const handleCardClick = (section) => {
         navigate(`/${section}`);
     }
+    useEffect(()=>{
+        let user = JSON.parse(localStorage.getItem('user'));
+        if(user){
+            props.loginSuccess(user);
+        }
+    })
     return (
         <>
             <NavBar />
@@ -33,4 +41,10 @@ const Home = () => {
         </>
     )
 }
-export default Home;
+const mapDispatchtoProps = (dispatch) => {
+    return {
+        loginSuccess: (user)=> dispatch(loginSuccess(user))
+    }
+}
+
+export default connect(null, mapDispatchtoProps)(Home);

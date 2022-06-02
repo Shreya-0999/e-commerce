@@ -2,15 +2,20 @@ import NavBar from '../../Components/NavBar';
 import ButtonC from '../../Components/Button';
 import Dropdown from '../../Components/Dropdown';
 import BasicTable from '../../Components/BasicTable';
+import AddressModal from '../../Components/AddressModal';
 import Message from '../../Components/Message';
+import { loginSuccess } from '../../Core/Actions/userActions';
 import { connect } from 'react-redux';
 import { getCartStart, deleteFromCart, updateCartItem, emptyCart } from '../../Core/Actions/cartItemsAction';
 import './Styles/index.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { addtoWishlist } from '../../Core/Actions/wishlistAction';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = (props) => {
+    let navigate = useNavigate();
+    const [open, setOpen] = useState(false);
+    const [address, setAddress] = useState('');
 
     const handleRemoveFromCart = (item) => {
         props.deleteFromCart(item);
@@ -19,18 +24,37 @@ const Cart = (props) => {
         props.addtoWishlist(item.id);
         props.deleteFromCart(item);
     }
-
     const handleDropdownUpdate = (item, value, label) => {
         item[label] = value;
         props.updateCartItem(item)
     }
-
     const handleEmptyCart = () => {
         props.emptyCart();
     }
-
+    const handlePlaceOrder = () => {
+        if(props.currentUser){
+            console.log("checkout");
+        }
+        else{
+            navigate('/login')
+        }
+    }
+    const handleAddAddress=()=>{
+        if(props.currentUser){
+            setOpen(true);
+            console.log("checkout");
+        }
+        else{
+            navigate('/login')
+        }
+        
+    }
     useEffect(() => {
         props.getCartStart();
+        let user = JSON.parse(localStorage.getItem('user'));
+        if(user){
+            props.loginSuccess(user);
+        }
     }, [])
     return (
         <>
@@ -71,7 +95,12 @@ const Cart = (props) => {
                         <ButtonC text="Empty Cart" handleBtnClick={handleEmptyCart} />
                         <h3>Billing Details</h3>
                         <BasicTable />
-                        <ButtonC text="Place Order" />
+                        {
+                            address
+                            ?<ButtonC text="Place Order" handleBtnClick={handlePlaceOrder}/>
+                            :<ButtonC text="Add Address" handleBtnClick={handleAddAddress}/>
+                        }
+                        <AddressModal handleOpen={setOpen} open={open}/>
                     </div>
                 </div>
                 : <Message
@@ -82,9 +111,10 @@ const Cart = (props) => {
         </>
     )
 }
-const mapStateToProps = ({ cart }) => {
+const mapStateToProps = ({ cart, user }) => {
     return {
-        cartItems: cart.cartItems
+        cartItems: cart.cartItems,
+        currentUser: user.currentUser
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -94,6 +124,7 @@ const mapDispatchToProps = (dispatch) => {
         updateCartItem: (item) => dispatch(updateCartItem(item)),
         emptyCart: () => dispatch(emptyCart()),
         addtoWishlist: (id) => dispatch(addtoWishlist(id)),
+        loginSuccess: (user) => dispatch(loginSuccess(user))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

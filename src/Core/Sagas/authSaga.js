@@ -5,7 +5,8 @@ export function * loginSaga(action) {
     // check the credentials
     try{
         if(action.payload.email === 'shreya@gmail.com' && action.payload.password === '123456'){
-            yield put({type: user.LOGIN_SUCCESS, payload: action.payload});
+            localStorage.setItem("user", JSON.stringify({email: action.payload.email}));
+            yield put({type: user.LOGIN_SUCCESS, payload: {email: action.payload.email}});
         }
         else{
             yield put({type: user.LOGIN_ERROR, payload: "Invalid email or password"});
