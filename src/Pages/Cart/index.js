@@ -4,6 +4,7 @@ import Dropdown from '../../Components/Dropdown';
 import BasicTable from '../../Components/BasicTable';
 import AddressModal from '../../Components/AddressModal';
 import Message from '../../Components/Message';
+import {CardActions, Card, CardContent,Typography} from '@mui/material';
 import { loginSuccess } from '../../Core/Actions/userActions';
 import { connect } from 'react-redux';
 import { getCartStart, deleteFromCart, updateCartItem, emptyCart } from '../../Core/Actions/cartItemsAction';
@@ -20,7 +21,7 @@ const Cart = (props) => {
     const handleRemoveFromCart = (item) => {
         props.deleteFromCart(item);
     }
-    const handleMoveToWishlist=(item) =>{
+    const handleMoveToWishlist = (item) => {
         props.addtoWishlist(item.id);
         props.deleteFromCart(item);
     }
@@ -32,29 +33,33 @@ const Cart = (props) => {
         props.emptyCart();
     }
     const handlePlaceOrder = () => {
-        if(props.currentUser){
+        if (props.currentUser) {
             console.log("checkout");
         }
-        else{
+        else {
             navigate('/login')
         }
     }
-    const handleAddAddress=()=>{
-        if(props.currentUser){
+    const handleAddAddress = () => {
+        if (props.currentUser) {
             setOpen(true);
             console.log("checkout");
         }
-        else{
+        else {
             navigate('/login')
         }
-        
+
     }
     useEffect(() => {
         props.getCartStart();
         let user = JSON.parse(localStorage.getItem('user'));
-        if(user){
+        if (user) {
             props.loginSuccess(user);
+            if (user.address) {
+                setAddress(user.address);
+            }
         }
+
     }, [])
     return (
         <>
@@ -97,14 +102,24 @@ const Cart = (props) => {
                         <BasicTable />
                         {
                             address
-                            ?<ButtonC text="Place Order" handleBtnClick={handlePlaceOrder}/>
-                            :<ButtonC text="Add Address" handleBtnClick={handleAddAddress}/>
+                                ? <>
+                                    <Card>
+                                        <CardContent>
+                                            <Typography  gutterBottom variant="p" component="div">{Object.values(address).join(", ")}</Typography>
+                                        </CardContent>
+                                        <CardActions>
+                                            <ButtonC text="Edit" handleBtnClick={handleAddAddress} />
+                                        </CardActions>
+                                    </Card>
+                                    <ButtonC text="Place Order" handleBtnClick={handlePlaceOrder} />
+                                </>
+                                : <ButtonC text="Add Address" handleBtnClick={handleAddAddress} />
                         }
-                        <AddressModal handleOpen={setOpen} open={open}/>
+                        <AddressModal handleOpen={setOpen} open={open} setAddress={setAddress}/>
                     </div>
                 </div>
                 : <Message
-                    text="Your cart is empty"                      
+                    text="Your cart is empty"
                 />
             }
 

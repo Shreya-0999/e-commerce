@@ -12,8 +12,8 @@ const ProductCard = (props) => {
                 <CardMedia
                     component="img"
                     height="370"
-                    image={`${props.image}`}
-                    alt={`${props.name}`}
+                    image={`${props?.image}`}
+                    alt={`${props?.name}`}
                     onClick={()=>handleItemDetailPage(props.id, props.section)}
                 />
 

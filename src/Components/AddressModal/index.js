@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Grid, Modal, Box } from '@mui/material';
 import TextField from '../TextField';
 import ButtonC from '../Button';
@@ -23,21 +22,30 @@ const AddressModal = (props) => {
   const [pincode, setPincode] = useState();
   const [city, setCity] = useState();
   const [state, setState] = useState();
+  const [validation, setValidation] = useState(false);
   // const handleOpenModal = () => props.handleOpen(true);
-  const handleClose = () => props.handleOpen(false);
+  const handleClose = () => {
+    props.handleOpen(false);
+    setValidation(false);
+  }
 
-  const handleSave=()=>{
-    let user = JSON.parse(localStorage.getItem('user'));
-    user.address = {
-      FullName: fullName,
-      MobileNo: mobileNo,
-      Locality: locality,
-      Pincode: pincode,
-      City: city,
-      State: state
+  const handleSave = () => {
+    if (fullName && mobileNo && locality && pincode && city && state) {
+      let user = JSON.parse(localStorage.getItem('user'));
+      user.address = {
+        FullName: fullName,
+        MobileNo: mobileNo,
+        Locality: locality,
+        Pincode: pincode,
+        City: city,
+        State: state
+      }
+      localStorage.setItem('user', JSON.stringify(user));
+      props.setAddress(user.address);
+      handleClose();
     }
-    localStorage.setItem('user', JSON.stringify(user));
-    handleClose();
+    else
+      setValidation(true);
   }
   return (
     <div>
@@ -51,24 +59,29 @@ const AddressModal = (props) => {
           <h2>Add Address</h2>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField type={'Full Name'} value={fullName} setFunc={setFullName}/>
+              <TextField type={'Full Name'} value={fullName} setFunc={setFullName} />
             </Grid>
             <Grid item xs={12}>
-              <TextField type={'Locality'} value={locality} setFunc={setLocality}/>
+              <TextField type={'Locality'} value={locality} setFunc={setLocality} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField type={'Pincode'} value={pincode} setFunc={setPincode}/>
+              <TextField type={'Pincode'} value={pincode} setFunc={setPincode} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField type={'Mobile No'} value={mobileNo} setFunc={setMobileNo}/>
+              <TextField type={'Mobile No'} value={mobileNo} setFunc={setMobileNo} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField type={'City'} value={city} setFunc={setCity}/>
+              <TextField type={'City'} value={city} setFunc={setCity} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField type={'State'} value={state} setFunc={setState}/>
+              <TextField type={'State'} value={state} setFunc={setState} />
             </Grid>
           </Grid>
+          {
+            validation
+              ? <p>Fill all the fields</p>
+              : <></>
+          }
           <ButtonC text='Close' handleBtnClick={handleClose} />
           <ButtonC text='Save' handleBtnClick={handleSave} />
         </Box>

@@ -4,6 +4,7 @@ const TextFields = (props) => {
         <>
             <div className='login-inputField'>
                 <TextField
+                    required
                     id="filled-basic"
                     label={props.type}
                     variant="filled"
