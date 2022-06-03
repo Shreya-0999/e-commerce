@@ -17,7 +17,6 @@ const Cart = (props) => {
     let navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [address, setAddress] = useState('');
-
     const handleRemoveFromCart = (item) => {
         props.deleteFromCart(item);
     }
@@ -34,9 +33,9 @@ const Cart = (props) => {
     }
     const handlePlaceOrder = () => {
         if (props.currentUser) {
-            console.log("checkout");
-            props.updateOrderList(props.cartItems);
+            props.updateOrderList(props.cartItems, address);
             props.emptyCart();
+            navigate('/orderSuccessfull');
         }
         else {
             navigate('/login')
@@ -143,7 +142,7 @@ const mapDispatchToProps = (dispatch) => {
         emptyCart: () => dispatch(emptyCart()),
         addtoWishlist: (id) => dispatch(addtoWishlist(id)),
         loginSuccess: (user) => dispatch(loginSuccess(user)),
-        updateOrderList: (orderList) => dispatch(updateOrderList(orderList))
+        updateOrderList: (orderList, address) => dispatch(updateOrderList(orderList, address))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -120,15 +120,23 @@ export function deleteFromWishlist(action) {
 }
 
 export function updateOrderList(action) {
+    let user = JSON.parse(localStorage.getItem("user"));
     let orderListArr = JSON.parse(window.localStorage.getItem('orderList'));
+    let orderObj = {
+        orderId: Math.floor(100000 + Math.random() * 900000),
+        date: new Date().getDate() + '/' + new Date().getMonth() + '/' + new Date().getFullYear(),
+        address: action.address,
+        orderStatus: 'Confirmed',
+        orderItems: action.item,
+    };
     let newOrderListArr = []
-    console.log(action.item);
     if (orderListArr) {
         console.log("orderListArr", [...orderListArr, action.item]);
-        newOrderListArr = [...orderListArr, action.item];
+        newOrderListArr = [...orderListArr, orderObj];
     }
     else
-        newOrderListArr = [action.item];
+        newOrderListArr = [orderObj];
+    console.log("newOrderListArr", newOrderListArr);
     window.localStorage.setItem("orderList", JSON.stringify(newOrderListArr));
     return newOrderListArr;
 }
