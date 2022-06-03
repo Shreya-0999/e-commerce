@@ -7,7 +7,7 @@ import Message from '../../Components/Message';
 import {CardActions, Card, CardContent,Typography} from '@mui/material';
 import { loginSuccess } from '../../Core/Actions/userActions';
 import { connect } from 'react-redux';
-import { getCartStart, deleteFromCart, updateCartItem, emptyCart } from '../../Core/Actions/cartItemsAction';
+import { getCartStart, deleteFromCart, updateCartItem, emptyCart, updateOrderList } from '../../Core/Actions/cartItemsAction';
 import './Styles/index.css';
 import { useEffect, useState } from 'react';
 import { addtoWishlist } from '../../Core/Actions/wishlistAction';
@@ -35,6 +35,8 @@ const Cart = (props) => {
     const handlePlaceOrder = () => {
         if (props.currentUser) {
             console.log("checkout");
+            props.updateOrderList(props.cartItems);
+            props.emptyCart();
         }
         else {
             navigate('/login')
@@ -129,6 +131,7 @@ const Cart = (props) => {
 const mapStateToProps = ({ cart, user }) => {
     return {
         cartItems: cart.cartItems,
+        orderList: cart.orderList,
         currentUser: user.currentUser
     }
 }
@@ -139,7 +142,8 @@ const mapDispatchToProps = (dispatch) => {
         updateCartItem: (item) => dispatch(updateCartItem(item)),
         emptyCart: () => dispatch(emptyCart()),
         addtoWishlist: (id) => dispatch(addtoWishlist(id)),
-        loginSuccess: (user) => dispatch(loginSuccess(user))
+        loginSuccess: (user) => dispatch(loginSuccess(user)),
+        updateOrderList: (orderList) => dispatch(updateOrderList(orderList))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

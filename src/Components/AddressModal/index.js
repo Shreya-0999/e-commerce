@@ -23,7 +23,6 @@ const AddressModal = (props) => {
   const [city, setCity] = useState();
   const [state, setState] = useState();
   const [validation, setValidation] = useState(false);
-  // const handleOpenModal = () => props.handleOpen(true);
   const handleClose = () => {
     props.handleOpen(false);
     setValidation(false);

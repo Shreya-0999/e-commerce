@@ -28,3 +28,17 @@ export const updateCartItem = (item)=>({
 export const emptyCart = ()=>({
     type: cartItems.CART_ITEM_EMPTY
 })
+
+export const getOrderListStart = () => ({
+    type: cartItems.ORDER_LIST_GET,
+})
+
+export const getOrderListSuccess = (orderList) => ({
+    type: cartItems.ORDER_LIST_SUCCESS,
+    payload: orderList
+})
+
+export const updateOrderList = (item)=>({
+    type: cartItems.ORDER_LIST_UPDATE,
+    item
+})

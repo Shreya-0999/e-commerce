@@ -110,11 +110,25 @@ export function deleteFromWishlist(action) {
             return ele;
         }
     })
-    if(newWishlistArr.length == 0){
+    if (newWishlistArr.length == 0) {
         localStorage.removeItem('wishlist');
         return null;
     }
-    console.log("yo",newWishlistArr);
+    console.log("yo", newWishlistArr);
     window.localStorage.setItem("wishlist", JSON.stringify(newWishlistArr));
-    return  newWishlistArr;
+    return newWishlistArr;
+}
+
+export function updateOrderList(action) {
+    let orderListArr = JSON.parse(window.localStorage.getItem('orderList'));
+    let newOrderListArr = []
+    console.log(action.item);
+    if (orderListArr) {
+        console.log("orderListArr", [...orderListArr, action.item]);
+        newOrderListArr = [...orderListArr, action.item];
+    }
+    else
+        newOrderListArr = [action.item];
+    window.localStorage.setItem("orderList", JSON.stringify(newOrderListArr));
+    return newOrderListArr;
 }

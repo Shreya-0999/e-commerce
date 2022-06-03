@@ -11,3 +11,12 @@ export function* getCartSaga(action) {
         console.log("Cart Item Saga Error::: ", err)
     }
 }
+export function* getOrderListSaga(action) {
+    try {
+        let orderList = JSON.parse(window.localStorage.getItem('orderList'));
+        yield put({ type: cartItems.ORDER_LIST_SUCCESS, payload: orderList });
+    }
+    catch (err) {
+        console.log("Order Item Saga Error::: ", err)
+    }
+}
