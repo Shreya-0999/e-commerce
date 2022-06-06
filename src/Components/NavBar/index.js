@@ -2,13 +2,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import {logoutStart} from '../../Core/Actions/userActions'
 import { Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem, Badge } from '@mui/material';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useNavigate } from 'react-router-dom';
 
-const settings = ['Profile', 'Order History', 'Logout'];
+const settings = ['Order History', 'Logout'];
 
 const NavBar = (props) => {
 
@@ -27,7 +28,15 @@ const NavBar = (props) => {
         navigate('/Login');
     }
 
-    const handleCloseUserMenu = () => {
+    const handleCloseUserMenu = (e) => {
+        console.log(e.target.innerHTML);
+        if(e.target.innerHTML === 'Order History')
+        {
+            navigate('/orderHistory');
+        }
+        else if(e.target.innerHTML === 'Logout'){
+            props.logoutStart();
+        }
         setAnchorElUser(null);
     };
 
@@ -113,7 +122,7 @@ const NavBar = (props) => {
                                             onClose={handleCloseUserMenu}
                                         >
                                             {settings.map((setting) => (
-                                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                                <MenuItem key={setting} onClick={(e)=>handleCloseUserMenu(e)}>
                                                     <Typography textAlign="center">{setting}</Typography>
                                                 </MenuItem>
                                             ))}
@@ -140,5 +149,10 @@ const mapStateToProps = ({ user, cart, wishlist }) => {
         wishlistItems: wishlist.wishlistItems
     }
 }
-export default connect(mapStateToProps)(NavBar);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logoutStart: () => dispatch(logoutStart())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
 

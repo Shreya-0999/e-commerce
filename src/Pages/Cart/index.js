@@ -17,6 +17,7 @@ const Cart = (props) => {
     let navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [address, setAddress] = useState('');
+    const [totalPrice, setTotalprice] = useState();
     const handleRemoveFromCart = (item) => {
         props.deleteFromCart(item);
     }
@@ -33,7 +34,7 @@ const Cart = (props) => {
     }
     const handlePlaceOrder = () => {
         if (props.currentUser) {
-            props.updateOrderList(props.cartItems, address);
+            props.updateOrderList(props.cartItems, address, totalPrice);
             props.emptyCart();
             navigate('/orderSuccessfull');
         }
@@ -100,7 +101,7 @@ const Cart = (props) => {
                     <div className="cart-priceSection">
                         <ButtonC text="Empty Cart" handleBtnClick={handleEmptyCart} />
                         <h3>Billing Details</h3>
-                        <BasicTable />
+                        <BasicTable totalPrice={setTotalprice}/>
                         {
                             address
                                 ? <>
@@ -142,7 +143,7 @@ const mapDispatchToProps = (dispatch) => {
         emptyCart: () => dispatch(emptyCart()),
         addtoWishlist: (id) => dispatch(addtoWishlist(id)),
         loginSuccess: (user) => dispatch(loginSuccess(user)),
-        updateOrderList: (orderList, address) => dispatch(updateOrderList(orderList, address))
+        updateOrderList: (orderList, address, totalPrice) => dispatch(updateOrderList(orderList, address, totalPrice))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

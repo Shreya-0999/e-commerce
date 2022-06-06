@@ -127,16 +127,15 @@ export function updateOrderList(action) {
         date: new Date().getDate() + '/' + new Date().getMonth() + '/' + new Date().getFullYear(),
         address: action.address,
         orderStatus: 'Confirmed',
+        totalPrice: action.totalPrice,
         orderItems: action.item,
     };
     let newOrderListArr = []
     if (orderListArr) {
-        console.log("orderListArr", [...orderListArr, action.item]);
         newOrderListArr = [...orderListArr, orderObj];
     }
     else
         newOrderListArr = [orderObj];
-    console.log("newOrderListArr", newOrderListArr);
     window.localStorage.setItem("orderList", JSON.stringify(newOrderListArr));
     return newOrderListArr;
 }

@@ -38,7 +38,7 @@ export const getOrderListSuccess = (orderList) => ({
     payload: orderList
 })
 
-export const updateOrderList = (item, address)=>({
+export const updateOrderList = (item, address, totalPrice)=>({
     type: cartItems.ORDER_LIST_UPDATE,
-    item, address
+    item, address, totalPrice
 })

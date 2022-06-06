@@ -12,8 +12,8 @@ import { connect } from 'react-redux';
 
 const BasicTable = (props) => {
   let totalPrice = 0;
-  function createData(name, calories) {
-    return { name, calories };
+  function createData(name, total) {
+    return { name, total };
   }
 
 
@@ -21,6 +21,7 @@ const BasicTable = (props) => {
     props?.cartItems?.forEach((item) => {
       totalPrice += item.price * item.quantity;
     })
+    props?.totalPrice(totalPrice);
     return totalPrice;
   }
 
@@ -67,7 +68,7 @@ const BasicTable = (props) => {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.total}</TableCell>
             </TableRow>
           ))}
         </TableBody>

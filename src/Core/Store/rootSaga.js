@@ -5,7 +5,7 @@ import user from '../Types/userTypes';
 import productItemsTypes from '../Types/productItemsTypes';
 import cartItem from '../Types/cartItemstype';
 import wishlist from'../Types/wishlistItemTypes';
-import {getCartSaga} from '../Sagas/cartSaga';
+import {getCartSaga, getOrderListSaga} from '../Sagas/cartSaga';
 import {getWishlistSaga} from '../Sagas/wishlistSaga';
 
 function *rootSaga(){
@@ -18,6 +18,7 @@ function *rootSaga(){
     yield takeEvery(productItemsTypes.ITEM_DETAILS_GET, itemDetailSaga);
 
     yield takeEvery(cartItem.CART_ITEM_GET, getCartSaga);
+    yield takeEvery(cartItem.ORDER_LIST_GET, getOrderListSaga);
     yield takeEvery(wishlist.WISHLIST_ITEM_GET, getWishlistSaga);
 }
 
