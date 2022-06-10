@@ -7,10 +7,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { connect } from 'react-redux';
+import useStyles from './Styles/useStyles';
 
 
 
 const BasicTable = (props) => {
+  const classes = useStyles(); 
   let totalPrice = 0;
   function createData(name, total) {
     return { name, total };
@@ -49,7 +51,7 @@ const BasicTable = (props) => {
   ];
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.container}>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>

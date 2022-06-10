@@ -32,6 +32,8 @@ export function * signupSaga(action){
 export function * logoutSaga(action){
     try{
         // store the ceredentials
+        console.log("logout saga");
+        localStorage.removeItem("user");
         yield put({type: user.LOGOUT_SUCCESS});
 
     }

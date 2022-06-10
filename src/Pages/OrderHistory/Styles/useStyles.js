@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => {
             color:'#525252',
         },
         orderBox:{
-            // padding: '1rem',
             marginBottom: '2.5rem '
         },
         marginZero:{
@@ -38,7 +37,6 @@ const useStyles = makeStyles((theme) => {
             margin:'0',
             fontSize: '15px !important',
             lineHeight: '1.4 !important',
-            // letterSpacing: '1.2px !important',
         },
         orderHeading:{
             fontFamily: 'Nunito, sans-serif',

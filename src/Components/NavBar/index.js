@@ -29,6 +29,7 @@ const NavBar = (props) => {
     }
 
     const handleCloseUserMenu = (e) => {
+        console.log(e);
         console.log(e.target.innerHTML);
         if(e.target.innerHTML === 'Order History')
         {
@@ -36,6 +37,7 @@ const NavBar = (props) => {
         }
         else if(e.target.innerHTML === 'Logout'){
             props.logoutStart();
+            console.log("logout");
         }
         setAnchorElUser(null);
     };

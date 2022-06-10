@@ -44,8 +44,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
             }
         case user.LOGOUT_SUCCESS:
             return {
-                ...state,
-                ...INITIAL_STATE
+                // ...INITIAL_STATE
             }
 
         default: return state;
