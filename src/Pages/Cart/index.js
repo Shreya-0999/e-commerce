@@ -69,69 +69,93 @@ const Cart = (props) => {
             <NavBar />
             {props?.cartItems
                 ? <div className={classes.cart}>
-                    <div className={classes.cartItemSection}>
-                        <h1 className={classes.pageHeading}>My Bag</h1>
-                        <p className={classes.underline}></p>
-                        <div className={classes.itemContainer}>
-                            {
-                                props?.cartItems?.map((ele) => (
-                                    <div className={classes.cartItemBox} key={ele.id}>
-                                        <div className={classes.detailsBox}>
-                                            <div className={classes.itemImage}>
-                                                <img src={ele.image} alt="" className={classes.img} />
-                                            </div>
-                                            <div className={classes.itemDetails}>
-                                                <h2>{ele.name}</h2>
-                                                <div className={classes.dropDownBox}>
-                                                    <Dropdown
-                                                        section='Cart'
-                                                        label='quantity'
-                                                        value={ele.quantity}
-                                                        handleDropdownChange={(val, label) => { handleDropdownUpdate(ele, val, label) }}
-                                                    />
-                                                    <Dropdown section='Cart' label='size' value={ele.size} itemArr={ele.sizeAvailable} handleDropdownChange={(val, label) => { handleDropdownUpdate(ele, val, label) }} />
+                    <h1 className={classes.pageHeading}>My Bag</h1>
+                    <p className={classes.underline}></p>
+                    <div className={classes.flex}>
+                        <div className={classes.cartItemSection}>
+                            <div className={classes.itemContainer}>
+                                {
+                                    props?.cartItems?.map((ele) => (
+                                        <div className={classes.cartItemBox} key={ele.id}>
+                                            <div className={classes.detailsBox}>
+                                                <div className={classes.itemImage}>
+                                                    <img src={ele.image} alt="" className={classes.img} />
+                                                </div>
+                                                <div className={classes.itemDetails}>
+                                                    <h2 className={classes.header}>{ele.name}</h2>
+                                                    <div className={classes.flex}>
+                                                        <Dropdown
+                                                            section='Cart'
+                                                            label='quantity'
+                                                            value={ele.quantity}
+                                                            handleDropdownChange={(val, label) => { handleDropdownUpdate(ele, val, label) }}
+                                                        />
+                                                        <Dropdown section='Cart' label='size' value={ele.size} itemArr={ele.sizeAvailable} handleDropdownChange={(val, label) => { handleDropdownUpdate(ele, val, label) }} />
+                                                    </div>
+                                                </div>
+                                                <div className={classes.itemPrice}>
+                                                    <h2 className={classes.header}>Rs {ele.price * ele.quantity}</h2>
                                                 </div>
                                             </div>
-                                            <div className={classes.itemPrice}>
-                                                <h2>Rs {ele.price * ele.quantity}</h2>
+                                            <div className={classes.itemSectionItemAction}>
+                                                <ButtonC
+                                                    text="Remove"
+                                                    handleBtnClick={() => { handleRemoveFromCart(ele) }}
+                                                    variant="text"
+                                                    color="text"
+                                                />
+                                                <ButtonC
+                                                    text="Move to wishlist"
+                                                    handleBtnClick={() => { handleMoveToWishlist(ele) }}
+                                                    variant="text"
+                                                    color="text"
+                                                />
                                             </div>
                                         </div>
-                                        <div className={classes.itemSectionItemAction}>
-                                            <ButtonC text="Remove" handleBtnClick={() => { handleRemoveFromCart(ele) }} />
-                                            <ButtonC text="Move to wishlist" handleBtnClick={() => { handleMoveToWishlist(ele) }} />
-                                        </div>
-                                    </div>
-                                ))
-                            }
+                                    ))
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <div className={classes.cartPriceSection}>
-                        <div>
-                            <ButtonC text="Empty Cart" handleBtnClick={handleEmptyCart} />
-                        </div>
-                        <div className={classes.margin}>
-                            <h3 className={classes.subheader}>Billing Details</h3>
-                            <BasicTable totalPrice={setTotalprice} />
-                        </div>
-                        <div className={classes.margin}>
-                            {
-                                address
-                                    ? <>
-                                        <Card>
-                                            <CardContent>
-                                                <Typography gutterBottom variant="p" component="div">{Object.values(address).join(", ")}</Typography>
-                                            </CardContent>
-                                            <CardActions>
-                                                <ButtonC text="Edit" handleBtnClick={handleAddAddress} />
-                                            </CardActions>
-                                        </Card>
-                                        <ButtonC text="Place Order" handleBtnClick={handlePlaceOrder} />
-                                    </>
-                                    : <ButtonC text="Add Address" handleBtnClick={handleAddAddress} />
-                            }
+                        <div className={classes.cartPriceSection}>
+                            <div>
+                                <h3 className={classes.subheader}>Billing Details</h3>
+                                <BasicTable totalPrice={setTotalprice} />
+                            </div>
+                            <div className={classes.margin}>
+                                {
+                                    address
+                                        ? <>
+                                            <Card>
+                                                <CardContent>
+                                                    <Typography gutterBottom variant="p" component="div">{Object.values(address).join(", ")}</Typography>
+                                                </CardContent>
+                                                <CardActions>
+                                                    <ButtonC text="Edit" handleBtnClick={handleAddAddress} />
+                                                </CardActions>
+                                            </Card>
+                                            <ButtonC text="Place Order" handleBtnClick={handlePlaceOrder} />
+                                        </>
+                                        : <ButtonC
+                                            text="Add Address"
+                                            handleBtnClick={handleAddAddress}
+                                            variant="contained"
+                                            color="success"
+                                            width='full'
+                                        />
+                                }
 
+                                <div>
+                                    <ButtonC
+                                        text="Empty Cart"
+                                        handleBtnClick={handleEmptyCart}
+                                        variant="outlined"
+                                        color="primary"
+                                        width='full'
+                                    />
+                                </div>
+                            </div>
+                            <AddressModal handleOpen={setOpen} open={open} setAddress={setAddress} />
                         </div>
-                        <AddressModal handleOpen={setOpen} open={open} setAddress={setAddress} />
                     </div>
                 </div>
                 : <Message

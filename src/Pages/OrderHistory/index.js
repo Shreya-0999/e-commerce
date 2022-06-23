@@ -16,60 +16,69 @@ const OrderHistory = (props) => {
             <NavBar />
             {
                 props?.orderList
-                ?<div className={classes.container}>
-                    <h1 className={classes.pageHeading}>My Orders</h1>
-                    <p className={classes.underline}></p>
-                    {
-                        props.orderList.map((ele, key) => (
-                            <Grid container className={classes.orderBox}>
-                                <Grid item xs={12}>
-                                    <Typography className={`${classes.itemDetails} ${classes.bold}`}>#Order ID: {ele.orderId}</Typography>
-                                </Grid>
-                                <Grid item xs container className={classes.orderContainer}>
-                                    <Grid item xs={12} md={8}>
-                                        {
-                                            ele.orderItems.map((item, key) => (
-                                                <Grid item xs={12} container className={classes.itemContainer} key={key}>
-                                                    <Grid item xs={12} md={4}>
-                                                        <ButtonBase sx={{ width: 200, height: 230 }}>
-                                                            <img alt="complex" src={item.image} className={classes.img}/>
-                                                        </ButtonBase>
-                                                    </Grid>
-                                                    <Grid item xs={12} md={8} className = {classes.leftPadding}>
-                                                        <Typography variant="h5" className={classes.productName}>{item.name}</Typography>
-                                                        <Typography variant="body1" className={classes.itemDetails}>Qty: {item.quantity}</Typography>
-                                                        <Typography variant="body1" className={classes.itemDetails}>Size: {item.size}</Typography>
-                                                        <Typography variant="body1" className={classes.itemDetails}>Price: Rs {item.price}</Typography>
-                                                    </Grid>
+                    ? <div className={classes.container}>
+                        <h1 className={classes.pageHeading}>My Orders</h1>
+                        <p className={classes.underline}></p>
+                        <Grid container spacing={2}>
+                            {
+                                props.orderList.map((ele, key) => (
+                                    <Grid item md={4} key={key}>
+                                        <Grid conatiner className={classes.orderBox}>
+                                            <Grid item xs={12} className={`${classes.topSection} ${classes.bottomBorder}`} >
+                                                <h3 className={classes.header}>Order #{ele.orderId}</h3>
+                                                <p className={classes.subHeader}>{ele.date}</p>
+                                            </Grid>
+                                            <Grid item xs={12} className={`${classes.middleSection} ${classes.bottomBorder}`} >
+                                                {
+                                                    ele.orderItems.map((item, key) => (
+                                                        <Grid container key={key} className={classes.itemBox}>
+                                                            <Grid item md={4}>
+                                                                <ButtonBase sx={{ width: 100, height: 100 }}>
+                                                                    <img alt="complex" src={item.image} className={classes.img} />
+                                                                </ButtonBase>
+                                                            </Grid>
+                                                            <Grid item md={8} container className={`${classes.bottomBorder} ${classes.paddingLeft}`}>
+                                                                <Grid item md={12}>
+                                                                    <h3 className={classes.header}>{item.name}</h3>
+                                                                </Grid>
+                                                                <Grid item md={5}>
+                                                                    <p className={classes.subHeader}>Size: {item.size}</p>
+                                                                </Grid>
+                                                                <Grid item md={5}>
+                                                                    <p className={classes.subHeader}>Qty: {item.quantity}</p>
+                                                                </Grid>
+                                                                <Grid item md={12}>
+                                                                    <h3 className={classes.header}>Rs {item.price}/-</h3>
+                                                                </Grid>
+                                                            </Grid>
+                                                        </Grid>
+                                                    ))
+                                                }
+                                            </Grid>
+                                            <Grid item container xs={12} className={classes.bottomSection}>
+                                                <Grid item md={8}>
+                                                    <p className={classes.subHeader}>{ele.address.FullName}, {ele.address.MobileNo}</p>
+                                                    <h3 className={classes.header}>Rs {ele.totalPrice} /-</h3>
                                                 </Grid>
-                                            ))
-                                        }
-                                    </Grid>
+                                                <Grid item md={4}>
+                                                    {
+                                                        ele.orderStatus === 'Confirmed'
+                                                            ? <div className={classes.orderSucess}>{ele.orderStatus}</div>
+                                                            : <div className={classes.orderFailure}>{ele.orderStatus}</div>
+                                                    }
 
-
-                                    <Grid item xs={4} md={4} container className={classes.priceSection}>
-                                        <Grid item xs={12}>
-                                            <h2 className={classes.orderHeading}>Shipping Details</h2>
-                                            <p className={`${classes.itemDetails} ${classes.bold}`}>{ele.address.FullName}, {ele.address.MobileNo},</p>
-                                            <p className={classes.itemDetails}>{ele.address.Locality}, {ele.address.Pincode}</p>
-                                            <p variant="body1" className={classes.itemDetails}>{ele.address.State},</p>
-                                            <p variant="body1" className={classes.itemDetails}>{ele.date}</p>
-                                            <h2 className={classes.orderHeading}>Payment Summary</h2>
-                                            <Typography variant="subtitle1" className={`${classes.itemDetails} ${classes.bold}`}>Amount Paid: Rs {ele.totalPrice}</Typography>
+                                                </Grid>
+                                            </Grid>
                                         </Grid>
+
                                     </Grid>
-
-                                </Grid>
-                            </Grid>
-                        ))
-                    }
-
-                    {/* </Stack> */}
-
-                </div>
-                :<Message
-                text='You have no previous order'
-            />
+                                ))
+                            }
+                        </Grid>
+                    </div>
+                    : <Message
+                        text='You have no previous order'
+                    />
             }
         </>
     )

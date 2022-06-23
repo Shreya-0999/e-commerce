@@ -66,7 +66,7 @@ const NavBar = (props) => {
     }
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography

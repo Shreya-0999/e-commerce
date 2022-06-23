@@ -1,8 +1,17 @@
 *{
     box-sizing: border-box;
 }
+*::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #dddae4;
+    border-radius: 20px;
+  }
 body{
     margin:0;
-    background-color:#f9f9f9;
+    background-color:#f6f3fe;
+    /* background-color:#f4f5f7; */
     font-family: 'Nunito', sans-serif;
 }

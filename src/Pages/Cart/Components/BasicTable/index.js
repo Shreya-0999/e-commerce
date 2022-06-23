@@ -17,8 +17,6 @@ const BasicTable = (props) => {
   function createData(name, total) {
     return { name, total };
   }
-
-
   const calTotalPrice = () => {
     props?.cartItems?.forEach((item) => {
       totalPrice += item.price * item.quantity;
@@ -26,7 +24,6 @@ const BasicTable = (props) => {
     props?.totalPrice(totalPrice);
     return totalPrice;
   }
-
   const calDelivery = () => {
     if (totalPrice >= 1000) {
       return 'FREE';
@@ -34,7 +31,6 @@ const BasicTable = (props) => {
       return 70;
     }
   }
-
   const calSubTotal = () => {
     let delivery = calDelivery();
     if (delivery === 'FREE') {
@@ -43,7 +39,6 @@ const BasicTable = (props) => {
     else
       return totalPrice + calDelivery();
   }
-
   const rows = [
     createData('Total Price', calTotalPrice()),
     createData('Delivery', calDelivery()),
@@ -57,7 +52,7 @@ const BasicTable = (props) => {
           <TableRow>
             {
               props?.header?.map((ele) => (
-                <TableCell>{ele}</TableCell>
+                <TableCell className={classes.color}>{ele}</TableCell>
               ))
             }
           </TableRow>
@@ -67,10 +62,10 @@ const BasicTable = (props) => {
             <TableRow
               key={row.name}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" className={classes.color}>
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.total}</TableCell>
+              <TableCell align="right" className={classes.color}>{row.total}</TableCell>
             </TableRow>
           ))}
         </TableBody>

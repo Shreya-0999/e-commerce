@@ -6,8 +6,9 @@ const useStyles = makeStyles((theme) => {
             minHeight: '90vh',
             width: '70%',
             margin: '0 auto',
-            display: 'flex',
-            color:'#525252',
+            // display: 'flex',
+            color: theme.palette.text.dark,
+            // color:'#525252',
             /* background-color:pink; */
         },
         cartItemSection: {
@@ -19,13 +20,14 @@ const useStyles = makeStyles((theme) => {
         pageHeading:{
             marginTop:'3rem',
             marginBottom: '1rem',
-            color:'#525252',
+            color: theme.palette.text.dark,
         },
         underline:{
             width: '100px',
-            borderTop:'2px solid #d8d8d8',
+            borderTop:`3px solid ${theme.palette.primary.main}`,
             marginBottom:'3rem',
             marginTop: '0',
+
         },
         itemContainer:{
             margin: '0 1.5rem 1.5rem 0',
@@ -35,9 +37,9 @@ const useStyles = makeStyles((theme) => {
             height: '320px',
             width: '100%',
             borderRadius: '5px ',
-            border: '1px solid #d8d8d8',
+            border: `1px solid ${theme.palette.border.main}`,
             marginBottom: '2rem',
-            // borderBottom: 'none',
+            background: theme.palette.secondary.main,
         },
         detailsBox: {
             height: '80%',
@@ -57,9 +59,9 @@ const useStyles = makeStyles((theme) => {
             // backgroundColor: 'rgb(212, 228, 241)',
             // border: '1px solid #c6c6c6',
             margin: '0 1.5rem',
-            color:'#545151'
+            color: theme.palette.text.light,
         },
-        dropDownBox:{
+        flex:{
             display: 'flex',
         },
         itemPrice: {
@@ -73,16 +75,15 @@ const useStyles = makeStyles((theme) => {
             alignItems: 'center',
             justifyContent: 'flex-end',
             // backgroundColor: 'azure',
-            borderTop: '1px solid #d8d8d8',
+            borderTop:  `1px solid ${theme.palette.border.main}`,
             // borderBottom: '1px solid #c6c6c6',
             padding: '1rem',
         },
         cartPriceSection: {
-            width: '30%',
-            margin: '5rem 0'           
+            width: '30%',         
         },
         margin :{
-            margin: '3rem 0'
+            margin: '2rem 0'
         },
         img: {
             maxWidth: '100%',
@@ -90,9 +91,12 @@ const useStyles = makeStyles((theme) => {
             objectFit: 'cover',
             borderRadius: '5px',
         },
+        header:{
+            fontSize: '1.3rem',
+        },
         subheader:{
-            color:'#8e7f7f',
-            margin:'2rem 0'
+            color:theme.palette.text.main,
+            marginTop: '0',
         }
 
     }
