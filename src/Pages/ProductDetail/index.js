@@ -1,17 +1,19 @@
-import NavBar from "../../Components/NavBar/index";
+import { useEffect, useState } from "react";
+import { connect } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Grid, ImageList, ImageListItem } from '@mui/material'
 import { getItemDetails } from '../../Core/Actions/productItemsAction';
 import { addToCart } from '../../Core/Actions/cartItemsAction';
 import { addtoWishlist, deleteFromWishlist } from '../../Core/Actions/wishlistAction';
-import { connect } from 'react-redux';
-import { useEffect, useState } from "react";
+import NavBar from "../../Components/NavBar/index";
 import ButtonC from "../../Components/Button";
 import RadioButtons from '../../Components/RadioButtons'
 import Dropdown from '../../Components/Dropdown'
-import './Styles/index.css';
+import useStyle from './Styles/useStyles.js';
 
 const ProductDetail = (props) => {
     const navigate = useNavigate();
+    const classes = useStyle();
     const { section, id } = useParams();
     const [itemSize, setItemSize] = useState('');
     const [itemQuantity, setItemQuantity] = useState(1);
@@ -27,7 +29,6 @@ const ProductDetail = (props) => {
         else {
             setCardValidation(true)
         }
-        // props.addToCart(id, itemQuantity, itemSize);
     }
     const handleAddToWishlist = () => {
         if (wishlisted) {
@@ -60,51 +61,82 @@ const ProductDetail = (props) => {
     return (
         <>
             <NavBar />
-            {props.itemDetail && (<div className="details_innerContainer">
-                <div className="imageSection">
-                    {props?.itemDetail[0]?.details.images.map((ele, key) => (
-                        <>
-                            <div className="detail-item-imageBox">
-                                <img src={ele} alt="item" key={key} className="detail-item-img" />
-                            </div>
-                        </>
-                    ))}
-                </div>
-                <div className="detailSection">
-                    <div className="detail-item-headerSetion">
-                        <h1 className="detail-itemName">{props?.itemDetail[0]?.name}</h1>
-                        <p>----</p>
-                    </div>
-                    <div className="detail-item-priceSetion">
-                        <h2>Rs {props?.itemDetail[0]?.price}</h2>
-                        <p>Price inclusive of all taxes</p>
-                    </div>
-                    <div className="detail-item-sizeSection">
-                        <RadioButtons itemDetail={props?.itemDetail[0]?.details} setItemSize={setItemSize} setCardValidation={setCardValidation} />
-                    </div>
-                    <div className="detail-item-quantitySection">
-                        <Dropdown label='quantity' value={itemQuantity} setValue={setItemQuantity} />
-                    </div>
-                    <div className="detail-item-buttonSection">
-                        {cartValidation ? <p className="detail-validation">Select a size.</p> : <></>}
-                        {
-                            goCartVisible ?
-                                <ButtonC text={'Go to Cart'} handleBtnClick={handleGoToCart} />
-                                :
-                                <ButtonC text={'Add to Cart'} handleBtnClick={handleAddToCart} />
+            {props.itemDetail &&
+                (
+                    <div className={classes.container}>
+                        <Grid container spacing={6}>
+                            <Grid item md={7}>
+                                <ImageList cols={2} className={classes.imgBox} gap={16}>
+                                    {
+                                        props?.itemDetail[0]?.details.images.map((ele, key) => (
+                                            <ImageListItem key={key}>
+                                                <img
+                                                    className={classes.img}
+                                                    src={`${ele}?w=150&h=150&fit=crop&auto=format`}
+                                                    srcSet={`${ele}?w=150&h=150&fit=crop&auto=format&dpr=2 2x`}
+                                                    alt={ele}
+                                                    loading="lazy"
+                                                />
+                                            </ImageListItem>
+                                        ))
+                                    }
+                                </ImageList>
+                            </Grid>
+                            <Grid item md={5} xs={12} container>
+                                <Grid item md={12} xs={12}>
+                                    <h1 className={classes.pageHeading}>{props?.itemDetail[0]?.name}</h1>
+                                    <p className={classes.subHeader}>Shreya</p>
+                                    <p className={classes.underline}></p>
+                                    <h1 className={classes.header}>Rs {props?.itemDetail[0]?.price}/-</h1>
+                                    <p className={`${classes.subHeader} ${classes.mtZero}`}>Price inclusive of all taxes</p>
+                                    <div className={classes.space}>
+                                        <Dropdown label='Quantity' value={itemQuantity} setValue={setItemQuantity} />
+                                    </div>
+                                    <div className={classes.space}>
+                                        <RadioButtons itemDetail={props?.itemDetail[0]?.details} setItemSize={setItemSize} setCardValidation={setCardValidation} />
+                                    </div>
+                                    <div className={classes.btnBox}>
+                                        {cartValidation ? <p className="detail-validation">Select a size.</p> : <></>}
+                                        {
+                                            goCartVisible ?
+                                                <ButtonC
+                                                    text={'Go to Cart'}
+                                                    handleBtnClick={handleGoToCart}
+                                                    variant='contained'
+                                                    color='primary'
+                                                />
+                                                :
+                                                <ButtonC
+                                                    text={'Add to Cart'}
+                                                    handleBtnClick={handleAddToCart}
+                                                    variant='contained'
+                                                    color='primary'
+                                                />
 
-                        }
-                        {
-                            wishlisted
-                                ? <ButtonC text={'Wishlisted'} handleBtnClick={handleAddToWishlist} />
-                                : <ButtonC text={'Add to Wishlist'} handleBtnClick={handleAddToWishlist} />
-                        }
-                    </div>
-                    <div className="detail-item-description">
-                        <p>{props?.itemDetail[0]?.details.description}</p>
-                    </div>
-                </div>
-            </div>)}
+                                        }
+                                        {
+                                            wishlisted
+                                                ? <ButtonC
+                                                    text={'Wishlisted'}
+                                                    handleBtnClick={handleAddToWishlist}
+                                                    variant='outlined'
+                                                    color='primary'
+
+                                                />
+                                                : <ButtonC
+                                                    text={'Add to Wishlist'}
+                                                    handleBtnClick={handleAddToWishlist}
+                                                    variant='outlined'
+                                                    color='primary'
+                                                />
+                                        }
+                                    </div>
+                                </Grid>
+                            </Grid>
+
+                        </Grid>
+
+                    </div>)}
         </>
     )
 }

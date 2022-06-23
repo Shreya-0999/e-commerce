@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
+import { Card, CardActions, CardContent, CardMedia, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import useStyle from './Styles/useStyle'
 

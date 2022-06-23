@@ -86,11 +86,11 @@ const Cart = (props) => {
                                                     <div className={classes.flex}>
                                                         <Dropdown
                                                             section='Cart'
-                                                            label='quantity'
+                                                            label='Quantity'
                                                             value={ele.quantity}
                                                             handleDropdownChange={(val, label) => { handleDropdownUpdate(ele, val, label) }}
                                                         />
-                                                        <Dropdown section='Cart' label='size' value={ele.size} itemArr={ele.sizeAvailable} handleDropdownChange={(val, label) => { handleDropdownUpdate(ele, val, label) }} />
+                                                        <Dropdown section='Cart' label='Size' value={ele.size} itemArr={ele.sizeAvailable} handleDropdownChange={(val, label) => { handleDropdownUpdate(ele, val, label) }} />
                                                     </div>
                                                 </div>
                                                 <div className={classes.itemPrice}>

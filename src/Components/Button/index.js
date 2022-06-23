@@ -13,7 +13,7 @@ const ButtonC = (props) => {
                 onClick={props.handleBtnClick}
                 className={`${classes.btn}`}
                 size='large'
-                sx={{ mt:'10px'}}
+                sx={{ mt:'10px', mr:'10px'}}
             >
                 {props.text}
             </Button>
