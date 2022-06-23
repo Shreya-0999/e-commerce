@@ -1,28 +1,37 @@
 import NavBar from "../../Components/NavBar";
 import Message from "../../Components/Message";
 import ProductCard from "../../Components/ProductCard"
+import { Grid } from '@mui/material';
 import { connect } from 'react-redux';
 import { addToCart } from '../../Core/Actions/cartItemsAction';
 import { getWishlistStart, deleteFromWishlist } from '../../Core/Actions/wishlistAction';
-import { useEffect, useState } from "react";
-import "./Styles/index.css";
+import { useEffect } from "react";
+import useStyle from "./Styles/useStyle.js";
+
 const Wishlist = (props) => {
+    const classes = useStyle();
+
     const handleMoveToCart = (id) => {
-        props.addToCart(id,1,'M');
+        props.addToCart(id, 1, 'M');
         props.deleteFromWishlist(id);
     }
 
     const handleRemove = (id) => {
         props.deleteFromWishlist(id);
     }
+
     let action = [
         {
             text: 'Move To Cart',
-            handleBtn: handleMoveToCart
+            handleBtn: handleMoveToCart,
+            color: 'primary',
+            variant: 'contained'
         },
         {
             text: 'Remove',
-            handleBtn: handleRemove
+            handleBtn: handleRemove,
+            color: 'primary',
+            variant: 'outlined'
         }
     ]
 
@@ -32,27 +41,32 @@ const Wishlist = (props) => {
 
     return (
         <>
+        {console.log(props.wishlist)}
             <NavBar />
             {
                 props?.wishlist
-                    ? <div className="container">
-                        {
-                            props?.wishlist.map((item, index) => (
-                                <>
-                                    <div>
-                                        <ProductCard
-                                            key={index}
-                                            id={item.id}
-                                            section={item.section}
-                                            image={item.image}
-                                            name={item.name}
-                                            price={item.price}
-                                            action={action}
-                                        />
-                                    </div>
-                                </>
-                            ))
-                        }
+                    ? <div className={classes.container}>
+                        <h1 className={classes.pageHeading}>Wishlist</h1>
+                        <p className={classes.underline}></p>
+                        <Grid container spacing={2}>
+                            {
+                                props?.wishlist.map((item, index) => (
+                                    <>
+                                        <Grid item md={4}>
+                                            <ProductCard
+                                                key={index}
+                                                id={item.id}
+                                                section={item.section}
+                                                image={item.image}
+                                                name={item.name}
+                                                price={item.price}
+                                                action={action}
+                                            />
+                                        </Grid>
+                                    </>
+                                ))
+                            }
+                        </Grid>
                     </div>
                     : <Message
                         text='Your wishlist is empty'

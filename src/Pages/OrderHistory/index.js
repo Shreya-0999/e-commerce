@@ -3,7 +3,7 @@ import NavBar from '../../Components/NavBar';
 import Message from "../../Components/Message";
 import { getOrderListStart } from '../../Core/Actions/cartItemsAction';
 import { connect } from 'react-redux';
-import { Typography, Grid, ButtonBase } from '@mui/material';
+import { Grid, ButtonBase } from '@mui/material';
 import { useEffect } from 'react';
 const OrderHistory = (props) => {
     const classes = useStyles();

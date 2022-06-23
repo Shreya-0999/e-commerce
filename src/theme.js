@@ -1,18 +1,6 @@
 // import { makeStyles } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
 export const theme = createTheme({
-    '@global': {
-        '*::-webkit-scrollbar': {
-            width: '0.4em'
-        },
-        '*::-webkit-scrollbar-track': {
-            '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
-        },
-        '*::-webkit-scrollbar-thumb': {
-            backgroundColor: 'rgba(0,0,0,.1)',
-            outline: '1px solid #7e56ff'
-        }
-    },
     palette: {
         primary: {
             main: "#7e56ff",
@@ -41,11 +29,10 @@ export const theme = createTheme({
     },
     radius: {
         primary: '8px',
-
     },
     textSize: {
-        // small:'1px',
         medium: '16px',
         large: '',
-    }
+    },
+    fontFamily: 'Nunito, sans-serif !important'
 });
