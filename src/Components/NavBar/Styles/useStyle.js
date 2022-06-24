@@ -6,5 +6,8 @@ const useStyles = makeStyles(theme=>({
         backgroundColor: `${theme.palette.secondary.light} !important`,
         borderBottom: `1px solid ${theme.palette.border.main}`
     },
+    color:{
+        color: theme.palette.primary.main
+    },
 }))
 export default useStyles;
