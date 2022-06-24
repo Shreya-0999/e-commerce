@@ -1,9 +1,11 @@
-import { InputLabel, FilledInput, InputAdornment, IconButton, FormControl } from "@mui/material";
+import { InputLabel, Input, InputAdornment, IconButton, FormControl } from "@mui/material";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {useState} from 'react';
+import useStyles from './Styles/useStyles'
 
 
 const PasswordField = (props) => {
+    const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => {
@@ -15,11 +17,11 @@ const PasswordField = (props) => {
     };
     return (
         <>
-            <div className='login-inputField'>
-                <FormControl sx={{ m: 1, width: '25ch' }} variant="filled">
-                    <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
-                    <FilledInput
-                        id="filled-adornment-password"
+            <div >
+                <FormControl sx={{ m: 1, width: '25ch' }} variant="standard" className={classes.textField}>
+                    <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                    <Input
+                        id="standard-adornment-password"
                         type={showPassword ? 'text' : 'password'}
                         value={props.password}
                         onChange={(e) => props.setPassword(e.target.value)}

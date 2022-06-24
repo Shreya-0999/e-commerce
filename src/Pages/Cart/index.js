@@ -125,15 +125,26 @@ const Cart = (props) => {
                                 {
                                     address
                                         ? <>
-                                            <Card>
+                                            <Card className={classes.card}>
                                                 <CardContent>
-                                                    <Typography gutterBottom variant="p" component="div">{Object.values(address).join(", ")}</Typography>
+                                                    <p className={classes.subheader}>{Object.values(address).join(", ")}</p>
                                                 </CardContent>
                                                 <CardActions>
-                                                    <ButtonC text="Edit" handleBtnClick={handleAddAddress} />
+                                                    <ButtonC
+                                                        text="Edit"
+                                                        handleBtnClick={handleAddAddress}
+                                                        variant="outlined"
+                                                        color="primary"
+                                                    />
                                                 </CardActions>
                                             </Card>
-                                            <ButtonC text="Place Order" handleBtnClick={handlePlaceOrder} />
+                                            <ButtonC
+                                                text="Place Order"
+                                                handleBtnClick={handlePlaceOrder}
+                                                variant="contained"
+                                                color="success"
+                                                width='full'
+                                            />
                                         </>
                                         : <ButtonC
                                             text="Add Address"

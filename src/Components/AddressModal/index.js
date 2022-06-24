@@ -2,20 +2,22 @@ import { Grid, Modal, Box } from '@mui/material';
 import TextField from '../TextField';
 import ButtonC from '../Button';
 import { useState } from 'react';
+import useStyles from './Styles/useStyle'
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+// const style = {
+//   position: 'absolute',
+//   top: '50%',
+//   left: '50%',
+//   transform: 'translate(-50%, -50%)',
+//   width: 400,
+//   bgcolor: 'background.paper',
+//   border: '2px solid #000',
+//   boxShadow: 24,
+//   p: 4,
+// };
 
 const AddressModal = (props) => {
+  const classes = useStyles();
   const [fullName, setFullName] = useState();
   const [mobileNo, setMobileNo] = useState();
   const [locality, setLocality] = useState();
@@ -54,8 +56,9 @@ const AddressModal = (props) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <h2>Add Address</h2>
+        <Box className={classes.modal}>
+          <h1 className={classes.pageHeading}>Add Address</h1>
+          <p className={classes.underline}></p>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField type={'Full Name'} value={fullName} setFunc={setFullName} />
@@ -78,11 +81,23 @@ const AddressModal = (props) => {
           </Grid>
           {
             validation
-              ? <p>Fill all the fields</p>
+              ? <p className={classes.error}>Fill all the fields</p>
               : <></>
           }
-          <ButtonC text='Close' handleBtnClick={handleClose} />
-          <ButtonC text='Save' handleBtnClick={handleSave} />
+          <div className={classes.margin}>
+            <ButtonC
+              text='Close'
+              handleBtnClick={handleClose}
+              variant='outlined'
+              color='primary'
+            />
+            <ButtonC
+              text='Save'
+              handleBtnClick={handleSave}
+              variant='contained'
+              color='primary'
+            />
+          </div>
         </Box>
       </Modal>
     </div>

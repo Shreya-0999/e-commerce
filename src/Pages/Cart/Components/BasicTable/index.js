@@ -48,15 +48,6 @@ const BasicTable = (props) => {
   return (
     <TableContainer component={Paper} className={classes.container}>
       <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            {
-              props?.header?.map((ele) => (
-                <TableCell className={classes.color}>{ele}</TableCell>
-              ))
-            }
-          </TableRow>
-        </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow

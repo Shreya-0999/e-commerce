@@ -2,7 +2,6 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(theme=>({
     card:{
-        // minWidth: 290, 
         cursor: 'pointer',
         boxShadow: 'none !important',
         border: `1px solid ${theme.palette.border.main}`,

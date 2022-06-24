@@ -4,13 +4,13 @@ const useStyles = makeStyles((theme) => ({
     container: {
         backgroundColor: theme.palette.secondary.main,
         boxShadow: 'none !important',
-        borderRadius: '5px',
-        border: '1px solid #d8d8d8',
+        borderRadius: theme.radius.primary,
+        border: `1px solid ${theme.palette.border.main}`,
         borderBottom: 'none',
     },
     color: {
         color: `${theme.palette.text.light} !important`,
-        fontFamily: 'Nunito, sans-serif !important',
+        fontFamily: `${theme.fontFamily} !important`,
     }
 
 }))

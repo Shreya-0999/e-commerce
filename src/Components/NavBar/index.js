@@ -137,7 +137,7 @@ const NavBar = (props) => {
                                 )
                                 : (
                                     <IconButton onClick={handleUserLogin} sx={{ p: 0 }}>
-                                        <PersonRoundedIcon fontSize="medium" style={{ color: 'white' }} />
+                                        <PersonRoundedIcon fontSize="medium" color="primary" />
                                     </IconButton>
                                 )
                         }
