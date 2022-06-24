@@ -1,20 +1,8 @@
 import { Grid, Modal, Box } from '@mui/material';
-import TextField from '../TextField';
-import ButtonC from '../Button';
+import TextField from '../../../../Components/TextField';
+import ButtonC from '../../../../Components/Button';
 import { useState } from 'react';
-import useStyles from './Styles/useStyle'
-
-// const style = {
-//   position: 'absolute',
-//   top: '50%',
-//   left: '50%',
-//   transform: 'translate(-50%, -50%)',
-//   width: 400,
-//   bgcolor: 'background.paper',
-//   border: '2px solid #000',
-//   boxShadow: 24,
-//   p: 4,
-// };
+import useStyles from './Styles/useStyle';
 
 const AddressModal = (props) => {
   const classes = useStyles();
@@ -61,22 +49,22 @@ const AddressModal = (props) => {
           <p className={classes.underline}></p>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField type={'Full Name'} value={fullName} setFunc={setFullName} />
+              <TextField type={'Full Name'} value={fullName} setFunc={setFullName} margin = '0.1rem 0'/>
             </Grid>
             <Grid item xs={12}>
-              <TextField type={'Locality'} value={locality} setFunc={setLocality} />
+              <TextField type={'Locality'} value={locality} setFunc={setLocality} margin = '0.1rem 0'/>
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField type={'Pincode'} value={pincode} setFunc={setPincode} />
+              <TextField type={'Pincode'} value={pincode} setFunc={setPincode} margin = '0.1rem 0'/>
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField type={'Mobile No'} value={mobileNo} setFunc={setMobileNo} />
+              <TextField type={'Mobile No'} value={mobileNo} setFunc={setMobileNo} margin = '0.1rem 0'/>
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField type={'City'} value={city} setFunc={setCity} />
+              <TextField type={'City'} value={city} setFunc={setCity} margin = '0.1rem 0'/>
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField type={'State'} value={state} setFunc={setState} />
+              <TextField type={'State'} value={state} setFunc={setState} margin = '0.1rem 0'/>
             </Grid>
           </Grid>
           {

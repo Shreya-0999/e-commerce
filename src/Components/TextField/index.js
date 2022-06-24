@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import useStyles from './Styles/useStyles'
 const TextFields = (props) => {
-    const classes = useStyles();
+    const classes = useStyles(props);
     return (
         <>
             <TextField

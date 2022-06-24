@@ -1,16 +1,24 @@
 import ButtonC from "../Button";
-import './Styles/index.css';
+import useStyles from './Styles/useStyles.js';
 import { useNavigate } from 'react-router-dom';
 
 const Message = (props) => {
+    const classes = useStyles();
     const navigate = useNavigate();
     const handleContinueShopping = () => {
         navigate('/');
     }
     return (
         <>
-            <h1>{props.text}</h1>
-            <ButtonC text="Continue Shopping" handleBtnClick={handleContinueShopping} />
+            <div className={classes.container}>
+                <h1 className={classes.pageHeading}>{props.text}</h1>
+                <ButtonC
+                    text="Continue Shopping"
+                    handleBtnClick={handleContinueShopping}
+                    variant='contained'
+                    color='primary'
+                />
+            </div>
         </>
     )
 }

@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { loginStart, loginSuccess } from '../../Core/Actions/userActions';
+import { Grid } from '@mui/material';
 import TextFields from '../../Components/TextField';
 import PasswordField from '../../Components/PasswordField';
 import NavBar from '../../Components/NavBar';
-import './Styles/index.css';
+import useStyles from './Styles/useStyles.js';
 import ButtonC from '../../Components/Button';
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const classes = useStyles();
 
     const handleLogin = () => {
         props.loginStart({ email, password });
@@ -29,38 +31,39 @@ const Login = (props) => {
     return (
         <>
             <NavBar />
-            <div className="auth">
-                <div className="auth-container">
-                    <h1 className='login-header'>Login</h1>
-                    <div className='login-formSection'>
+            <Grid container className={classes.container}>
+                <Grid item md={7} className={classes.imgBox}>hello</Grid>
+                <Grid item md={5} container className={classes.rightContainer}>
+                    <Grid item xs={12}>
+                        <h1 className={classes.pageHeading}>Login</h1>
+                        <p className={classes.underline}></p>
                         <TextFields type={"Email"} value={email} setFunc={setEmail} />
                         <PasswordField password={password} setPassword={setPassword} />
-                        <ButtonC text={"Login"} handleBtnClick={handleLogin} />
-                        <p>
-                            New User?
-                            <Link to='/signup'>Create Account</Link>
-                        </p>
-                        {
-                            props.isLoading ?
-                                (
-                                    <p>Loading...</p>
-                                )
-                                :
-                                <></>
-                        }
+                        <div className={classes.btnBox}>
+                            <ButtonC
+                                text={"Login"}
+                                handleBtnClick={handleLogin}
+                                variant='contained'
+                                color='primary'
+                                width='full'
+                            />
+                        </div>
                         {
                             props.error ?
                                 (
-                                    <p>{props.error}</p>
+                                    <p className={`${classes.error} ${classes.textCenter}`}>{props.error}</p>
                                 )
                                 :
                                 <></>
                         }
+                        <p className={`${classes.subHeader} ${classes.textCenter}`}>
+                            New User?{'\n'}
+                            <Link to='/signup'>Create Account</Link>
+                        </p>
 
-                    </div>
-                </div>
-
-            </div>
+                    </Grid>
+                </Grid>
+            </Grid>
         </>
     )
 }
@@ -76,7 +79,7 @@ const mapStateToProps = ({ user }) => {
 const mapDispatchtoProps = (dispatch) => {
     return {
         loginStart: (email, password) => dispatch(loginStart(email, password)),
-        loginSuccess: (user)=> dispatch(loginSuccess(user))
+        loginSuccess: (user) => dispatch(loginSuccess(user))
     }
 }
 

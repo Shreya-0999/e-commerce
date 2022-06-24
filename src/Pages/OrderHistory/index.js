@@ -23,7 +23,7 @@ const OrderHistory = (props) => {
                             {
                                 props.orderList.map((ele, key) => (
                                     <Grid item md={4} key={key}>
-                                        <Grid conatiner className={classes.orderBox}>
+                                        <Grid container className={classes.orderBox}>
                                             <Grid item xs={12} className={`${classes.topSection} ${classes.bottomBorder}`} >
                                                 <h3 className={classes.header}>Order #{ele.orderId}</h3>
                                                 <p className={classes.subHeader}>{ele.date}</p>

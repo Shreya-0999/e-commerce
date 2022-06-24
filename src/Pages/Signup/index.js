@@ -1,12 +1,16 @@
 import react, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { signupStart } from '../../Core/Actions/userActions';
-import {useNavigate, Link} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import NavBar from '../../Components/NavBar';
 import ButtonC from '../../Components/Button';
 import TextFields from '../../Components/TextField';
 import PasswordField from '../../Components/PasswordField';
+import useStyles from './Styles/useStyles'
+import { Grid } from '@mui/material';
+
 const Signup = (props) => {
+    const classes = useStyles();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -22,37 +26,42 @@ const Signup = (props) => {
     return (
         <>
             <NavBar />
-            <div className="auth">
-                <div className="auth-container">
-                    <h1 className='login-header'>Signup</h1>
-                    <div className='login-formSection'>
+            <Grid container className={classes.container}>
+                <Grid item md={7} className={classes.imgBox}>hello</Grid>
+                <Grid item md={5} container className={classes.rightContainer}>
+                    <Grid item xs={12}>
+                        <h1 className={classes.pageHeading}>Signup</h1>
+                        <p className={classes.underline}></p>
                         <TextFields type={"Name"} value={name} setFunc={setName} />
                         <TextFields type={"Email"} value={email} setFunc={setEmail} />
                         <PasswordField password={password} setPassword={setPassword} />
-                        <ButtonC text={"Signup"} handleBtnClick={handleSignup} />
-                        <p>
-                            <Link to='/login'>Already a User?</Link>
-                        </p>
-                        {
-                            props.isLoading ?
-                                (
-                                    <p>Loading...</p>
-                                )
-                                :
-                                <></>
-                        }
+                        <div className={classes.btnBox}>
+                            <ButtonC
+                                text={"Signup"}
+                                handleBtnClick={handleSignup}
+                                variant='contained'
+                                color='primary'
+                                width='full'
+
+                            />
+                        </div>
                         {
                             props.error ?
                                 (
-                                    <p>{props.error}</p>
+                                    <p className={`${classes.error} ${classes.textCenter}`}>{props.error}</p>
                                 )
                                 :
                                 <></>
                         }
-                    </div>
-                </div>
+                        <p className={`${classes.subHeader} ${classes.textCenter}`}>
+                            Already a user?{'\n'}
+                            <Link to='/login'>Login</Link>
+                        </p>
 
-            </div>--
+                    </Grid>
+                </Grid>
+            </Grid>
+            
         </>
     );
 }

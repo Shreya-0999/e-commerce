@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     underline: {
         width: '100px',
         borderTop: `3px solid ${theme.palette.primary.main}`,
-        marginBottom: '2rem',
+        marginBottom: '1rem',
         marginTop: '0',
     },
     error: {
