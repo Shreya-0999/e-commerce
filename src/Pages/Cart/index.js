@@ -12,6 +12,7 @@ import useStyles from './Styles/useStyles.js';
 import { useEffect, useState } from 'react';
 import { addtoWishlist } from '../../Core/Actions/wishlistAction';
 import { useNavigate } from 'react-router-dom';
+import Empty from '../../Assets/Message/empty.gif'
 
 const Cart = (props) => {
     const classes = useStyles();
@@ -171,6 +172,7 @@ const Cart = (props) => {
                 </div>
                 : <Message
                     text="Your cart is empty"
+                    img={Empty}
                 />
             }
 

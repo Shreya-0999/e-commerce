@@ -8,6 +8,7 @@ import TextFields from '../../Components/TextField';
 import PasswordField from '../../Components/PasswordField';
 import useStyles from './Styles/useStyles'
 import { Grid } from '@mui/material';
+import loginImg from '../../Assets/Login/auth.png'
 
 const Signup = (props) => {
     const classes = useStyles();
@@ -27,13 +28,17 @@ const Signup = (props) => {
         <>
             <NavBar />
             <Grid container className={classes.container}>
-                <Grid item md={7} className={classes.imgBox}>hello</Grid>
+                <Grid item md={7} className={classes.leftContainer}>
+                    <div >
+                        <img src={loginImg} alt='login-img' />
+                    </div>
+                </Grid>
                 <Grid item md={5} container className={classes.rightContainer}>
                     <Grid item xs={12}>
                         <h1 className={classes.pageHeading}>Signup</h1>
                         <p className={classes.underline}></p>
-                        <TextFields type={"Name"} value={name} setFunc={setName} />
-                        <TextFields type={"Email"} value={email} setFunc={setEmail} />
+                        <TextFields type={"Name"} value={name} setFunc={setName} margin = '1rem 0'/>
+                        <TextFields type={"Email"} value={email} setFunc={setEmail} margin = '1rem 0'/>
                         <PasswordField password={password} setPassword={setPassword} />
                         <div className={classes.btnBox}>
                             <ButtonC
@@ -61,7 +66,7 @@ const Signup = (props) => {
                     </Grid>
                 </Grid>
             </Grid>
-            
+
         </>
     );
 }

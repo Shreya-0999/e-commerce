@@ -7,6 +7,7 @@ import { addToCart } from '../../Core/Actions/cartItemsAction';
 import { getWishlistStart, deleteFromWishlist } from '../../Core/Actions/wishlistAction';
 import { useEffect } from "react";
 import useStyle from "./Styles/useStyle.js";
+import Empty from '../../Assets/Message/empty.gif'
 
 const Wishlist = (props) => {
     const classes = useStyle();
@@ -70,6 +71,7 @@ const Wishlist = (props) => {
                     </div>
                     : <Message
                         text='Your wishlist is empty'
+                        img={Empty}
                     />
             }
 

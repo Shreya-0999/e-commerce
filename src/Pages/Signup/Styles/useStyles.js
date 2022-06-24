@@ -4,11 +4,17 @@ const useStyles = makeStyles(theme=>({
     container:{
         height:'90vh'
     },
-    imgBox:{
+    leftContainer:{
+        display:'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         background:theme.palette.primary.main
     },
     rightContainer:{
-        padding:'3.5rem 7rem'
+        display:'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding:'4.4rem 8rem 4.4rem 5rem'
     },
     pageHeading: {
         marginBottom: '1rem',

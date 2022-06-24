@@ -8,6 +8,7 @@ import PasswordField from '../../Components/PasswordField';
 import NavBar from '../../Components/NavBar';
 import useStyles from './Styles/useStyles.js';
 import ButtonC from '../../Components/Button';
+import loginImg from '../../Assets/Login/auth.png'
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
@@ -32,12 +33,16 @@ const Login = (props) => {
         <>
             <NavBar />
             <Grid container className={classes.container}>
-                <Grid item md={7} className={classes.imgBox}>hello</Grid>
+                <Grid item md={7} className={classes.leftContainer}>
+                    <div >
+                        <img src={loginImg} alt='login-img'/>
+                    </div>
+                </Grid>
                 <Grid item md={5} container className={classes.rightContainer}>
                     <Grid item xs={12}>
                         <h1 className={classes.pageHeading}>Login</h1>
                         <p className={classes.underline}></p>
-                        <TextFields type={"Email"} value={email} setFunc={setEmail} />
+                        <TextFields type={"Email"} value={email} setFunc={setEmail} margin = '1rem 0' />
                         <PasswordField password={password} setPassword={setPassword} />
                         <div className={classes.btnBox}>
                             <ButtonC

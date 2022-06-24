@@ -11,6 +11,9 @@ const Message = (props) => {
     return (
         <>
             <div className={classes.container}>
+                <div className={classes.imgBox}>
+                    <img src={props.img} alt={props.text}/>
+                </div>
                 <h1 className={classes.pageHeading}>{props.text}</h1>
                 <ButtonC
                     text="Continue Shopping"
