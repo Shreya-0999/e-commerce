@@ -9,6 +9,8 @@ export const theme = createTheme({
         },
         secondary: {
             main: '#ffffff',
+            light: '#e7deff',
+            lighter:'#e6dff6'
         },
         error: {
             main: '#ed6d7a',
@@ -24,7 +26,7 @@ export const theme = createTheme({
         },
         border: {
             main: '#e5ddff',
-            dark: '#dddae4'
+            dark: '#ddceff'
         }
     },
     radius: {

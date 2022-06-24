@@ -8,12 +8,14 @@ import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useNavigate } from 'react-router-dom';
+import useStyle from './Styles/useStyle'
 
 const settings = ['Order History', 'Logout'];
 
 const NavBar = (props) => {
 
     const navigate = useNavigate();
+    const classes = useStyle();
     // const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -66,8 +68,8 @@ const NavBar = (props) => {
     }
 
     return (
-        <AppBar position="static" >
-            <Container maxWidth="xl">
+        <AppBar position="static" className={classes.appBar} >
+            <Container maxWidth="lg" className={classes.color}>
                 <Toolbar disableGutters>
                     <Typography
                         variant="h6"
@@ -80,22 +82,23 @@ const NavBar = (props) => {
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         <Button
+                            className={classes.color}
                             onClick={handleNavHome}
-                            sx={{ my: 2, color: 'white', display: 'block' }}
+                            sx={{ my: 2, display: 'block' }}
                         >
                             Home
                         </Button>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <IconButton sx={{ p: 0, mx: 2 }} onClick={handleCartBtn}>
-                            <Badge badgeContent={handleCartCount()} color="secondary">
-                                <ShoppingCartRoundedIcon fontSize="medium" style={{ color: 'white' }} />
+                        <IconButton sx={{ p: 0, mx: 1 }} onClick={handleCartBtn}>
+                            <Badge badgeContent={handleCartCount()}>
+                                <ShoppingCartRoundedIcon fontSize="medium" color="primary" />
                             </Badge>
                         </IconButton>
                         <IconButton sx={{ p: 0, mx: 2 }} onClick={handleWishlistBtn}>
-                            <Badge badgeContent={handleWishlistCount()} color="secondary">
-                                <FavoriteIcon fontSize="medium" style={{ color: 'white' }} />
+                            <Badge badgeContent={handleWishlistCount()} >
+                                <FavoriteIcon fontSize="medium" color="primary" />
                             </Badge>
                         </IconButton>
                         {
@@ -103,8 +106,8 @@ const NavBar = (props) => {
                                 (
                                     <>
                                         <Tooltip title="Open settings">
-                                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                                <PersonRoundedIcon fontSize="medium" style={{ color: 'white' }} />
+                                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mx:1 }}>
+                                                <PersonRoundedIcon fontSize="medium" color="primary" />
                                             </IconButton>
                                         </Tooltip>
                                         <Menu
