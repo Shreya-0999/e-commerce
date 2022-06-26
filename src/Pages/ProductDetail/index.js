@@ -10,6 +10,7 @@ import ButtonC from "../../Components/Button";
 import RadioButtons from '../../Components/RadioButtons'
 import Dropdown from '../../Components/Dropdown'
 import useStyle from './Styles/useStyles.js';
+import constants from './Utils/constants'
 
 const ProductDetail = (props) => {
     const navigate = useNavigate();
@@ -87,8 +88,8 @@ const ProductDetail = (props) => {
                                     <h1 className={classes.pageHeading}>{props?.itemDetail[0]?.name}</h1>
                                     <p className={classes.subHeader}>Shreya</p>
                                     <p className={classes.underline}></p>
-                                    <h1 className={classes.header}>Rs {props?.itemDetail[0]?.price}/-</h1>
-                                    <p className={`${classes.subHeader} ${classes.mtZero}`}>Price inclusive of all taxes</p>
+                                    <h1 className={classes.header}>{constants.RS} {props?.itemDetail[0]?.price}/-</h1>
+                                    <p className={`${classes.subHeader} ${classes.mtZero}`}>{constants.TAX_MSG}</p>
                                     <div className={classes.space}>
                                         <Dropdown label='Quantity' value={itemQuantity} setValue={setItemQuantity} />
                                     </div>
@@ -96,7 +97,7 @@ const ProductDetail = (props) => {
                                         <RadioButtons itemDetail={props?.itemDetail[0]?.details} setItemSize={setItemSize} setCardValidation={setCardValidation} />
                                     </div>
                                     <div className={classes.btnBox}>
-                                        {cartValidation ? <p >Select a size.</p> : <></>}
+                                        {cartValidation ? <p >{constants.SIZE_MSG}</p> : <></>}
                                         {
                                             goCartVisible ?
                                                 <ButtonC

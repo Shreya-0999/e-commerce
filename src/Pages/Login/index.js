@@ -5,11 +5,11 @@ import { loginStart, loginSuccess } from '../../Core/Actions/userActions';
 import { Grid } from '@mui/material';
 import TextFields from '../../Components/TextField';
 import PasswordField from '../../Components/PasswordField';
-import NavBar from '../../Components/NavBar';
 import useStyles from './Styles/useStyles.js';
 import ButtonC from '../../Components/Button';
 import loginImg from '../../Assets/Login/auth.jpg';
 import CloseIcon from '@mui/icons-material/Close';
+import loginConstants from './Utils/constants'
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
@@ -49,7 +49,7 @@ const Login = (props) => {
                             color='secondary'
                             onClick={handleCloseBtn}
                         />
-                        <h1 className={classes.pageHeading}>Login</h1>
+                        <h1 className={classes.pageHeading}>{loginConstants.LOGIN}</h1>
                         <p className={classes.underline}></p>
                         <TextFields type={"Email"} value={email} setFunc={setEmail} margin='1rem 0' />
                         <PasswordField password={password} setPassword={setPassword} />
@@ -71,8 +71,8 @@ const Login = (props) => {
                                 <></>
                         }
                         <p className={`${classes.subHeader} ${classes.textCenter}`}>
-                            New User?{'\n'}
-                            <Link to='/signup'>Create Account</Link>
+                            {loginConstants.NEW_USER}{'\n'}
+                            <Link to='/signup'>{loginConstants.CREATE_ACCOUNT}</Link>
                         </p>
 
                     </Grid>
@@ -84,7 +84,7 @@ const Login = (props) => {
 
 const mapStateToProps = ({ user }) => {
     return {
-        currentUser: user.currentUser,  //use??
+        currentUser: user.currentUser, 
         error: user.error,
         isLoading: user.isLoading
     }

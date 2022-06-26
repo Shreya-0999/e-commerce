@@ -1,7 +1,8 @@
 import { InputLabel, Input, InputAdornment, IconButton, FormControl } from "@mui/material";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
-import useStyles from './Styles/useStyles'
+import useStyles from './Styles/useStyles';
+import constants from './Utils/constants'
 
 
 const PasswordField = (props) => {
@@ -18,7 +19,7 @@ const PasswordField = (props) => {
     return (
         <>
             <FormControl sx={{ m: 1, width: '25ch' }} variant="standard" className={classes.textField} color='secondary'>
-                <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                <InputLabel htmlFor="standard-adornment-password">{constants.PASSWORD}</InputLabel>
                 <Input
                     id="standard-adornment-password"
                     type={showPassword ? 'text' : 'password'}

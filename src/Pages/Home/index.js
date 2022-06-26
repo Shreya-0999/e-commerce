@@ -7,7 +7,7 @@ import MenSection from '../../Assets/Home/menSection.png';
 import WomenSection from '../../Assets/Home/womenSection.png';
 import { useNavigate } from "react-router-dom";
 import { Grid } from '@mui/material';
-import homeConstants from './Utils/Constants'
+import homeConstants from './Utils/constants'
 
 const Home = (props) => {
     const navigate = useNavigate();

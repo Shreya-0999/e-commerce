@@ -7,7 +7,8 @@ import { addToCart } from '../../Core/Actions/cartItemsAction';
 import { getWishlistStart, deleteFromWishlist } from '../../Core/Actions/wishlistAction';
 import { useEffect } from "react";
 import useStyle from "./Styles/useStyle.js";
-import Empty from '../../Assets/Message/empty.gif'
+import Empty from '../../Assets/Message/empty.gif';
+import constants from './Utils/constants'
 
 const Wishlist = (props) => {
     const classes = useStyle();
@@ -42,12 +43,11 @@ const Wishlist = (props) => {
 
     return (
         <>
-        {console.log(props.wishlist)}
             <NavBar />
             {
                 props?.wishlist
                     ? <div className={classes.container}>
-                        <h1 className={classes.pageHeading}>Wishlist</h1>
+                        <h1 className={classes.pageHeading}>{constants.WISHLIST}</h1>
                         <p className={classes.underline}></p>
                         <Grid container spacing={3}>
                             {

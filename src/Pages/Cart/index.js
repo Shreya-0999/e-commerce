@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import { addtoWishlist } from '../../Core/Actions/wishlistAction';
 import { useNavigate } from 'react-router-dom';
 import Empty from '../../Assets/Message/empty.gif'
+import constants from './Utils/constants';
 
 const Cart = (props) => {
     const classes = useStyles();
@@ -70,7 +71,7 @@ const Cart = (props) => {
             <NavBar />
             {props?.cartItems
                 ? <div className={classes.cart}>
-                    <h1 className={classes.pageHeading}>My Bag</h1>
+                    <h1 className={classes.pageHeading}>{constants.MY_BAG}</h1>
                     <p className={classes.underline}></p>
                     <div className={classes.flex}>
                         <div className={classes.cartItemSection}>
@@ -95,7 +96,7 @@ const Cart = (props) => {
                                                     </div>
                                                 </div>
                                                 <div className={classes.itemPrice}>
-                                                    <h2 className={classes.header}>Rs {ele.price * ele.quantity}</h2>
+                                                    <h2 className={classes.header}>{constants.RS} {ele.price * ele.quantity}</h2>
                                                 </div>
                                             </div>
                                             <div className={classes.itemSectionItemAction}>
@@ -119,7 +120,7 @@ const Cart = (props) => {
                         </div>
                         <div className={classes.cartPriceSection}>
                             <div>
-                                <h3 className={classes.subheader}>Billing Details</h3>
+                                <h3 className={classes.subheader}>{constants.BILLING_DETAILS}</h3>
                                 <BasicTable totalPrice={setTotalprice} />
                             </div>
                             <div className={classes.margin}>

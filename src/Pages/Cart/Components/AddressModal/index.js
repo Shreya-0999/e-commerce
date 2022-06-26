@@ -3,6 +3,7 @@ import TextField from '../../../../Components/TextField';
 import ButtonC from '../../../../Components/Button';
 import { useState } from 'react';
 import useStyles from './Styles/useStyle';
+import constants from './Utils/constants'
 
 const AddressModal = (props) => {
   const classes = useStyles();
@@ -45,7 +46,7 @@ const AddressModal = (props) => {
         aria-describedby="modal-modal-description"
       >
         <Box className={classes.modal}>
-          <h1 className={classes.pageHeading}>Add Address</h1>
+          <h1 className={classes.pageHeading}>{constants.ADD_ADDRESS}</h1>
           <p className={classes.underline}></p>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -69,7 +70,7 @@ const AddressModal = (props) => {
           </Grid>
           {
             validation
-              ? <p className={classes.error}>Fill all the fields</p>
+              ? <p className={classes.error}>{constants.ERROR_MSG}</p>
               : <></>
           }
           <div className={classes.margin}>

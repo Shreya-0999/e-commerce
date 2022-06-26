@@ -10,6 +10,7 @@ import useStyles from './Styles/useStyles'
 import { Grid } from '@mui/material';
 import loginImg from '../../Assets/Login/auth.jpg';
 import CloseIcon from '@mui/icons-material/Close';
+import signupConstants from './Utils/constants'
 
 const Signup = (props) => {
     const classes = useStyles();
@@ -44,7 +45,7 @@ const Signup = (props) => {
                             color='secondary'
                             onClick={handleCloseBtn}
                         />
-                        <h1 className={classes.pageHeading}>Signup</h1>
+                        <h1 className={classes.pageHeading}>{signupConstants.SIGNUP}</h1>
                         <p className={classes.underline}></p>
                         <TextFields type={"Name"} value={name} setFunc={setName} margin='1.2rem 0' />
                         <TextFields type={"Email"} value={email} setFunc={setEmail} margin='1.2rem 0' />
@@ -68,8 +69,8 @@ const Signup = (props) => {
                                 <></>
                         }
                         <p className={`${classes.subHeader} ${classes.textCenter}`}>
-                            Already a user?{'\n'}
-                            <Link to='/login'>Login</Link>
+                            {signupConstants.ALREADY_USER}{'\n'}
+                            <Link to='/login'>{signupConstants.LOGIN}</Link>
                         </p>
 
                     </Grid>

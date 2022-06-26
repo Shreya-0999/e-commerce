@@ -5,6 +5,7 @@ import { getOrderListStart } from '../../Core/Actions/cartItemsAction';
 import { connect } from 'react-redux';
 import { Grid, ButtonBase } from '@mui/material';
 import { useEffect } from 'react';
+import constants from './Utils/constants'
 const OrderHistory = (props) => {
     const classes = useStyles();
     useEffect(() => {
@@ -17,7 +18,7 @@ const OrderHistory = (props) => {
             {
                 props?.orderList
                     ? <div className={classes.container}>
-                        <h1 className={classes.pageHeading}>My Orders</h1>
+                        <h1 className={classes.pageHeading}>{constants.MY_ORDER}</h1>
                         <p className={classes.underline}></p>
                         <Grid container spacing={2}>
                             {
@@ -25,7 +26,7 @@ const OrderHistory = (props) => {
                                     <Grid item md={4} key={key}>
                                         <Grid container className={classes.orderBox}>
                                             <Grid item xs={12} className={`${classes.topSection} ${classes.bottomBorder}`} >
-                                                <h3 className={classes.header}>Order #{ele.orderId}</h3>
+                                                <h3 className={classes.header}>{constants.ORDER}{ele.orderId}</h3>
                                                 <p className={classes.subHeader}>{ele.date}</p>
                                             </Grid>
                                             <Grid item xs={12} className={`${classes.middleSection} ${classes.bottomBorder}`} >
@@ -42,13 +43,13 @@ const OrderHistory = (props) => {
                                                                     <h3 className={classes.header}>{item.name}</h3>
                                                                 </Grid>
                                                                 <Grid item md={5}>
-                                                                    <p className={classes.subHeader}>Size: {item.size}</p>
+                                                                    <p className={classes.subHeader}>{constants.SIZE} {item.size}</p>
                                                                 </Grid>
                                                                 <Grid item md={5}>
-                                                                    <p className={classes.subHeader}>Qty: {item.quantity}</p>
+                                                                    <p className={classes.subHeader}>{constants.QTY} {item.quantity}</p>
                                                                 </Grid>
                                                                 <Grid item md={12}>
-                                                                    <h3 className={classes.header}>Rs {item.price}/-</h3>
+                                                                    <h3 className={classes.header}> {constants.RS} {item.price}/-</h3>
                                                                 </Grid>
                                                             </Grid>
                                                         </Grid>
