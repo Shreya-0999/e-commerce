@@ -8,7 +8,8 @@ import TextFields from '../../Components/TextField';
 import PasswordField from '../../Components/PasswordField';
 import useStyles from './Styles/useStyles'
 import { Grid } from '@mui/material';
-import loginImg from '../../Assets/Login/auth.png'
+import loginImg from '../../Assets/Login/auth.jpg';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Signup = (props) => {
     const classes = useStyles();
@@ -19,6 +20,9 @@ const Signup = (props) => {
     const handleSignup = () => {
         props.signupStart({ name, email, password });
     }
+    const handleCloseBtn = () => {
+        navigate('/');
+    }
     useEffect(() => {
         if (props?.currentUser) {
             navigate('/');
@@ -26,26 +30,31 @@ const Signup = (props) => {
     })
     return (
         <>
-            <NavBar />
             <Grid container className={classes.container}>
-                <Grid item md={7} className={classes.leftContainer}>
-                    <div >
-                        <img src={loginImg} alt='login-img' />
+                <Grid item md={5} className={classes.leftContainer}>
+                    <div className={classes.imgBox}>
+                        <img src={loginImg} alt='login-img' className={classes.img}/>
                     </div>
                 </Grid>
-                <Grid item md={5} container className={classes.rightContainer}>
-                    <Grid item xs={12}>
+                <Grid item md={7} container className={classes.rightContainer}>
+                    <Grid item xs={12} md={6}>
+                        <CloseIcon
+                            className={classes.closeIcon}
+                            fontSize="large"
+                            color='secondary'
+                            onClick={handleCloseBtn}
+                        />
                         <h1 className={classes.pageHeading}>Signup</h1>
                         <p className={classes.underline}></p>
-                        <TextFields type={"Name"} value={name} setFunc={setName} margin = '1rem 0'/>
-                        <TextFields type={"Email"} value={email} setFunc={setEmail} margin = '1rem 0'/>
+                        <TextFields type={"Name"} value={name} setFunc={setName} margin='1.2rem 0' />
+                        <TextFields type={"Email"} value={email} setFunc={setEmail} margin='1.2rem 0' />
                         <PasswordField password={password} setPassword={setPassword} />
                         <div className={classes.btnBox}>
                             <ButtonC
                                 text={"Signup"}
                                 handleBtnClick={handleSignup}
                                 variant='contained'
-                                color='primary'
+                                color='secondary'
                                 width='full'
 
                             />
@@ -79,7 +88,7 @@ const mapStatetoProps = ({ user }) => {
 }
 const mapDispatchtoProps = (dispatch) => {
     return {
-        signupStart: (name, email, password) => { dispatch(signupStart(name, email, password)) },  //3variables
+        signupStart: (name, email, password) => { dispatch(signupStart(name, email, password)) },  
     }
 }
 export default connect(mapStatetoProps, mapDispatchtoProps)(Signup);

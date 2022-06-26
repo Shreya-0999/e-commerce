@@ -25,13 +25,13 @@ const Wishlist = (props) => {
         {
             text: 'Move To Cart',
             handleBtn: handleMoveToCart,
-            color: 'primary',
+            color: 'secondary',
             variant: 'contained'
         },
         {
             text: 'Remove',
             handleBtn: handleRemove,
-            color: 'primary',
+            color: 'text',
             variant: 'outlined'
         }
     ]
@@ -49,11 +49,11 @@ const Wishlist = (props) => {
                     ? <div className={classes.container}>
                         <h1 className={classes.pageHeading}>Wishlist</h1>
                         <p className={classes.underline}></p>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={3}>
                             {
                                 props?.wishlist.map((item, index) => (
                                     <>
-                                        <Grid item md={4}>
+                                        <Grid item md={3}>
                                             <ProductCard
                                                 key={index}
                                                 id={item.id}

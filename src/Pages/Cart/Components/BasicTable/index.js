@@ -56,7 +56,7 @@ const BasicTable = (props) => {
               <TableCell component="th" scope="row" className={classes.color}>
                 {row.name}
               </TableCell>
-              <TableCell align="right" className={classes.color}>{row.total}</TableCell>
+              <TableCell align="right" className={classes.color}>Rs {row.total}/-</TableCell>
             </TableRow>
           ))}
         </TableBody>

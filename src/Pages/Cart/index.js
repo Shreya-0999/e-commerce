@@ -127,15 +127,15 @@ const Cart = (props) => {
                                     address
                                         ? <>
                                             <Card className={classes.card}>
-                                                <CardContent>
-                                                    <p className={classes.subheader}>{Object.values(address).join(", ")}</p>
+                                                <CardContent className={classes.cardContent}>
+                                                    <p className={classes.addressText}>{Object.values(address).join(", ")}</p>
                                                 </CardContent>
                                                 <CardActions>
                                                     <ButtonC
                                                         text="Edit"
                                                         handleBtnClick={handleAddAddress}
-                                                        variant="outlined"
-                                                        color="primary"
+                                                        variant="text"
+                                                        color="secondary"
                                                     />
                                                 </CardActions>
                                             </Card>
@@ -143,7 +143,7 @@ const Cart = (props) => {
                                                 text="Place Order"
                                                 handleBtnClick={handlePlaceOrder}
                                                 variant="contained"
-                                                color="success"
+                                                color="secondary"
                                                 width='full'
                                             />
                                         </>
@@ -151,7 +151,7 @@ const Cart = (props) => {
                                             text="Add Address"
                                             handleBtnClick={handleAddAddress}
                                             variant="contained"
-                                            color="success"
+                                            color="secondary"
                                             width='full'
                                         />
                                 }
@@ -161,7 +161,7 @@ const Cart = (props) => {
                                         text="Empty Cart"
                                         handleBtnClick={handleEmptyCart}
                                         variant="outlined"
-                                        color="primary"
+                                        color="text"
                                         width='full'
                                     />
                                 </div>

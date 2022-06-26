@@ -49,22 +49,22 @@ const AddressModal = (props) => {
           <p className={classes.underline}></p>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField type={'Full Name'} value={fullName} setFunc={setFullName} margin = '0.1rem 0'/>
+              <TextField type={'Full Name'} value={fullName} setFunc={setFullName} margin = '0.2rem 0'/>
             </Grid>
             <Grid item xs={12}>
-              <TextField type={'Locality'} value={locality} setFunc={setLocality} margin = '0.1rem 0'/>
+              <TextField type={'Locality'} value={locality} setFunc={setLocality} margin = '0.2rem 0'/>
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField type={'Pincode'} value={pincode} setFunc={setPincode} margin = '0.1rem 0'/>
+              <TextField type={'Pincode'} value={pincode} setFunc={setPincode} margin = '0.2rem 0'/>
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField type={'Mobile No'} value={mobileNo} setFunc={setMobileNo} margin = '0.1rem 0'/>
+              <TextField type={'Mobile No'} value={mobileNo} setFunc={setMobileNo} margin = '0.2rem 0'/>
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField type={'City'} value={city} setFunc={setCity} margin = '0.1rem 0'/>
+              <TextField type={'City'} value={city} setFunc={setCity} margin = '0.2rem 0'/>
             </Grid>
             <Grid item xs={12} md={6}>
-              <TextField type={'State'} value={state} setFunc={setState} margin = '0.1rem 0'/>
+              <TextField type={'State'} value={state} setFunc={setState} margin = '0.2rem 0'/>
             </Grid>
           </Grid>
           {
@@ -77,13 +77,13 @@ const AddressModal = (props) => {
               text='Close'
               handleBtnClick={handleClose}
               variant='outlined'
-              color='primary'
+              color='secondary'
             />
             <ButtonC
               text='Save'
               handleBtnClick={handleSave}
               variant='contained'
-              color='primary'
+              color='secondary'
             />
           </div>
         </Box>

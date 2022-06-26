@@ -2,14 +2,13 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
     container: {
-        backgroundColor: theme.palette.secondary.main,
         boxShadow: 'none !important',
         borderRadius: theme.radius.primary,
-        border: `1px solid ${theme.palette.border.main}`,
+        border: `1px solid ${theme.palette.primary.dark}`,
         borderBottom: 'none',
     },
     color: {
-        color: `${theme.palette.text.light} !important`,
+        color: `${theme.palette.text.main} !important`,
         fontFamily: `${theme.fontFamily} !important`,
     }
 

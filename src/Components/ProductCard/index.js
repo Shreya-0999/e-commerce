@@ -33,7 +33,7 @@ const ProductCard = (props) => {
                                     onClick={()=>item.handleBtn(props.id)}
                                     variant={item.variant}
                                     color={item.color}
-                                    size='small'
+                                    size='medium'
                                     className={classes.btn}
                                 >{item.text}</Button>
                             ))

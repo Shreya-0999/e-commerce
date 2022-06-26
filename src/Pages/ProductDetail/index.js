@@ -96,21 +96,21 @@ const ProductDetail = (props) => {
                                         <RadioButtons itemDetail={props?.itemDetail[0]?.details} setItemSize={setItemSize} setCardValidation={setCardValidation} />
                                     </div>
                                     <div className={classes.btnBox}>
-                                        {cartValidation ? <p className="detail-validation">Select a size.</p> : <></>}
+                                        {cartValidation ? <p >Select a size.</p> : <></>}
                                         {
                                             goCartVisible ?
                                                 <ButtonC
                                                     text={'Go to Cart'}
                                                     handleBtnClick={handleGoToCart}
                                                     variant='contained'
-                                                    color='primary'
+                                                    color='secondary'
                                                 />
                                                 :
                                                 <ButtonC
                                                     text={'Add to Cart'}
                                                     handleBtnClick={handleAddToCart}
                                                     variant='contained'
-                                                    color='primary'
+                                                    color='secondary'
                                                 />
 
                                         }
@@ -120,14 +120,14 @@ const ProductDetail = (props) => {
                                                     text={'Wishlisted'}
                                                     handleBtnClick={handleAddToWishlist}
                                                     variant='outlined'
-                                                    color='primary'
+                                                    color='text'
 
                                                 />
                                                 : <ButtonC
                                                     text={'Add to Wishlist'}
                                                     handleBtnClick={handleAddToWishlist}
                                                     variant='outlined'
-                                                    color='primary'
+                                                    color='text'
                                                 />
                                         }
                                     </div>

@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => {
             minHeight: '90vh',
             width: '70%',
             margin: '0 auto',
-            color: theme.palette.text.dark,
+            // color: theme.palette.text.dark,
         },
         cartItemSection: {
             width: '70%',
@@ -16,14 +16,14 @@ const useStyles = makeStyles((theme) => {
         pageHeading:{
             marginTop:'3rem',
             marginBottom: '1rem',
-            color: theme.palette.text.dark,
+            fontWeight: '600',
+            color: theme.palette.secondary.main,
         },
         underline:{
             width: '100px',
-            borderTop:`3px solid ${theme.palette.primary.main}`,
+            borderTop:`2px solid ${theme.palette.secondary.light}`,
             marginBottom:'3rem',
-            marginTop: '0',
-
+            marginTop: '0',  
         },
         itemContainer:{
             margin: '0 1.5rem 1.5rem 0',
@@ -33,12 +33,12 @@ const useStyles = makeStyles((theme) => {
             height: '320px',
             width: '100%',
             borderRadius: theme.radius.primary,
-            border: `1px solid ${theme.palette.border.main}`,
             marginBottom: '2rem',
-            background: theme.palette.secondary.main,
+            // background: theme.palette.primary.main,
+            border:`1px solid ${theme.palette.primary.dark}`,
         },
         detailsBox: {
-            height: '80%',
+            height: '75%',
             display: 'flex',
             alignItems: 'center',
             padding: '13px',
@@ -61,19 +61,19 @@ const useStyles = makeStyles((theme) => {
             width: '15%',
         },
         itemSectionItemAction: {
-            height: '20%',
+            height: '25%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
-            borderTop:  `1px solid ${theme.palette.border.main}`,
+            borderTop:  `1px solid ${theme.palette.primary.dark}`,
             padding: '1rem',
         },
         card:{
             boxShadow: 'none !important',
-            border: `1px solid ${theme.palette.border.main}`,
+            border: `1px solid ${theme.palette.primary.dark}`,
             borderRadius: theme.radius.primary,
-            padding: '10px',
-            marginBottom: '3rem'
+            padding: '5px',
+            marginBottom: '1.5rem'
         },
         cartPriceSection: {
             width: '30%',         
@@ -89,10 +89,22 @@ const useStyles = makeStyles((theme) => {
         },
         header:{
             fontSize: '1.3rem',
+            fontWeight: '500',
+            color: theme.palette.secondary.main
         },
         subheader:{
-            color:theme.palette.text.main,
+            color:theme.palette.secondary.light,
             marginTop: '0',
+            fontWeight: '500',
+            letterSpacing: '1px'
+        },
+        cardContent:{
+            padding:'10px !important',
+        },
+        addressText:{
+            fontSize:'0.9rem',
+            margin: '0',
+            color:theme.palette.secondary.light,
         }
 
     }

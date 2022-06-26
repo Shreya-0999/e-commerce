@@ -21,7 +21,7 @@ const Dropdown = (props) => {
   }
 
   return (
-    <FormControl sx={{ minWidth: 80 }} size="small" className={classes.dropdown}>
+    <FormControl sx={{ minWidth: 80 }} size="small" className={classes.dropdown} color='text'>
       <InputLabel id="demo-simple-select-label">{props?.label}</InputLabel>
       <Select
         labelId="demo-simple-select-label"

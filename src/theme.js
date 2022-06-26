@@ -3,13 +3,14 @@ import { createTheme } from '@mui/material/styles';
 export const theme = createTheme({
     palette: {
         primary: {
-            main: "#7e56ff",
-            light: "#ede8f9",
-            dark: "#6d4adefc",
+            main: "#f1f2f4",
+            light: "#ffffff",
+            dark:"#e0e0e0"
         },
         secondary: {
-            main: '#ffffff',
-            light: '#e7deff',
+            main: '#23232c',
+            // light: '#b3b3b8',
+            light: '#919097',
         },
         error: {
             main: '#ed6d7a',
@@ -18,17 +19,14 @@ export const theme = createTheme({
             main: '#018644',
         },
         text: {
-            main: '#8e7f7f',
-            light: '#7f7f81',
-            dark: '#525252',
+            main: '#7f7f81',
         },
         border: {
-            main: '#e5ddff',
-            dark: '#ddceff'
+            main: '#7f7f81',
         }
     },
     radius: {
-        primary: '8px',
+        primary: '5px',
     },
-    fontFamily: 'Nunito, sans-serif !important'
+    fontFamily: 'Poppins, sans-serif; !important'
 });

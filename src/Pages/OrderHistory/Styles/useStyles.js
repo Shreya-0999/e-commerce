@@ -7,22 +7,23 @@ const useStyles = makeStyles((theme) => ({
         margin: '1rem auto',
     },
     pageHeading: {
+        fontWeight: '600',
         marginTop: '3rem',
         marginBottom: '1rem',
-        color: theme.palette.text.dark,
+        color: theme.palette.secondary.main,
     },
     underline: {
         width: '100px',
-        borderTop: `3px solid ${theme.palette.primary.main}`,
+        borderTop: `3px solid ${theme.palette.secondary.light}`,
         marginBottom: '3rem',
         marginTop: '0',
     },
     orderBox: {
         height:'450px',
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: theme.palette.primary.light,
         marginBottom: '2.5rem ',
         marginRight: '1rem',
-        border: `1px solid ${theme.palette.border.main}`,
+        border: `1px solid ${theme.palette.primary.dark}`,
         borderRadius: theme.radius.primary,
         padding: '20px'
     },
@@ -47,19 +48,20 @@ const useStyles = makeStyles((theme) => ({
     header:{
         marginTop:'0px',
         marginBottom: '4px',
-        color: theme.palette.text.dark,
+        fontWeight:'500',
+        color: theme.palette.secondary.main,
         fontSize: '15px',
     },
     subHeader:{
         marginTop:'0px',
         marginBottom:'2px',
         fontSize: '13px',
-        fontWeight:'600',
-        color: theme.palette.text.light,
+        fontWeight:'500',
+        color: theme.palette.text.main,
         letterSpacing: '1px',
     },
     bottomBorder:{
-        borderBottom: `1px solid ${theme.palette.border.main}`,
+        borderBottom: `1px solid ${theme.palette.primary.dark}`,
     },
     paddingLeft:{
         paddingLeft: '10px',

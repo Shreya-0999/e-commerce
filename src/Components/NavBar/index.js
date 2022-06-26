@@ -2,11 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import {logoutStart} from '../../Core/Actions/userActions'
+import { logoutStart } from '../../Core/Actions/userActions'
 import { Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem, Badge } from '@mui/material';
-import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
-import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { useNavigate } from 'react-router-dom';
 import useStyle from './Styles/useStyle'
 
@@ -31,13 +31,10 @@ const NavBar = (props) => {
     }
 
     const handleCloseUserMenu = (e) => {
-        console.log(e);
-        console.log(e.target.innerHTML);
-        if(e.target.innerHTML === 'Order History')
-        {
+        if (e.target.innerHTML === 'Order History') {
             navigate('/orderHistory');
         }
-        else if(e.target.innerHTML === 'Logout'){
+        else if (e.target.innerHTML === 'Logout') {
             props.logoutStart();
             console.log("logout");
         }
@@ -63,7 +60,7 @@ const NavBar = (props) => {
             return 0;
     }
 
-    const handleWishlistBtn = ()=>{
+    const handleWishlistBtn = () => {
         navigate('/wishlist');
     }
 
@@ -71,47 +68,42 @@ const NavBar = (props) => {
         <AppBar position="static" className={classes.appBar} >
             <Container maxWidth="lg" className={classes.color}>
                 <Toolbar disableGutters>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, mr: 2, display: { xs: 'none', md: 'flex' } }}
-                    >
+                    <h4 className={classes.logo}>
                         LOGO
-                    </Typography>
+                    </h4>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box className={classes.navItemsBox}>
                         <Button
-                            className={classes.color}
+                            className={classes.navItem}
                             onClick={handleNavHome}
+                            color='secondary'
+                            variant='text'
                             sx={{ my: 2, display: 'block' }}
                         >
                             Home
                         </Button>
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
+                    <Box className={classes.iconBtnBox}>
                         <IconButton sx={{ p: 0, mx: 1 }} onClick={handleCartBtn}>
                             <Badge badgeContent={handleCartCount()}>
-                                <ShoppingCartRoundedIcon fontSize="medium" color="primary" />
+                                <ShoppingCartOutlinedIcon fontSize="medium" color="secondary" />
                             </Badge>
                         </IconButton>
                         <IconButton sx={{ p: 0, mx: 2 }} onClick={handleWishlistBtn}>
-                            <Badge badgeContent={handleWishlistCount()} >
-                                <FavoriteIcon fontSize="medium" color="primary" />
-                            </Badge>
+                            <FavoriteBorderOutlinedIcon fontSize="medium" color="secondary" />
                         </IconButton>
                         {
                             props.currentUser ?
                                 (
                                     <>
                                         <Tooltip title="Open settings">
-                                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mx:1 }}>
-                                                <PersonRoundedIcon fontSize="medium" color="primary" />
+                                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, mx: 1 }}>
+                                                <PersonOutlinedIcon fontSize="medium" color="secondary" />
                                             </IconButton>
                                         </Tooltip>
                                         <Menu
-                                            sx={{ mt: '45px' }}
+                                            className={classes.menuItemBox}
                                             id="menu-appbar"
                                             anchorEl={anchorElUser}
                                             anchorOrigin={{
@@ -127,8 +119,8 @@ const NavBar = (props) => {
                                             onClose={handleCloseUserMenu}
                                         >
                                             {settings.map((setting) => (
-                                                <MenuItem key={setting} onClick={(e)=>handleCloseUserMenu(e)}>
-                                                    <Typography textAlign="center">{setting}</Typography>
+                                                <MenuItem key={setting} onClick={(e) => handleCloseUserMenu(e)}>
+                                                    <p className={classes.menuItems}>{setting}</p>
                                                 </MenuItem>
                                             ))}
                                         </Menu>
@@ -137,7 +129,7 @@ const NavBar = (props) => {
                                 )
                                 : (
                                     <IconButton onClick={handleUserLogin} sx={{ p: 0 }}>
-                                        <PersonRoundedIcon fontSize="medium" color="primary" />
+                                        <PersonOutlinedIcon fontSize="medium" color="secondary" />
                                     </IconButton>
                                 )
                         }

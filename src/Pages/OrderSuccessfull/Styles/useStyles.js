@@ -13,14 +13,15 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '1rem',
         marginBottom: '1rem',
         fontSize: '2rem',
-        color: theme.palette.text.dark,
+        fontWeight:'600',
+        color: theme.palette.secondary.main,
     },
     subHeader:{
         marginTop:'0px',
         marginBottom:'1rem',
         fontSize: '1.5rem',
-        fontWeight:'600',
-        color: theme.palette.text.light,
+        fontWeight:'500',
+        color: theme.palette.secondary.light,
     },
     imgBox:{
         height: '360px',

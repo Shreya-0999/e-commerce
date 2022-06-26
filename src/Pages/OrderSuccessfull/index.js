@@ -23,7 +23,7 @@ const OrderSuccessfull = () => {
                     text='Continue Shopping'
                     handleBtnClick={handleContinueShopping}
                     variant='contained'
-                    color='primary'
+                    color='secondary'
                 />
             </div>
 

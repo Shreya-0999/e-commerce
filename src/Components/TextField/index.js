@@ -11,6 +11,7 @@ const TextFields = (props) => {
                 variant="standard"
                 className={classes.textField}
                 value={props.value}
+                color='secondary'
                 onChange={(e) => props.setFunc(e.target.value)}
             />
         </>

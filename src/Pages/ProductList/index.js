@@ -30,7 +30,7 @@ const ProductList = (props) => {
                 <p className={classes.underline}></p>
                 <Grid container spacing={2}>
                     {props.items.map((ele, key) => (
-                        <Grid item md={4} key={key} onClick={() => handleProductClick(ele.id, ele.section)}>
+                        <Grid item md={3} key={key} onClick={() => handleProductClick(ele.id, ele.section)}>
                             <ProductCard key={key} {...ele} />
                         </Grid>
                     ))}

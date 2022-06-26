@@ -17,7 +17,7 @@ const PasswordField = (props) => {
     };
     return (
         <>
-            <FormControl sx={{ m: 1, width: '25ch' }} variant="standard" className={classes.textField}>
+            <FormControl sx={{ m: 1, width: '25ch' }} variant="standard" className={classes.textField} color='secondary'>
                 <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
                 <Input
                     id="standard-adornment-password"

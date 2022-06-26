@@ -12,14 +12,14 @@ const Message = (props) => {
         <>
             <div className={classes.container}>
                 <div className={classes.imgBox}>
-                    <img src={props.img} alt={props.text}/>
+                    <img src={props.img} alt={props.text} className={classes.img}/>
                 </div>
                 <h1 className={classes.pageHeading}>{props.text}</h1>
                 <ButtonC
                     text="Continue Shopping"
                     handleBtnClick={handleContinueShopping}
                     variant='contained'
-                    color='primary'
+                    color='secondary'
                 />
             </div>
         </>

@@ -1,49 +1,60 @@
 import React, { useEffect } from "react";
-import './Styles/index.css';
+import useStyles from './Styles/useStyles.js';
 import { connect } from 'react-redux';
 import NavBar from "../../Components/NavBar/index";
 import { loginSuccess } from '../../Core/Actions/userActions';
-import Sample from '../../Assets/Home/Sample.jpg';
+import MenSection from '../../Assets/Home/menSection.png';
+import WomenSection from '../../Assets/Home/womenSection.png';
 import { useNavigate } from "react-router-dom";
+import { Grid } from '@mui/material';
+import homeConstants from './Utils/Constants'
 
 const Home = (props) => {
-    const section = ['women', 'men'];
     const navigate = useNavigate();
-    
-    const handleCardClick = (section) => {
+    const classes = useStyles();
+
+    const handleCardClick = (str) => {
+        let section = str.split(' ')[0];
+        section = section.charAt(0).toLowerCase() + section.slice(1)
         navigate(`/${section}`);
     }
-    useEffect(()=>{
+    useEffect(() => {
         let user = JSON.parse(localStorage.getItem('user'));
-        if(user){
+        if (user) {
             props.loginSuccess(user);
         }
     })
     return (
         <>
             <NavBar />
-            <div className="home">
-                <div className="home-categories">
-                    {
-                        section.map((ele, key) => (
-                            <>
-                                <div className="home-categories-card" key={key} onClick={() => handleCardClick(ele)}>
-                                    <img src={Sample} alt={`${ele}-img`} className="home-categories-card-img" />
-                                    <div className="home-categories-overlapCard">
-                                        <h1 className="home-categories-cardTitle">Shop {ele}</h1>
-                                    </div>
-                                </div>
-                            </>
-                        ))
-                    }
-                </div>
+            <div className={classes.container}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} md={6}>
+                        <div className={classes.leftSection} onClick={() => handleCardClick(homeConstants.WOMEN_COLLECTION)}>
+                            <div className={classes.imgBox}>
+                                <img src={WomenSection} alt={`women-img`} className={classes.img} />
+                            </div>
+                            <h1 className={classes.sectionName}>{homeConstants.WOMEN_COLLECTION}</h1>
+                        </div>
+
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <div className={classes.rightSection} onClick={() => handleCardClick(homeConstants.MEN_COLLECTION)}>
+                            <div className={classes.imgBox}>
+                                <img src={MenSection} alt={`men-img`} className={classes.img} />
+                            </div>
+                            <h1 className={classes.sectionName}>{homeConstants.MEN_COLLECTION}</h1>
+                        </div>
+                    </Grid>
+
+                </Grid>
             </div>
         </>
     )
 }
 const mapDispatchtoProps = (dispatch) => {
     return {
-        loginSuccess: (user)=> dispatch(loginSuccess(user))
+        loginSuccess: (user) => dispatch(loginSuccess(user))
     }
 }
 

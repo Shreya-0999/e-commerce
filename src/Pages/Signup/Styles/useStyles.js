@@ -2,34 +2,41 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(theme=>({
     container:{
-        height:'90vh'
+        height:'90vh',
+        // overflowY:'hidden',
     },
     leftContainer:{
         display:'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        background:theme.palette.primary.main
     },
     rightContainer:{
         display:'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding:'4.4rem 8rem 4.4rem 5rem'
+        position:'relative'
+    },
+    closeIcon:{
+        position:'absolute',
+        top: '2rem',
+        right: '2rem',
+        cursor: 'pointer'
     },
     pageHeading: {
-        marginBottom: '1rem',
-        color: theme.palette.text.dark,
+        marginBottom: '0.5rem',
+        fontWeight: '600',
+        color: theme.palette.secondary.main,
     },
     underline: {
         width: '100px',
-        borderTop: `3px solid ${theme.palette.primary.main}`,
+        borderTop: `3px solid ${theme.palette.secondary.light}`,
         marginTop: '0',
     },
     subHeader:{
         margin:'2rem 0',
         fontSize: '15px',
         fontWeight:'600',
-        color: theme.palette.text.light,
+        color: theme.palette.secondary.light,
     },
     error:{
         margin:'1rem 0',
@@ -42,6 +49,15 @@ const useStyles = makeStyles(theme=>({
     },
     btnBox:{
         margin:'1.5rem 0'
+    },
+    imgBox:{
+        height: '100vh',
+        width:'100%',
+    },
+    img:{
+        maxWidth: '100%',
+        height:'auto',
+        objectFit:'fit'
     }
 
 }))
