@@ -1,8 +1,8 @@
 import cartItems from '../Types/cartItemstype';
 import {addToCart, deleteFromCart, updateCartItem, emptyCart, updateOrderList} from './Utils/functions';
 const INITIAL_STATE = {
-    cartItems: [],
-    orderList:[]
+    cartItems: null,
+    orderList:null
 }
 
 const cartItemsReducer = (state = INITIAL_STATE, action) => {

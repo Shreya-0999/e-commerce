@@ -17,21 +17,18 @@ const Login = (props) => {
     const navigate = useNavigate();
     const classes = useStyles();
 
-    const handleLogin = () => {
-        props.loginStart({ email, password });
-        navigate('/');
+    const handleLogin = async () => {
+        await props.loginStart({ email, password });
     }
     const handleCloseBtn = () => {
         navigate('/');
     }
-
-    // useEffect(() => {
-    //     let user = JSON.parse(localStorage.getItem('user'));
-    //     if(user){
-    //         props.loginSuccess(user);
-    //         navigate('/');
-    //     }
-    // }, [])
+    
+    useEffect(()=>{
+        if(props.currentUser){
+            navigate('/');
+        }
+    })
 
     return (
         <>
@@ -84,7 +81,7 @@ const Login = (props) => {
 
 const mapStateToProps = ({ user }) => {
     return {
-        currentUser: user.currentUser, 
+        currentUser: user.currentUser,
         error: user.error,
         isLoading: user.isLoading
     }

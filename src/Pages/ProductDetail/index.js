@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { connect } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Grid, ImageList, ImageListItem } from '@mui/material'
+import { Grid, ImageList, ImageListItem, IconButton } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { getItemDetails } from '../../Core/Actions/productItemsAction';
 import { addToCart } from '../../Core/Actions/cartItemsAction';
 import { addtoWishlist, deleteFromWishlist } from '../../Core/Actions/wishlistAction';
@@ -23,23 +24,31 @@ const ProductDetail = (props) => {
     const [wishlisted, setWishlisted] = useState(false);
 
     const handleAddToCart = () => {
-        if (itemSize) {
-            props.addToCart(id, itemQuantity, itemSize);
-            setGoCartVisible(true)
+        if(props.currentUser){
+            if (itemSize) {
+                props.addToCart(id, section, itemQuantity, itemSize);
+                setGoCartVisible(true)
+            }
+            else {
+                setCardValidation(true)
+            }
         }
-        else {
-            setCardValidation(true)
-        }
+        else
+        navigate('/login')
     }
     const handleAddToWishlist = () => {
-        if (wishlisted) {
-            props.deleteFromWishlist(id);
-            setWishlisted(false);
+        if(props.currentUser){
+            if (wishlisted) {
+                props.deleteFromWishlist(id);
+                setWishlisted(false);
+            }
+            else {
+                props.addtoWishlist(section, id);
+                setWishlisted(true);
+            }
         }
-        else {
-            props.addtoWishlist(id);
-            setWishlisted(true);
-        }
+        else
+        navigate('/login')
     }
 
     const handleGoToCart = () => {
@@ -48,15 +57,17 @@ const ProductDetail = (props) => {
 
     useEffect(() => {
         props.getItemDetails({ section, id });
-        let wishlistArr = JSON.parse(window.localStorage.getItem("wishlist"));
-        let newWishlistArr = wishlistArr?.map(ele => {
-            if (id == ele.id) {
-                setWishlisted(true);
-            }
-            else {
-                setWishlisted(false);
-            }
-        })
+        let activeUser = JSON.parse(window.localStorage.getItem("activeUser"));
+        if(activeUser){
+            let newWishlistArr = activeUser.wishlist?.map(ele => {
+                if (id == ele.id) {
+                    setWishlisted(true);
+                }
+                else {
+                    setWishlisted(false);
+                }
+            })
+        }
     }, [])
 
     return (
@@ -69,7 +80,7 @@ const ProductDetail = (props) => {
                             <Grid item md={7}>
                                 <ImageList cols={2} className={classes.imgBox} gap={16}>
                                     {
-                                        props?.itemDetail[0]?.details.images.map((ele, key) => (
+                                        props?.itemDetail[0]?.imageURLs.map((ele, key) => (
                                             <ImageListItem key={key}>
                                                 <img
                                                     className={classes.img}
@@ -86,7 +97,7 @@ const ProductDetail = (props) => {
                             <Grid item md={5} xs={12} container>
                                 <Grid item md={12} xs={12}>
                                     <h1 className={classes.pageHeading}>{props?.itemDetail[0]?.name}</h1>
-                                    <p className={classes.subHeader}>Shreya</p>
+                                    <p className={classes.subHeader}>{props?.itemDetail[0]?.subHeader}</p>
                                     <p className={classes.underline}></p>
                                     <h1 className={classes.header}>{constants.RS} {props?.itemDetail[0]?.price}/-</h1>
                                     <p className={`${classes.subHeader} ${classes.mtZero}`}>{constants.TAX_MSG}</p>
@@ -94,44 +105,53 @@ const ProductDetail = (props) => {
                                         <Dropdown label='Quantity' value={itemQuantity} setValue={setItemQuantity} />
                                     </div>
                                     <div className={classes.space}>
-                                        <RadioButtons itemDetail={props?.itemDetail[0]?.details} setItemSize={setItemSize} setCardValidation={setCardValidation} />
+                                        <RadioButtons itemDetail={props?.itemDetail[0]} setItemSize={setItemSize} setCardValidation={setCardValidation} />
+                                        {cartValidation ? <p className={`${classes.subHeader} ${classes.errorMsg}`}>{constants.SIZE_MSG}</p> : <></>}
                                     </div>
-                                    <div className={classes.btnBox}>
-                                        {cartValidation ? <p >{constants.SIZE_MSG}</p> : <></>}
-                                        {
-                                            goCartVisible ?
-                                                <ButtonC
-                                                    text={'Go to Cart'}
-                                                    handleBtnClick={handleGoToCart}
-                                                    variant='contained'
-                                                    color='secondary'
-                                                />
-                                                :
-                                                <ButtonC
-                                                    text={'Add to Cart'}
-                                                    handleBtnClick={handleAddToCart}
-                                                    variant='contained'
-                                                    color='secondary'
-                                                />
+                                    <Grid container className={classes.btnBox}>
+                                        <Grid item md={9}>
+                                            {
+                                                goCartVisible ?
+                                                    <ButtonC
+                                                        text={'Go to Cart'}
+                                                        handleBtnClick={handleGoToCart}
+                                                        variant='contained'
+                                                        color='secondary'
+                                                        width='full'
+                                                    />
+                                                    :
+                                                    <ButtonC
+                                                        text={'Add to Cart'}
+                                                        handleBtnClick={handleAddToCart}
+                                                        variant='contained'
+                                                        color='secondary'
+                                                        width='full'
+                                                    />
 
-                                        }
-                                        {
-                                            wishlisted
-                                                ? <ButtonC
-                                                    text={'Wishlisted'}
-                                                    handleBtnClick={handleAddToWishlist}
-                                                    variant='outlined'
-                                                    color='text'
+                                            }
+                                            {
+                                                wishlisted
+                                                    ?
+                                                    <ButtonC
+                                                        text={'Wishlisted'}
+                                                        handleBtnClick={handleAddToWishlist}
+                                                        variant='outlined'
+                                                        color='text'
+                                                        width='full'
 
-                                                />
-                                                : <ButtonC
-                                                    text={'Add to Wishlist'}
-                                                    handleBtnClick={handleAddToWishlist}
-                                                    variant='outlined'
-                                                    color='text'
-                                                />
-                                        }
-                                    </div>
+                                                    />
+                                                    :
+                                                    <ButtonC
+                                                        text={'Add to Wishlist'}
+                                                        handleBtnClick={handleAddToWishlist}
+                                                        variant='outlined'
+                                                        color='text'
+                                                        width='full'
+                                                    />
+                                            }
+                                        </Grid>
+
+                                    </Grid>
                                 </Grid>
                             </Grid>
 
@@ -141,16 +161,17 @@ const ProductDetail = (props) => {
         </>
     )
 }
-const mapStateToProps = ({ productItems }) => {
+const mapStateToProps = ({ productItems, user }) => {
     return {
-        itemDetail: productItems.itemDetail
+        itemDetail: productItems.itemDetail,
+        currentUser: user.currentUser
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         getItemDetails: (section, id) => dispatch(getItemDetails(section, id)),
-        addToCart: (id, quantity, size) => dispatch(addToCart(id, quantity, size)),
-        addtoWishlist: (id) => dispatch(addtoWishlist(id)),
+        addToCart: (id, section, quantity, size) => dispatch(addToCart(id, section, quantity, size)),
+        addtoWishlist: (section, id) => dispatch(addtoWishlist(section, id)),
         deleteFromWishlist: (id) => dispatch(deleteFromWishlist(id))
     }
 }

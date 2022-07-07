@@ -1,8 +1,8 @@
 import wishlistItemTypes from "../Types/wishlistItemTypes";
 
-export const addtoWishlist = (id) => ({
+export const addtoWishlist = (section, id) => ({
     type: wishlistItemTypes.WISHLIST_ITEM_ADD,
-    id
+    section, id
 })
 
 export const getWishlistStart = () => ({

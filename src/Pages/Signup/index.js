@@ -1,8 +1,7 @@
-import react, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { signupStart } from '../../Core/Actions/userActions';
+import { signupStart, signupError } from '../../Core/Actions/userActions';
 import { useNavigate, Link } from 'react-router-dom';
-import NavBar from '../../Components/NavBar';
 import ButtonC from '../../Components/Button';
 import TextFields from '../../Components/TextField';
 import PasswordField from '../../Components/PasswordField';
@@ -14,27 +13,39 @@ import signupConstants from './Utils/constants'
 
 const Signup = (props) => {
     const classes = useStyles();
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
     const navigate = useNavigate();
-    const handleSignup = () => {
-        props.signupStart({ name, email, password });
-    }
     const handleCloseBtn = () => {
         navigate('/');
     }
+    const validate = () => {
+        if (name && email && password) {
+            return true;
+        }
+        else{
+            props.signupError("Please Fill all the fields");
+        }
+    }
+    const handleSignup = async () => {
+        if (validate()){
+            await props.signupStart({ name, email, password });
+        }
+    }
+
     useEffect(() => {
-        if (props?.currentUser) {
-            navigate('/');
+        if(props.currentUser){
+            navigate('/')
         }
     })
+
     return (
         <>
             <Grid container className={classes.container}>
                 <Grid item md={5} className={classes.leftContainer}>
                     <div className={classes.imgBox}>
-                        <img src={loginImg} alt='login-img' className={classes.img}/>
+                        <img src={loginImg} alt='login-img' className={classes.img} />
                     </div>
                 </Grid>
                 <Grid item md={7} container className={classes.rightContainer}>
@@ -76,7 +87,6 @@ const Signup = (props) => {
                     </Grid>
                 </Grid>
             </Grid>
-
         </>
     );
 }
@@ -89,7 +99,8 @@ const mapStatetoProps = ({ user }) => {
 }
 const mapDispatchtoProps = (dispatch) => {
     return {
-        signupStart: (name, email, password) => { dispatch(signupStart(name, email, password)) },  
+        signupStart: (name, email, password) => { dispatch(signupStart(name, email, password)) },
+        signupError: (error)=> {dispatch(signupError(error))}
     }
 }
 export default connect(mapStatetoProps, mapDispatchtoProps)(Signup);

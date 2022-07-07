@@ -18,12 +18,12 @@ const Home = (props) => {
         section = section.charAt(0).toLowerCase() + section.slice(1)
         navigate(`/${section}`);
     }
-    useEffect(() => {
-        let user = JSON.parse(localStorage.getItem('user'));
-        if (user) {
-            props.loginSuccess(user);
-        }
-    })
+    // useEffect(() => {
+    //     let user = JSON.parse(localStorage.getItem('user'));
+    //     if (user) {
+    //         props.loginSuccess(user);
+    //     }
+    // })
     return (
         <>
             <NavBar />

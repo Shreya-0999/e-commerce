@@ -1,12 +1,17 @@
 import wishlist from'../Types/wishlistItemTypes';
-import {put} from 'redux-saga/effects';
+import {put, all, takeLatest} from 'redux-saga/effects';
 
 export function *getWishlistSaga(action) {
     try {
-        let wishlistArr = JSON.parse(window.localStorage.getItem('wishlist'));
-        yield put({ type: wishlist.WISHLIST_ITEM_SUCCESS, payload: wishlistArr });
+        let activeUser = JSON.parse(window.localStorage.getItem('activeUser'));
+        yield put({ type: wishlist.WISHLIST_ITEM_SUCCESS, payload: activeUser.wishlist });
     }
     catch (err) {
         console.log("Wishlist Item Saga Error::: ", err)
     }
+}
+export default function* cartSaga() {
+    yield all([
+        yield takeLatest(wishlist.WISHLIST_ITEM_GET, getWishlistSaga),
+    ])
 }

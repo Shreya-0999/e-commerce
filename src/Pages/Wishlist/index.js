@@ -13,8 +13,8 @@ import constants from './Utils/constants'
 const Wishlist = (props) => {
     const classes = useStyle();
 
-    const handleMoveToCart = (id) => {
-        props.addToCart(id, 1, 'M');
+    const handleMoveToCart = (id, section) => {
+        props.addToCart(id,section, 1, 'M');
         props.deleteFromWishlist(id);
     }
 
@@ -88,7 +88,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getWishlistStart: () => dispatch(getWishlistStart()),
         deleteFromWishlist: (id) => dispatch(deleteFromWishlist(id)),
-        addToCart: (id, quantity, size) => dispatch(addToCart(id, quantity, size)),
+        addToCart: (id,section, quantity, size) => dispatch(addToCart(id, section, quantity, size)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Wishlist);

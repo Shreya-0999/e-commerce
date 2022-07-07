@@ -1,5 +1,7 @@
-import React from "react";
-import {theme} from './theme.js';
+import { React, useEffect } from "react";
+import { connect } from 'react-redux';
+import { loginSuccess } from './Core/Actions/userActions';
+import { theme } from './theme.js';
 import './App.css';
 import Login from "./Pages/Login";
 import Home from "./Pages/Home";
@@ -13,7 +15,14 @@ import Wishlist from "./Pages/Wishlist";
 import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
+function App(props) {
+  useEffect(() => {
+    let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+    if (activeUser) {
+      props.loginSuccess(activeUser);
+    }
+  }, [])
+  
   return (
     <ThemeProvider theme={theme}>
       <Router>
@@ -33,4 +42,16 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = ({ user }) => {
+  return {
+    currentUser: user.currentUser,
+  }
+}
+
+const mapDispatchtoProps = (dispatch) => {
+  return {
+    loginSuccess: (user) => dispatch(loginSuccess(user))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchtoProps)(App);

@@ -1,0 +1,211 @@
+[
+    {
+        "id": 2001,
+        "name": "Solid Light Green",
+        "subHeader":"Men TShirts",
+        "section": "men",
+        "image": "../Assets/Product/men/Group 30.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "450",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/men/Group 30.png",
+            "../Assets/Product/men/Group 29.png"
+        ]
+    },
+    {
+        "id": 2002,
+        "name": "Multi-Colored Pattern",
+        "subHeader":"Men TShirts",
+        "section": "men",
+        "image": "../Assets/Product/men/Group 32.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "599",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/men/Group 32.png",
+            "../Assets/Product/men/Group 31.png"
+        ]
+    },
+    {
+        "id": 2003,
+        "name": "Solid Light Pink",
+        "subHeader":"Men TShirts",
+        "section": "men",
+        "image": "../Assets/Product/men/Group 34.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "399",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/men/Group 34.png",
+            "../Assets/Product/men/Group 33.png"
+        ]
+    },
+    {
+        "id": 2004,
+        "name": "Ride Black Print",
+        "subHeader":"Men TShirts",
+        "section": "men",
+        "image": "../Assets/Product/men/Group 36.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "499",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/men/Group 36.png",
+            "../Assets/Product/men/Group 35.png"
+        ]
+    },
+    {
+        "id": 2005,
+        "name": "Solid White",
+        "subHeader":"Men TShirts",
+        "section": "men",
+        "image": "../Assets/Product/men/Group 37.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "399",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/men/Group 37.png",
+            "../Assets/Product/men/Group 38.png"
+        ]
+    },
+    {
+        "id": 2006,
+        "name": "Solid Maroon",
+        "subHeader":"Men TShirts",
+        "section": "men",
+        "image": "../Assets/Product/men/Group 39.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "399",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/men/Group 39.png",
+            "../Assets/Product/men/Group 40.png"
+        ]
+    },
+    {
+        "id": 2007,
+        "name": "Skeleton Pattern Black",
+        "subHeader":"Men TShirts",
+        "section": "men",
+        "image": "../Assets/Product/men/Group 42.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "499",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/men/Group 42.png",
+            "../Assets/Product/men/Group 41.png"
+        ]
+    },
+    {
+        "id": 2007,
+        "name": "Solid Black",
+        "subHeader":"Men TShirts",
+        "section": "men",
+        "image": "../Assets/Product/men/Group 44.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "399",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/men/Group 44.png",
+            "../Assets/Product/men/Group 43.png"
+        ]
+    }
+    
+]

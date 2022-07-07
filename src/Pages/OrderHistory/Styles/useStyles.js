@@ -85,9 +85,9 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.error.main,
     },
     img: {
-        width: '90%',
-        height: '95%',
-        borderRadius: '50%'
+        maxWidth: '100%',
+        height: '100%',
+        borderRadius: '5%'
     }
 }))
 export default useStyles;

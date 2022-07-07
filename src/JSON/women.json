@@ -1,0 +1,314 @@
+[
+    {
+        "id": 1001,
+        "name": "Panda Pattern",
+        "subHeader":"Women TShirts",
+        "section": "women",
+        "image": "../Assets/Product/women/Group 4.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "450",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/women/Group 4.png",
+            "../Assets/Product/women/Group 5.png"
+        ]
+    },
+    {
+        "id": 1002,
+        "name": "Solid: Light Grey",
+        "subHeader":"Women TShirts",
+        "section": "women",
+        "image": "../Assets/Product/women/Group 7.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "350",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/women/Group 7.png",
+            "../Assets/Product/women/Group 8.png"
+        ]
+    },
+    {
+        "id": 1003,
+        "name": "Tweety Print: Grey",
+        "subHeader":"Women TShirts",
+        "section": "women",
+        "image": "../Assets/Product/women/Group 9.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "599",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/women/Group 9.png",
+            "../Assets/Product/women/Group 10.png"
+        ]
+    },
+    {
+        "id": 1004,
+        "name": "Skeleton Hand Pattern",
+        "subHeader":"Women TShirts",
+        "section": "women",
+        "image": "../Assets/Product/women/Group 11.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "599",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/women/Group 11.png",
+            "../Assets/Product/women/Group 12.png"
+        ]
+    },
+    {
+        "id": 1005,
+        "name": "Rose Print: White Tshirt",
+        "subHeader":"Women TShirts",
+        "section": "women",
+        "image": "../Assets/Product/women/Group 14.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "499",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/women/Group 14.png",
+            "../Assets/Product/women/Group 13.png"
+        ]
+    },
+    {
+        "id": 1006,
+        "name": "Grey Print Tshirt",
+        "subHeader":"Women TShirts",
+        "section": "women",
+        "image": "../Assets/Product/women/Group 16.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "459",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/women/Group 16.png",
+            "../Assets/Product/women/Group 15.png"
+        ]
+    },
+    {
+        "id": 1007,
+        "name": "Dope Black Print",
+        "subHeader":"Women TShirts",
+        "section": "women",
+        "image": "../Assets/Product/women/Group 18.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "399",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/women/Group 18.png",
+            "../Assets/Product/women/Group 17.png"
+        ]
+    },
+    {
+        "id": 1008,
+        "name": "Bear Pattern : Pink",
+        "subHeader":"Women TShirts",
+        "section": "women",
+        "image": "../Assets/Product/women/Group 20.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "499",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/women/Group 20.png",
+            "../Assets/Product/women/Group 19.png"
+        ]
+    },
+    {
+        "id": 1009,
+        "name": "Kind Print Coloured",
+        "subHeader":"Women TShirts",
+        "section": "women",
+        "image": "../Assets/Product/women/Group 22.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "559",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/women/Group 22.png",
+            "../Assets/Product/women/Group 21.png"
+        ]
+    },
+    {
+        "id": 1010,
+        "name": "California Pattern: Black",
+        "subHeader":"Women TShirts",
+        "section": "women",
+        "image": "../Assets/Product/women/Group 23.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "599",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/women/Group 23.png",
+            "../Assets/Product/women/Group 24.png"
+        ]
+    },
+    {
+        "id": 1011,
+        "name": "Solid White Tshirt",
+        "subHeader":"Women TShirts",
+        "section": "women",
+        "image": "../Assets/Product/women/Group 26.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "399",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/women/Group 26.png",
+            "../Assets/Product/women/Group 25.png"
+        ]
+    },
+    {
+        "id": 1012,
+        "name": "Solid Baby Pink Tshirt",
+        "subHeader":"Women TShirts",
+        "section": "women",
+        "image": "../Assets/Product/women/Group 28.png",
+        "category": [
+            "",
+            "",
+            ""
+        ],
+        "brand": "",
+        "price": "399",
+        "description": "",
+        "size": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "inventryCount": "10",
+        "imageURLs": [
+            "../Assets/Product/women/Group 28.png",
+            "../Assets/Product/women/Group 27.png"
+        ]
+    }
+]

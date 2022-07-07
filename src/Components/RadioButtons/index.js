@@ -23,7 +23,7 @@ const RadioButtons = (props) => {
                 {
                     props.itemDetail?.size.map((ele,key) => (
                         (<FormControlLabel className={classes.radio} key={key} value={ele} 
-                            control={<Radio size='large' color='secondary'/>} label={ele} 
+                            control={<Radio size='medium' color='secondary'/>} label={ele} 
                         />)
                     ))
                 }

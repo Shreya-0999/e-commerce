@@ -2,15 +2,18 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(theme=>({
     appBar:{
+        height:'11vh',
         boxShadow: 'none !important',
         backgroundColor: `${theme.palette.primary.main} !important`,
-        // borderBottom: `1px solid ${theme.palette.border.main}`
+    },
+    container:{
+        maxWidth: '95% !important',
+        padding: '0 !important'
     },
     logo:{
-        fontSize: '1.5rem',
-        fontWeight: '600',
+        height: '70px',
+        width: '70px',
         flexGrow: '1',
-        color: theme.palette.secondary.main
     },
     navItemsBox:{
         flexGrow: '1',

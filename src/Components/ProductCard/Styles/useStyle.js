@@ -7,7 +7,6 @@ const useStyles = makeStyles(theme=>({
         border: `1px solid ${theme.palette.primary.dark}`,
         background: `${theme.palette.primary.light} !important`,
         borderRadius: theme.radius.primary,
-        padding: '10px',
         marginBottom: '3rem',
         '&:hover':{
             transform: 'scale(1.01)',
@@ -26,10 +25,10 @@ const useStyles = makeStyles(theme=>({
         fontWeight: '500',
     },
     subHeader:{
-        marginTop:'10px',
-        marginBottom:'2px',
-        fontSize: '1rem',
-        color: theme.palette.secondary.main,
+        marginTop:'0',
+        marginBottom:'5px',
+        fontSize: '0.8rem',
+        color: theme.palette.secondary.light,
         fontWeight: '500',
     },
     btn:{

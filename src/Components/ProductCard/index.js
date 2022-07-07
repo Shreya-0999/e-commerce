@@ -21,7 +21,8 @@ const ProductCard = (props) => {
 
                 <CardContent onClick={()=>handleItemDetailPage(props.id, props.section)}>
                     <h3 className={classes.header}>{props.name}</h3>
-                    <h3 className={classes.subHeader}>Rs {props.price}/-</h3>
+                    <p className={classes.subHeader}>{props.subHeader}</p>
+                    <h3 className={classes.header}>Rs {props.price}/-</h3>
                 </CardContent>
                 {
                     props?.action
@@ -30,7 +31,7 @@ const ProductCard = (props) => {
                             props?.action.map((item, index) => (
                                 <Button 
                                     key={index} 
-                                    onClick={()=>item.handleBtn(props.id)}
+                                    onClick={()=>item.handleBtn(props.id, props.section)}
                                     variant={item.variant}
                                     color={item.color}
                                     size='medium'

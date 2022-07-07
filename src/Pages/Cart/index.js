@@ -25,10 +25,12 @@ const Cart = (props) => {
         props.deleteFromCart(item);
     }
     const handleMoveToWishlist = (item) => {
-        props.addtoWishlist(item.id);
+        console.log(item.id);
+        props.addtoWishlist(item.section, item.id);
         props.deleteFromCart(item);
     }
     const handleDropdownUpdate = (item, value, label) => {
+        label = label.charAt(0).toLowerCase() + label.slice(1)
         item[label] = value;
         props.updateCartItem(item)
     }
@@ -57,11 +59,11 @@ const Cart = (props) => {
     }
     useEffect(() => {
         props.getCartStart();
-        let user = JSON.parse(localStorage.getItem('user'));
-        if (user) {
-            props.loginSuccess(user);
-            if (user.address) {
-                setAddress(user.address);
+        let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+        if (activeUser) {
+            props.loginSuccess(activeUser);
+            if (activeUser.address) {
+                setAddress(activeUser.address);
             }
         }
 
@@ -92,7 +94,13 @@ const Cart = (props) => {
                                                             value={ele.quantity}
                                                             handleDropdownChange={(val, label) => { handleDropdownUpdate(ele, val, label) }}
                                                         />
-                                                        <Dropdown section='Cart' label='Size' value={ele.size} itemArr={ele.sizeAvailable} handleDropdownChange={(val, label) => { handleDropdownUpdate(ele, val, label) }} />
+                                                        <Dropdown
+                                                            section='Cart'
+                                                            label='Size'
+                                                            value={ele.size}
+                                                            itemArr={ele.sizeAvailable}
+                                                            handleDropdownChange={(val, label) => { handleDropdownUpdate(ele, val, label) }} 
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className={classes.itemPrice}>
@@ -193,7 +201,7 @@ const mapDispatchToProps = (dispatch) => {
         deleteFromCart: (item) => dispatch(deleteFromCart(item)),
         updateCartItem: (item) => dispatch(updateCartItem(item)),
         emptyCart: () => dispatch(emptyCart()),
-        addtoWishlist: (id) => dispatch(addtoWishlist(id)),
+        addtoWishlist: (section,id) => dispatch(addtoWishlist(section, id)),
         loginSuccess: (user) => dispatch(loginSuccess(user)),
         updateOrderList: (orderList, address, totalPrice) => dispatch(updateOrderList(orderList, address, totalPrice))
     }

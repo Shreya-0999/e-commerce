@@ -1,7 +1,7 @@
 import wishlistItemTypes from "../Types/wishlistItemTypes";
 import { addtoWishlist, deleteFromWishlist } from "./Utils/functions";
 const INITIAL_STATE = {
-    wishlistItems: [],
+    wishlistItems: null,
 }
 
 const wishlistReducer = (state=INITIAL_STATE, action)=>{

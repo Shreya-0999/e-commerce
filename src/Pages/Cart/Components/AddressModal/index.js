@@ -21,8 +21,8 @@ const AddressModal = (props) => {
 
   const handleSave = () => {
     if (fullName && mobileNo && locality && pincode && city && state) {
-      let user = JSON.parse(localStorage.getItem('user'));
-      user.address = {
+      let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+      activeUser.address = {
         FullName: fullName,
         MobileNo: mobileNo,
         Locality: locality,
@@ -30,8 +30,8 @@ const AddressModal = (props) => {
         City: city,
         State: state
       }
-      localStorage.setItem('user', JSON.stringify(user));
-      props.setAddress(user.address);
+      localStorage.setItem('activeUser', JSON.stringify(activeUser));
+      props.setAddress(activeUser.address);
       handleClose();
     }
     else

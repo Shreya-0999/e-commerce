@@ -8,7 +8,8 @@ import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { useNavigate } from 'react-router-dom';
-import useStyle from './Styles/useStyle'
+import useStyle from './Styles/useStyle';
+import Logo from '../../Assets/NavBar/logo.png';
 
 const settings = ['Order History', 'Logout'];
 
@@ -66,11 +67,11 @@ const NavBar = (props) => {
 
     return (
         <AppBar position="static" className={classes.appBar} >
-            <Container maxWidth="lg" className={classes.color}>
+            <Container className={classes.container}>
                 <Toolbar disableGutters>
-                    <h4 className={classes.logo}>
-                        LOGO
-                    </h4>
+                    <div className={classes.logo}>
+                        <img src={Logo} alt='logo-img' className={classes.logo}/>
+                    </div>
 
                     <Box className={classes.navItemsBox}>
                         <Button

@@ -1,7 +1,7 @@
 import user from '../Types/userTypes';
 const INITIAL_STATE = {
     currentUser: null,
-    error: '',
+    error: null,
     isLoading: false,
 }
 
@@ -17,7 +17,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 currentUser: action.payload,
                 isLoading: false,
-                error: ''
+                error: null
             }
         case user.LOGIN_ERROR:
             return {
@@ -35,7 +35,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 currentUser: action.payload,
                 isLoading: false,
-                error: ''
+                error: null
             }
         case user.SIGNUP_ERROR:
             return {
@@ -44,7 +44,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
             }
         case user.LOGOUT_SUCCESS:
             return {
-                // ...INITIAL_STATE
+                ...INITIAL_STATE
             }
 
         default: return state;

@@ -9,7 +9,6 @@ export const theme = createTheme({
         },
         secondary: {
             main: '#23232c',
-            // light: '#b3b3b8',
             light: '#919097',
         },
         error: {

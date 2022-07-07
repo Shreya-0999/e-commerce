@@ -13,7 +13,6 @@ const OrderHistory = (props) => {
     }, [])
     return (
         <>
-            {console.log(props.orderList)}
             <NavBar />
             {
                 props?.orderList
@@ -34,7 +33,7 @@ const OrderHistory = (props) => {
                                                     ele.orderItems.map((item, key) => (
                                                         <Grid container key={key} className={classes.itemBox}>
                                                             <Grid item md={4}>
-                                                                <ButtonBase sx={{ width: 100, height: 100 }}>
+                                                                <ButtonBase sx={{ width: 120, height: 100 }}>
                                                                     <img alt="complex" src={item.image} className={classes.img} />
                                                                 </ButtonBase>
                                                             </Grid>

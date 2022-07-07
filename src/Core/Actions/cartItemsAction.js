@@ -1,8 +1,8 @@
 import cartItems from '../Types/cartItemstype';
 
-export const addToCart = (id, quantity, size) =>({
+export const addToCart = (id, section, quantity, size) =>({
     type: cartItems.CART_ITEM_ADD,
-    id, quantity, size
+    id, section, quantity, size
 })
 
 export const getCartStart = () => ({

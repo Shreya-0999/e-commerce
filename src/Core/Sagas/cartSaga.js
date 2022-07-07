@@ -1,11 +1,11 @@
 import cartItems from '../Types/cartItemstype';
-import { put } from 'redux-saga/effects';
+import { all, takeLatest, put } from 'redux-saga/effects';
 
 
 export function* getCartSaga(action) {
     try {
-        let cartArr = JSON.parse(window.localStorage.getItem('cart'));
-        yield put({ type: cartItems.CART_ITEM_SUCCESS, payload: cartArr });
+        let activeUser = JSON.parse(window.localStorage.getItem('activeUser'));
+        yield put({ type: cartItems.CART_ITEM_SUCCESS, payload: activeUser.cart });
     }
     catch (err) {
         console.log("Cart Item Saga Error::: ", err)
@@ -13,10 +13,17 @@ export function* getCartSaga(action) {
 }
 export function* getOrderListSaga(action) {
     try {
-        let orderList = JSON.parse(window.localStorage.getItem('orderList'));
-        yield put({ type: cartItems.ORDER_LIST_SUCCESS, payload: orderList });
+        let activeUser = JSON.parse(window.localStorage.getItem('activeUser'));
+        yield put({ type: cartItems.ORDER_LIST_SUCCESS, payload: activeUser.orderHistory });
     }
     catch (err) {
         console.log("Order Item Saga Error::: ", err)
     }
+}
+
+export default function* cartSaga() {
+    yield all([
+        yield takeLatest(cartItems.CART_ITEM_GET, getCartSaga),
+        yield takeLatest(cartItems.ORDER_LIST_GET, getOrderListSaga),
+    ])
 }

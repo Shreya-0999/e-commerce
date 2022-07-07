@@ -22,9 +22,9 @@ const useStyles = makeStyles(theme=>({
         fontWeight:'600',
     },
     subHeader:{
-        marginTop:'15px',
+        marginTop:'0',
         marginBottom:'2px',
-        fontSize: '15px',
+        fontSize: '13px',
         fontWeight:'500',
         color: theme.palette.text.main,
         letterSpacing: '1px',
@@ -37,6 +37,9 @@ const useStyles = makeStyles(theme=>({
     },
     space:{
         margin: '0 0 1.5rem 0'
+    },
+    errorMsg:{
+        color: theme.palette.error.main
     }
 }))
 export default useStyles;
