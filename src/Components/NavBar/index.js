@@ -3,30 +3,25 @@ import { connect } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { logoutStart } from '../../Core/Actions/userActions'
-import { Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem, Badge } from '@mui/material';
+import { Toolbar, IconButton, Menu, Container, Button, Tooltip, MenuItem, Badge } from '@mui/material';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { useNavigate } from 'react-router-dom';
 import useStyle from './Styles/useStyle';
-import Logo from '../../Assets/NavBar/logo.png';
 
 const settings = ['Order History', 'Logout'];
 
 const NavBar = (props) => {
-
     const navigate = useNavigate();
     const classes = useStyle();
-    // const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
-
     const handleNavHome = () => {
         navigate('/');
     }
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
     const handleUserLogin = () => {
         navigate('/Login');
     }
@@ -47,32 +42,20 @@ const NavBar = (props) => {
     }
 
     const handleCartCount = () => {
-        let cartArr = JSON.parse(window.localStorage.getItem('cart'));
-        if (cartArr)
-            return cartArr.length
+        let activeUser = JSON.parse(window.localStorage.getItem('activeUser'));
+        if (activeUser && activeUser.cart)
+            return activeUser.cart.length
         else
             return 0;
     }
-    const handleWishlistCount = () => {
-        let wishlistArr = JSON.parse(window.localStorage.getItem('wishlist'));
-        if (wishlistArr)
-            return wishlistArr.length
-        else
-            return 0;
-    }
-
     const handleWishlistBtn = () => {
         navigate('/wishlist');
     }
-
     return (
         <AppBar position="static" className={classes.appBar} >
             <Container className={classes.container}>
                 <Toolbar disableGutters>
-                    <div className={classes.logo}>
-                        <img src={Logo} alt='logo-img' className={classes.logo}/>
-                    </div>
-
+                    <h3 className={classes.logo}>E-SHOP</h3>
                     <Box className={classes.navItemsBox}>
                         <Button
                             className={classes.navItem}

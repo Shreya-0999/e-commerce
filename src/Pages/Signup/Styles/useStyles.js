@@ -2,8 +2,8 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(theme=>({
     container:{
-        height:'90vh',
-        // overflowY:'hidden',
+        height:'100vh',
+        overflowY:'hidden',
     },
     leftContainer:{
         display:'flex',

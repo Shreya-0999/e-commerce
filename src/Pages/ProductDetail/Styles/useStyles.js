@@ -7,7 +7,6 @@ const useStyles = makeStyles(theme=>({
     },
     pageHeading: {
         fontWeight: '600',
-        // fontSize:'27px',
         margin: '1rem 0 0.1rem 0',
         color: theme.palette.secondary.main,
     },
@@ -29,9 +28,6 @@ const useStyles = makeStyles(theme=>({
         color: theme.palette.text.main,
         letterSpacing: '1px',
     },
-    imgBox:{
-        // height: '160vh',
-    },
     mtZero:{
         marginTop:'0px'
     },
@@ -40,6 +36,9 @@ const useStyles = makeStyles(theme=>({
     },
     errorMsg:{
         color: theme.palette.error.main
+    },
+    paddingLeft:{
+        paddingLeft:'3rem'
     }
 }))
 export default useStyles;

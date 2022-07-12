@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from "../../Components/ProductCard";
+import Breadcrumb from '../../Components/Breadcrums';
 import NavBar from "../../Components/NavBar/index";
 import useStyles from './Styles/useStyles'
 import { Grid } from '@mui/material';
@@ -26,6 +27,7 @@ const ProductList = (props) => {
         <>
             <NavBar />
             <div className={classes.container}>
+                <Breadcrumb breadcrumItems={[section]}/>
                 <h1 className={classes.pageHeading}>{section}</h1>
                 <p className={classes.underline}></p>
                 <Grid container spacing={2}>

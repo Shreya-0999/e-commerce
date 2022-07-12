@@ -21,7 +21,6 @@ const BasicTable = (props) => {
     props?.cartItems?.forEach((item) => {
       totalPrice += item.price * item.quantity;
     })
-    props?.totalPrice(totalPrice);
     return totalPrice;
   }
   const calDelivery = () => {
@@ -34,10 +33,14 @@ const BasicTable = (props) => {
   const calSubTotal = () => {
     let delivery = calDelivery();
     if (delivery === 'FREE') {
+      props?.totalPrice(totalPrice);
       return totalPrice;
     }
-    else
-      return totalPrice + calDelivery();
+    else{
+      let delivery = calDelivery();
+      props?.totalPrice(totalPrice + delivery);
+      return totalPrice + delivery;
+    }
   }
   const rows = [
     createData('Total Price', calTotalPrice()),

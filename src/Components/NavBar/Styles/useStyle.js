@@ -11,9 +11,10 @@ const useStyles = makeStyles(theme=>({
         padding: '0 !important'
     },
     logo:{
-        height: '70px',
-        width: '70px',
+        fontSize:'1.5rem',
+        letterSpacing: '1.5px',
         flexGrow: '1',
+        fontWeight:'500',
     },
     navItemsBox:{
         flexGrow: '1',

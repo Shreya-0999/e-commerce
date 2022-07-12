@@ -1,16 +1,22 @@
 import useStyles from './Styles/useStyles';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../Components/NavBar';
 import ButtonC from '../../Components/Button';
+import { emptyCart, updateOrderList } from '../../Core/Actions/cartItemsAction';
 import SuccessImg from '../../Assets/OrderSuccessfull/orderSuccessfull.gif';
 import constants from './Utils/constants'
 
-const OrderSuccessfull = () => {
+const OrderSuccessfull = (props) => {
     const classes = useStyles();
     const navigate = useNavigate();
     const handleContinueShopping = () => {
         navigate('/');
     }
+    useEffect(() => {
+        props.emptyCart();
+    }, [])
     return (
         <>
             <Navbar />
@@ -31,4 +37,16 @@ const OrderSuccessfull = () => {
         </>
     )
 }
-export default OrderSuccessfull;
+const mapStateToProps = ({ cart, user }) => {
+    return {
+        cartItems: cart.cartItems,
+        orderList: cart.orderList
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        emptyCart: () => dispatch(emptyCart()),
+        updateOrderList: (orderList, address, totalPrice) => dispatch(updateOrderList(orderList, address, totalPrice))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(OrderSuccessfull);

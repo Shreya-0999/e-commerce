@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { connect } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Grid, ImageList, ImageListItem, IconButton } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { getItemDetails } from '../../Core/Actions/productItemsAction';
 import { addToCart } from '../../Core/Actions/cartItemsAction';
 import { addtoWishlist, deleteFromWishlist } from '../../Core/Actions/wishlistAction';
@@ -11,7 +10,8 @@ import ButtonC from "../../Components/Button";
 import RadioButtons from '../../Components/RadioButtons'
 import Dropdown from '../../Components/Dropdown'
 import useStyle from './Styles/useStyles.js';
-import constants from './Utils/constants'
+import constants from './Utils/constants';
+import Breadcrumb from '../../Components/Breadcrums'
 
 const ProductDetail = (props) => {
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ const ProductDetail = (props) => {
     const [wishlisted, setWishlisted] = useState(false);
 
     const handleAddToCart = () => {
-        if(props.currentUser){
+        if (props.currentUser) {
             if (itemSize) {
                 props.addToCart(id, section, itemQuantity, itemSize);
                 setGoCartVisible(true)
@@ -34,10 +34,10 @@ const ProductDetail = (props) => {
             }
         }
         else
-        navigate('/login')
+            navigate('/login')
     }
     const handleAddToWishlist = () => {
-        if(props.currentUser){
+        if (props.currentUser) {
             if (wishlisted) {
                 props.deleteFromWishlist(id);
                 setWishlisted(false);
@@ -48,7 +48,7 @@ const ProductDetail = (props) => {
             }
         }
         else
-        navigate('/login')
+            navigate('/login')
     }
 
     const handleGoToCart = () => {
@@ -58,7 +58,7 @@ const ProductDetail = (props) => {
     useEffect(() => {
         props.getItemDetails({ section, id });
         let activeUser = JSON.parse(window.localStorage.getItem("activeUser"));
-        if(activeUser){
+        if (activeUser) {
             let newWishlistArr = activeUser.wishlist?.map(ele => {
                 if (id == ele.id) {
                     setWishlisted(true);
@@ -73,15 +73,16 @@ const ProductDetail = (props) => {
     return (
         <>
             <NavBar />
-            {props.itemDetail &&
-                (
-                    <div className={classes.container}>
-                        <Grid container spacing={6}>
+            <div className={classes.container}>
+                <Breadcrumb breadcrumItems={[section, props?.itemDetail[0]?.name]} />
+                {props.itemDetail &&
+                    (
+                        <Grid container >
                             <Grid item md={7}>
                                 <ImageList cols={2} className={classes.imgBox} gap={16}>
                                     {
                                         props?.itemDetail[0]?.imageURLs.map((ele, key) => (
-                                            <ImageListItem key={key}>
+                                            <ImageListItem key={key} className={classes.imageList}>
                                                 <img
                                                     className={classes.img}
                                                     src={`${ele}?w=150&h=150&fit=crop&auto=format`}
@@ -94,8 +95,8 @@ const ProductDetail = (props) => {
                                     }
                                 </ImageList>
                             </Grid>
-                            <Grid item md={5} xs={12} container>
-                                <Grid item md={12} xs={12}>
+                            <Grid item md={5} xs={12} className={classes.paddingLeft}>
+                                <Grid item md={12} xs={12} >
                                     <h1 className={classes.pageHeading}>{props?.itemDetail[0]?.name}</h1>
                                     <p className={classes.subHeader}>{props?.itemDetail[0]?.subHeader}</p>
                                     <p className={classes.underline}></p>
@@ -156,8 +157,8 @@ const ProductDetail = (props) => {
                             </Grid>
 
                         </Grid>
-
-                    </div>)}
+                    )}
+            </div>
         </>
     )
 }

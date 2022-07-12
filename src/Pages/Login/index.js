@@ -32,7 +32,8 @@ const Login = (props) => {
 
     return (
         <>
-            <Grid container className={classes.container}>
+            <div className={classes.container}>
+            <Grid container >
                 <Grid item md={5} className={classes.leftContainer}>
                     <div className={classes.imgBox}>
                         <img src={loginImg} alt='login-img' className={classes.img} />
@@ -75,6 +76,7 @@ const Login = (props) => {
                     </Grid>
                 </Grid>
             </Grid>
+            </div>
         </>
     )
 }

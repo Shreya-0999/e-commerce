@@ -1,19 +1,19 @@
 import NavBar from '../../Components/NavBar';
 import ButtonC from '../../Components/Button';
-import Dropdown from '../../Components/Dropdown';
 import BasicTable from './Components/BasicTable';
 import AddressModal from './Components/AddressModal';
 import Message from '../../Components/Message';
-import { CardActions, Card, CardContent } from '@mui/material';
+import CartItems from './Components/CartItems'
+import DisplayAddress from './Components/DisplayAddress'
 import { loginSuccess } from '../../Core/Actions/userActions';
 import { connect } from 'react-redux';
-import { getCartStart, deleteFromCart, updateCartItem, emptyCart, updateOrderList } from '../../Core/Actions/cartItemsAction';
+import { getCartStart, emptyCart, updateOrderList } from '../../Core/Actions/cartItemsAction';
 import useStyles from './Styles/useStyles.js';
 import { useEffect, useState } from 'react';
-import { addtoWishlist } from '../../Core/Actions/wishlistAction';
 import { useNavigate } from 'react-router-dom';
 import Empty from '../../Assets/Message/empty.gif'
 import constants from './Utils/constants';
+import { loadScript, showRazorPay } from './Utils/functions';
 
 const Cart = (props) => {
     const classes = useStyles();
@@ -21,27 +21,13 @@ const Cart = (props) => {
     const [open, setOpen] = useState(false);
     const [address, setAddress] = useState('');
     const [totalPrice, setTotalprice] = useState();
-    const handleRemoveFromCart = (item) => {
-        props.deleteFromCart(item);
-    }
-    const handleMoveToWishlist = (item) => {
-        console.log(item.id);
-        props.addtoWishlist(item.section, item.id);
-        props.deleteFromCart(item);
-    }
-    const handleDropdownUpdate = (item, value, label) => {
-        label = label.charAt(0).toLowerCase() + label.slice(1)
-        item[label] = value;
-        props.updateCartItem(item)
-    }
     const handleEmptyCart = () => {
         props.emptyCart();
     }
     const handlePlaceOrder = () => {
         if (props.currentUser) {
-            props.updateOrderList(props.cartItems, address, totalPrice);
-            props.emptyCart();
-            navigate('/orderSuccessfull');
+            showRazorPay(totalPrice, address, props.updateOrderList, props.cartItems, navigate);
+            
         }
         else {
             navigate('/login')
@@ -68,6 +54,9 @@ const Cart = (props) => {
         }
 
     }, [])
+    useEffect(() => {
+        loadScript("https://checkout.razorpay.com/v1/checkout.js");
+    });
     return (
         <>
             <NavBar />
@@ -76,78 +65,15 @@ const Cart = (props) => {
                     <h1 className={classes.pageHeading}>{constants.MY_BAG}</h1>
                     <p className={classes.underline}></p>
                     <div className={classes.flex}>
-                        <div className={classes.cartItemSection}>
-                            <div className={classes.itemContainer}>
-                                {
-                                    props?.cartItems?.map((ele) => (
-                                        <div className={classes.cartItemBox} key={ele.id}>
-                                            <div className={classes.detailsBox}>
-                                                <div className={classes.itemImage}>
-                                                    <img src={ele.image} alt="" className={classes.img} />
-                                                </div>
-                                                <div className={classes.itemDetails}>
-                                                    <h2 className={classes.header}>{ele.name}</h2>
-                                                    <div className={classes.flex}>
-                                                        <Dropdown
-                                                            section='Cart'
-                                                            label='Quantity'
-                                                            value={ele.quantity}
-                                                            handleDropdownChange={(val, label) => { handleDropdownUpdate(ele, val, label) }}
-                                                        />
-                                                        <Dropdown
-                                                            section='Cart'
-                                                            label='Size'
-                                                            value={ele.size}
-                                                            itemArr={ele.sizeAvailable}
-                                                            handleDropdownChange={(val, label) => { handleDropdownUpdate(ele, val, label) }} 
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className={classes.itemPrice}>
-                                                    <h2 className={classes.header}>{constants.RS} {ele.price * ele.quantity}</h2>
-                                                </div>
-                                            </div>
-                                            <div className={classes.itemSectionItemAction}>
-                                                <ButtonC
-                                                    text="Remove"
-                                                    handleBtnClick={() => { handleRemoveFromCart(ele) }}
-                                                    variant="text"
-                                                    color="text"
-                                                />
-                                                <ButtonC
-                                                    text="Move to wishlist"
-                                                    handleBtnClick={() => { handleMoveToWishlist(ele) }}
-                                                    variant="text"
-                                                    color="text"
-                                                />
-                                            </div>
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                        </div>
+                        <CartItems />
                         <div className={classes.cartPriceSection}>
-                            <div>
-                                <h3 className={classes.subheader}>{constants.BILLING_DETAILS}</h3>
-                                <BasicTable totalPrice={setTotalprice} />
-                            </div>
+                            <h3 className={classes.subheader}>{constants.BILLING_DETAILS}</h3>
+                            <BasicTable totalPrice={setTotalprice} />
                             <div className={classes.margin}>
                                 {
                                     address
                                         ? <>
-                                            <Card className={classes.card}>
-                                                <CardContent className={classes.cardContent}>
-                                                    <p className={classes.addressText}>{Object.values(address).join(", ")}</p>
-                                                </CardContent>
-                                                <CardActions>
-                                                    <ButtonC
-                                                        text="Edit"
-                                                        handleBtnClick={handleAddAddress}
-                                                        variant="text"
-                                                        color="secondary"
-                                                    />
-                                                </CardActions>
-                                            </Card>
+                                            <DisplayAddress address={address} handleAddAddress={handleAddAddress} />
                                             <ButtonC
                                                 text="Place Order"
                                                 handleBtnClick={handlePlaceOrder}
@@ -164,16 +90,13 @@ const Cart = (props) => {
                                             width='full'
                                         />
                                 }
-
-                                <div>
-                                    <ButtonC
-                                        text="Empty Cart"
-                                        handleBtnClick={handleEmptyCart}
-                                        variant="outlined"
-                                        color="text"
-                                        width='full'
-                                    />
-                                </div>
+                                <ButtonC
+                                    text="Empty Cart"
+                                    handleBtnClick={handleEmptyCart}
+                                    variant="outlined"
+                                    color="text"
+                                    width='full'
+                                />
                             </div>
                             <AddressModal handleOpen={setOpen} open={open} setAddress={setAddress} />
                         </div>
@@ -191,17 +114,14 @@ const Cart = (props) => {
 const mapStateToProps = ({ cart, user }) => {
     return {
         cartItems: cart.cartItems,
-        orderList: cart.orderList,
+        // orderList: cart.orderList,
         currentUser: user.currentUser
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         getCartStart: () => dispatch(getCartStart()),
-        deleteFromCart: (item) => dispatch(deleteFromCart(item)),
-        updateCartItem: (item) => dispatch(updateCartItem(item)),
         emptyCart: () => dispatch(emptyCart()),
-        addtoWishlist: (section,id) => dispatch(addtoWishlist(section, id)),
         loginSuccess: (user) => dispatch(loginSuccess(user)),
         updateOrderList: (orderList, address, totalPrice) => dispatch(updateOrderList(orderList, address, totalPrice))
     }

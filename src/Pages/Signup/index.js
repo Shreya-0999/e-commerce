@@ -24,69 +24,71 @@ const Signup = (props) => {
         if (name && email && password) {
             return true;
         }
-        else{
+        else {
             props.signupError("Please Fill all the fields");
         }
     }
     const handleSignup = async () => {
-        if (validate()){
+        if (validate()) {
             await props.signupStart({ name, email, password });
         }
     }
 
     useEffect(() => {
-        if(props.currentUser){
+        if (props.currentUser) {
             navigate('/')
         }
     })
 
     return (
         <>
-            <Grid container className={classes.container}>
-                <Grid item md={5} className={classes.leftContainer}>
-                    <div className={classes.imgBox}>
-                        <img src={loginImg} alt='login-img' className={classes.img} />
-                    </div>
-                </Grid>
-                <Grid item md={7} container className={classes.rightContainer}>
-                    <Grid item xs={12} md={6}>
-                        <CloseIcon
-                            className={classes.closeIcon}
-                            fontSize="large"
-                            color='secondary'
-                            onClick={handleCloseBtn}
-                        />
-                        <h1 className={classes.pageHeading}>{signupConstants.SIGNUP}</h1>
-                        <p className={classes.underline}></p>
-                        <TextFields type={"Name"} value={name} setFunc={setName} margin='1.2rem 0' />
-                        <TextFields type={"Email"} value={email} setFunc={setEmail} margin='1.2rem 0' />
-                        <PasswordField password={password} setPassword={setPassword} />
-                        <div className={classes.btnBox}>
-                            <ButtonC
-                                text={"Signup"}
-                                handleBtnClick={handleSignup}
-                                variant='contained'
-                                color='secondary'
-                                width='full'
-
-                            />
+            <div className={classes.container}>
+                <Grid container>
+                    <Grid item md={5} className={classes.leftContainer}>
+                        <div className={classes.imgBox}>
+                            <img src={loginImg} alt='login-img' className={classes.img} />
                         </div>
-                        {
-                            props.error ?
-                                (
-                                    <p className={`${classes.error} ${classes.textCenter}`}>{props.error}</p>
-                                )
-                                :
-                                <></>
-                        }
-                        <p className={`${classes.subHeader} ${classes.textCenter}`}>
-                            {signupConstants.ALREADY_USER}{'\n'}
-                            <Link to='/login'>{signupConstants.LOGIN}</Link>
-                        </p>
+                    </Grid>
+                    <Grid item md={7} container className={classes.rightContainer}>
+                        <Grid item xs={12} md={6}>
+                            <CloseIcon
+                                className={classes.closeIcon}
+                                fontSize="large"
+                                color='secondary'
+                                onClick={handleCloseBtn}
+                            />
+                            <h1 className={classes.pageHeading}>{signupConstants.SIGNUP}</h1>
+                            <p className={classes.underline}></p>
+                            <TextFields type={"Name"} value={name} setFunc={setName} margin='1.2rem 0' />
+                            <TextFields type={"Email"} value={email} setFunc={setEmail} margin='1.2rem 0' />
+                            <PasswordField password={password} setPassword={setPassword} />
+                            <div className={classes.btnBox}>
+                                <ButtonC
+                                    text={"Signup"}
+                                    handleBtnClick={handleSignup}
+                                    variant='contained'
+                                    color='secondary'
+                                    width='full'
 
+                                />
+                            </div>
+                            {
+                                props.error ?
+                                    (
+                                        <p className={`${classes.error} ${classes.textCenter}`}>{props.error}</p>
+                                    )
+                                    :
+                                    <></>
+                            }
+                            <p className={`${classes.subHeader} ${classes.textCenter}`}>
+                                {signupConstants.ALREADY_USER}{'\n'}
+                                <Link to='/login'>{signupConstants.LOGIN}</Link>
+                            </p>
+
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
+            </div>
         </>
     );
 }
@@ -100,7 +102,7 @@ const mapStatetoProps = ({ user }) => {
 const mapDispatchtoProps = (dispatch) => {
     return {
         signupStart: (name, email, password) => { dispatch(signupStart(name, email, password)) },
-        signupError: (error)=> {dispatch(signupError(error))}
+        signupError: (error) => { dispatch(signupError(error)) }
     }
 }
 export default connect(mapStatetoProps, mapDispatchtoProps)(Signup);
