@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme) => {
             minHeight: '90vh',
             width: '70%',
             margin: '0 auto',
-            // color: theme.palette.text.dark,
         },
         cartItemSection: {
             width: '70%',
@@ -34,7 +33,6 @@ const useStyles = makeStyles((theme) => {
             width: '100%',
             borderRadius: theme.radius.primary,
             marginBottom: '2rem',
-            // background: theme.palette.primary.main,
             border:`1px solid ${theme.palette.primary.dark}`,
         },
         detailsBox: {

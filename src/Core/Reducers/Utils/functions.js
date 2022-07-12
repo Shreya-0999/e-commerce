@@ -17,7 +17,6 @@ function getItemFromJSON(section, id) {
 }
 
 export function addToCart(action) {
-    console.log(action)
     let activeUser = JSON.parse(window.localStorage.getItem('activeUser'));
     let itemPresent = false;
     if (activeUser.cart) {
@@ -90,7 +89,6 @@ export function emptyCart() {
 }
 
 export function addtoWishlist(action) {
-    console.log(action);
     let activeUser = JSON.parse(window.localStorage.getItem('activeUser'));
     let itemPresent = false;
     if (activeUser.wishlist) {
@@ -102,8 +100,6 @@ export function addtoWishlist(action) {
     }
     if (!itemPresent) {
         let itemObj = getItemFromJSON(action.section, action.id);
-        console.log(action.section, action.id);
-        console.log(itemObj);
         const wishlistObj = {
             id: action.id,
             section: itemObj.section,

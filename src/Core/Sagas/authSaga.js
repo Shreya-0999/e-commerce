@@ -3,7 +3,6 @@ import user from '../Types/userTypes';
 import { createUserData, checkUserData, logoutUser } from './Utils/funtions'
 
 export function* loginSaga(action) {
-    // check the credentials
     try {
         let res = yield(call(checkUserData, action.payload.email, action.payload.password));
         if (res) {

@@ -114,7 +114,6 @@ const Cart = (props) => {
 const mapStateToProps = ({ cart, user }) => {
     return {
         cartItems: cart.cartItems,
-        // orderList: cart.orderList,
         currentUser: user.currentUser
     }
 }

@@ -15,7 +15,6 @@ export function* productItems(action) {
 
 export function* itemDetailSaga(action) {
     try {
-        // get the item detail
         let details = itemDetails(action.payload.id, action.payload.section)
         const filteredItems= items.filter((ele)=>{
             if(ele.id == action.payload.id){

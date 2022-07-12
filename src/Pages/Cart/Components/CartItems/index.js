@@ -12,7 +12,6 @@ const CartItems = (props) => {
         props.deleteFromCart(item);
     }
     const handleMoveToWishlist = (item) => {
-        console.log(item.id);
         props.addtoWishlist(item.section, item.id);
         props.deleteFromCart(item);
     }

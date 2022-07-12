@@ -7,7 +7,6 @@ export const addToCart = (id, section, quantity, size) =>({
 
 export const getCartStart = () => ({
     type: cartItems.CART_ITEM_GET,
-    // payload:
 })
 
 export const getCartSuccess = (cartItems) => ({

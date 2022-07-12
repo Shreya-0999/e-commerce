@@ -11,7 +11,6 @@ export function createUserData(name, email, password) {
         user.map((ele, key) => {
             if (ele.email === email) {
                 userPresent = true
-                // return ('user already exists')
             }
         })
     }
@@ -53,12 +52,6 @@ export function logoutUser(){
     let activeUser = JSON.parse(localStorage.getItem('activeUser'));
     let user = JSON.parse(localStorage.getItem('user'));
     let updatedUser =user.map(ele => (ele.email === activeUser.email)? activeUser : ele);
-    // let updatedUser = user.map((ele, key)=>{
-    //     console.log(ele);
-    //     if(ele.email === activeUser.email)
-    //         return activeUser;
-    // })
-    console.log(updatedUser);
     localStorage.removeItem('activeUser');
     localStorage.setItem("user", JSON.stringify(updatedUser))
 }
@@ -77,4 +70,3 @@ export function itemDetails(id, section){
     })
     return filteredItems;
 }
-// arr1.map(obj => arr2.find(o => o.id === obj.id) || obj);

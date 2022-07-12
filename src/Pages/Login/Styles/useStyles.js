@@ -10,7 +10,6 @@ const useStyles = makeStyles(theme=>({
         display:'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // background:theme.palette.secondary.main
     },
     rightContainer:{
         display:'flex',
