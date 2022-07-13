@@ -7,7 +7,7 @@ import MenSection from '../../Assets/Home/menSection.png';
 import WomenSection from '../../Assets/Home/womenSection.png';
 import { useNavigate } from "react-router-dom";
 import { Grid } from '@mui/material';
-import constants from './Utils/constants'
+import constants from './Utils/constant'
 
 const Home = (props) => {
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Home = (props) => {
             <div className={classes.container}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6}>
-                        <div className={classes.leftSection} onClick={() => handleCardClick(homeConstants.WOMEN_COLLECTION)}>
+                        <div className={classes.leftSection} onClick={() => handleCardClick(constants.WOMEN_COLLECTION)}>
                             <div className={classes.imgBox}>
                                 <img src={WomenSection} alt={`women-img`} className={classes.img} />
                             </div>
@@ -33,7 +33,7 @@ const Home = (props) => {
 
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <div className={classes.rightSection} onClick={() => handleCardClick(homeConstants.MEN_COLLECTION)}>
+                        <div className={classes.rightSection} onClick={() => handleCardClick(constants.MEN_COLLECTION)}>
                             <div className={classes.imgBox}>
                                 <img src={MenSection} alt={`men-img`} className={classes.img} />
                             </div>
