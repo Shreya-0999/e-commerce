@@ -1,5 +1,5 @@
-const homeConstant={
+const constant={
     WOMEN_COLLECTION:'Women Collection',
     MEN_COLLECTION:'Men Collection',
 }
-export default homeConstant;
+export default constant;

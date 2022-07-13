@@ -7,7 +7,7 @@ import MenSection from '../../Assets/Home/menSection.png';
 import WomenSection from '../../Assets/Home/womenSection.png';
 import { useNavigate } from "react-router-dom";
 import { Grid } from '@mui/material';
-import homeConstants from './Utils/constants'
+import constants from './Utils/constants'
 
 const Home = (props) => {
     const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Home = (props) => {
                             <div className={classes.imgBox}>
                                 <img src={WomenSection} alt={`women-img`} className={classes.img} />
                             </div>
-                            <h1 className={classes.sectionName}>{homeConstants.WOMEN_COLLECTION}</h1>
+                            <h1 className={classes.sectionName}>{constants.WOMEN_COLLECTION}</h1>
                         </div>
 
                     </Grid>
@@ -37,7 +37,7 @@ const Home = (props) => {
                             <div className={classes.imgBox}>
                                 <img src={MenSection} alt={`men-img`} className={classes.img} />
                             </div>
-                            <h1 className={classes.sectionName}>{homeConstants.MEN_COLLECTION}</h1>
+                            <h1 className={classes.sectionName}>{constants.MEN_COLLECTION}</h1>
                         </div>
                     </Grid>
 
