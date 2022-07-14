@@ -38,6 +38,9 @@ const Signup = (props) => {
         if (props.currentUser) {
             navigate('/')
         }
+        if (props.error) {
+            setTimeout(() => props.signupError(null), 2000)
+        }
     })
 
     return (
@@ -73,9 +76,9 @@ const Signup = (props) => {
                                 />
                             </div>
                             {
-                                props.error ?
+                                props.errorSignup ?
                                     (
-                                        <p className={`${classes.error} ${classes.textCenter}`}>{props.error}</p>
+                                        <p className={`${classes.error} ${classes.textCenter}`}>{props.errorSignup}</p>
                                     )
                                     :
                                     <></>
@@ -95,8 +98,7 @@ const Signup = (props) => {
 const mapStatetoProps = ({ user }) => {
     return {
         currentUser: user.currentUser,
-        error: user.error,
-        isLoading: user.isLoading
+        errorSignup: user.errorSignup,
     }
 }
 const mapDispatchtoProps = (dispatch) => {

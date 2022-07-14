@@ -1,8 +1,8 @@
 import user from '../Types/userTypes';
 const INITIAL_STATE = {
     currentUser: null,
-    error: null,
-    isLoading: false,
+    errorLogin: null,
+    errorSignup: null,
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -10,37 +10,32 @@ const userReducer = (state = INITIAL_STATE, action) => {
         case user.LOGIN_START:
             return {
                 ...state,
-                isLoading: true,
             }
         case user.LOGIN_SUCCESS:
             return {
                 ...state,
                 currentUser: action.payload,
-                isLoading: false,
-                error: null
+                errorLogin: null
             }
         case user.LOGIN_ERROR:
             return {
                 ...state,
-                error: action.payload,
-                isLoading: false
+                errorLogin: action.payload,
             }
         case user.SIGNUP_START:
             return {
                 ...state,
-                isLoading: true,
             }
         case user.SIGNUP_SUCCESS:
             return {
                 ...state,
                 currentUser: action.payload,
-                isLoading: false,
-                error: null
+                errorSignup: null
             }
         case user.SIGNUP_ERROR:
             return {
                 ...state,
-                error: action.payload
+                errorSignup: action.payload
             }
         case user.LOGOUT_SUCCESS:
             return {

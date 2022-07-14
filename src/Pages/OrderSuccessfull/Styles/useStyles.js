@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '2rem',
         fontWeight:'600',
         color: theme.palette.secondary.main,
+        textAlign: 'center'
     },
     subHeader:{
         marginTop:'0px',
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '1.5rem',
         fontWeight:'500',
         color: theme.palette.secondary.light,
+        textAlign: 'center'
     },
     imgBox:{
         height: '360px',

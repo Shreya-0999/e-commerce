@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '2.5rem',
         fontWeight: '600',
         color: theme.palette.secondary.main,
+        textAlign: 'center'
     },
     imgBox:{
         height: '360px',
