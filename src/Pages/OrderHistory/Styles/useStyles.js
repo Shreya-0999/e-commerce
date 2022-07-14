@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '0',
     },
     orderBox: {
-        height:'450px',
+        height: '450px',
         backgroundColor: theme.palette.primary.light,
         marginBottom: '2.5rem ',
         marginRight: '1rem',
@@ -27,46 +27,47 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: theme.radius.primary,
         padding: '20px'
     },
-    topSection:{
-        height:'13%',
+    topSection: {
+        height: '13%',
     },
-    middleSection:{
-        height:'68%',
+    middleSection: {
+        height: '68%',
         overflowY: 'scroll',
         overflowX: 'hidden',
     },
 
-    bottomSection:{
-        height:'17%',
-        paddingTop:'10px '
+    bottomSection: {
+        height: '17%',
+        paddingTop: '10px '
     },
-    itemBox:{
-        height: '120px',
-        margin:'10px 0',
-        padding:'15px 0',
+    itemBox: {
+        margin: '10px 0',
+        padding: '15px 0',
     },
-    header:{
-        marginTop:'0px',
+    header: {
+        marginTop: '0px',
         marginBottom: '4px',
-        fontWeight:'500',
+        fontWeight: '500',
         color: theme.palette.secondary.main,
         fontSize: '15px',
     },
-    subHeader:{
-        marginTop:'0px',
-        marginBottom:'2px',
+    subHeader: {
+        marginTop: '0px',
+        marginBottom: '2px',
         fontSize: '13px',
-        fontWeight:'500',
+        fontWeight: '500',
         color: theme.palette.text.main,
         letterSpacing: '1px',
+        marginRight: '2rem'
+
     },
-    bottomBorder:{
+    bottomBorder: {
         borderBottom: `1px solid ${theme.palette.primary.dark}`,
     },
-    paddingLeft:{
-        paddingLeft: '10px',
+    flex: {
+        display: 'flex',
     },
-    orderSucess:{
+    orderSucess: {
         height: '40px',
         display: 'flex',
         justifyContent: 'center',
@@ -75,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
         border: `1px solid ${theme.palette.success.main}`,
         color: theme.palette.success.main,
     },
-    orderFailure:{
+    orderFailure: {
         height: '40px',
         display: 'flex',
         justifyContent: 'center',
@@ -83,6 +84,10 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: theme.radius.primary,
         border: `1px solid ${theme.palette.error.main}`,
         color: theme.palette.error.main,
+    },
+    imgBox: {
+        height: '100px',
+        width: '90px',
     },
     img: {
         maxWidth: '100%',

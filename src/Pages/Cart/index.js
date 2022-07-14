@@ -21,13 +21,14 @@ const Cart = (props) => {
     const [open, setOpen] = useState(false);
     const [address, setAddress] = useState('');
     const [totalPrice, setTotalprice] = useState();
+    const [paymentDisabled, setPaymentDisabled] = useState(false)
     const handleEmptyCart = () => {
         props.emptyCart();
     }
     const handlePlaceOrder = () => {
         if (props.currentUser) {
-            showRazorPay(totalPrice, address, props.updateOrderList, props.cartItems, navigate);
-            
+            setPaymentDisabled(true);
+            showRazorPay(totalPrice, address, props.updateOrderList, props.cartItems, navigate, setPaymentDisabled);
         }
         else {
             navigate('/login')
@@ -80,6 +81,7 @@ const Cart = (props) => {
                                                 variant="contained"
                                                 color="secondary"
                                                 width='full'
+                                                disabled={paymentDisabled}
                                             />
                                         </>
                                         : <ButtonC

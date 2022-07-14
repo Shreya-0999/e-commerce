@@ -1,4 +1,4 @@
 const constants = {
-    PASSWORD: 'password',
+    PASSWORD: 'Password',
 }
 export default constants;

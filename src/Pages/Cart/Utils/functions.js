@@ -13,7 +13,7 @@ export function loadScript (src){
     });
 };
 
-export async function showRazorPay(amount, address, updateOrderList, cartItems, navigate) {
+export async function showRazorPay(amount, address, updateOrderList, cartItems, navigate, setPaymentDisabled) {
     const data = await fetch("https://online--eshop.herokuapp.com/razorpay", {
         method: "POST",
         body: JSON.stringify({
@@ -22,7 +22,7 @@ export async function showRazorPay(amount, address, updateOrderList, cartItems, 
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
-    }).then((t) => t.json());
+    }).then((t) => t.json())
 
     const options = {
         key: 'rzp_test_A9glIRKKrM5Tig',
@@ -40,6 +40,11 @@ export async function showRazorPay(amount, address, updateOrderList, cartItems, 
             name: 'Shreya',
             email: 'sdfdsjfh2@ndsfdf.com',
             phone_number: '9899999999'
+        },
+        modal: {
+            ondismiss: function(){
+                setPaymentDisabled(false)
+            }
         }
     }
     const paymentObject = new window.Razorpay(options)

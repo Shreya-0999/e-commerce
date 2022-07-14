@@ -5,7 +5,8 @@ import { getOrderListStart } from '../../Core/Actions/cartItemsAction';
 import { connect } from 'react-redux';
 import { Grid, ButtonBase } from '@mui/material';
 import { useEffect } from 'react';
-import constants from './Utils/constants'
+import constants from './Utils/constants';
+import Empty from '../../Assets/Message/empty.gif';
 const OrderHistory = (props) => {
     const classes = useStyles();
     useEffect(() => {
@@ -33,21 +34,18 @@ const OrderHistory = (props) => {
                                                     ele.orderItems.map((item, key) => (
                                                         <Grid container key={key} className={classes.itemBox}>
                                                             <Grid item md={4}>
-                                                                <ButtonBase sx={{ width: 120, height: 100 }}>
+                                                                <div className={classes.imgBox}>
                                                                     <img alt="complex" src={item.image} className={classes.img} />
-                                                                </ButtonBase>
+                                                                </div>
                                                             </Grid>
-                                                            <Grid item md={8} container className={`${classes.bottomBorder} ${classes.paddingLeft}`}>
+                                                            <Grid item md={8} container className={`${classes.bottomBorder}`}>
                                                                 <Grid item md={12}>
                                                                     <h3 className={classes.header}>{item.name}</h3>
-                                                                </Grid>
-                                                                <Grid item md={5}>
-                                                                    <p className={classes.subHeader}>{constants.SIZE} {item.size}</p>
-                                                                </Grid>
-                                                                <Grid item md={5}>
-                                                                    <p className={classes.subHeader}>{constants.QTY} {item.quantity}</p>
-                                                                </Grid>
-                                                                <Grid item md={12}>
+                                                                    <div className={classes.flex}>
+                                                                        <p className={classes.subHeader}>{constants.SIZE} {item.size}</p>
+                                                                        <p className={classes.subHeader}>{constants.QTY} {item.quantity}</p>
+                                                                    </div>
+
                                                                     <h3 className={classes.header}> {constants.RS} {item.price}/-</h3>
                                                                 </Grid>
                                                             </Grid>
@@ -78,6 +76,7 @@ const OrderHistory = (props) => {
                     </div>
                     : <Message
                         text='You have no previous order'
+                        img={Empty}
                     />
             }
         </>

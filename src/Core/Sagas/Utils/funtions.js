@@ -2,9 +2,7 @@ import womenItems from '../../../JSON/women.json';
 import menItems from '../../../JSON/men.json';
 
 export function createUserData(name, email, password) {
-    let user = JSON.parse(localStorage.getItem('user'));
-    let cartArr = JSON.parse(localStorage.getItem('cart'));
-    let wishlist = JSON.parse(localStorage.getItem('wishlist'));
+    let user = JSON.parse(localStorage.getItem('user'))
     let userPresent = false
 
     if (user) {
@@ -19,9 +17,9 @@ export function createUserData(name, email, password) {
             name: name,
             email: email,
             password: password,
-            wishlist: wishlist,
-            cart: cartArr,
-            orderHistory: []
+            wishlist: null,
+            cart: null,
+            orderHistory: null
         }
         user ? user.push(newUserObj) : user = [newUserObj]
         localStorage.setItem("user", JSON.stringify(user));

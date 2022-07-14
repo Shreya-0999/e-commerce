@@ -14,6 +14,7 @@ const ButtonC = (props) => {
                 className={`${classes.btn}`}
                 size='large'
                 sx={{ mt:'10px', mr:'10px'}}
+                disabled={props.disabled}
             >
                 {props.text}
             </Button>

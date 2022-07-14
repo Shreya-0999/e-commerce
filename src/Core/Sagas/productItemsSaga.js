@@ -1,7 +1,6 @@
 import productItemsTypes from "../Types/productItemsTypes";
 import { put, all, takeLatest } from 'redux-saga/effects';
 import {getSectionWiseItem, itemDetails} from './Utils/funtions'
-import items from '../../JSON/productDetails.json';
 
 export function* productItems(action) {
     try {
@@ -16,11 +15,6 @@ export function* productItems(action) {
 export function* itemDetailSaga(action) {
     try {
         let details = itemDetails(action.payload.id, action.payload.section)
-        const filteredItems= items.filter((ele)=>{
-            if(ele.id == action.payload.id){
-                return ele;
-            }
-        })
         yield put({ type: productItemsTypes.ITEM_DETAILS_SUCCESS, payload: details });
     }
     catch (err) {

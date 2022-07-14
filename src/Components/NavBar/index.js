@@ -32,6 +32,7 @@ const NavBar = (props) => {
         }
         else if (e.target.innerHTML === 'Logout') {
             props.logoutStart();
+            navigate('/login')
         }
         setAnchorElUser(null);
     };
