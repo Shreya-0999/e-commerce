@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import Empty from '../../Assets/Message/empty.gif'
 import constants from './Utils/constants';
 import { loadScript, showRazorPay } from './Utils/functions';
+import Loader from '../../Assets/Cart/loader.gif'
 
 const Cart = (props) => {
     const classes = useStyles();
@@ -63,6 +64,14 @@ const Cart = (props) => {
             <NavBar />
             {props?.cartItems
                 ? <div className={classes.cart}>
+                    {
+                        paymentDisabled
+                            ? <div className={classes.paymentDisplay}>
+                                <img src={Loader} alt='loader' />
+                            </div>
+                            : <></>
+                    }
+
                     <h1 className={classes.pageHeading}>{constants.MY_BAG}</h1>
                     <p className={classes.underline}></p>
                     <div className={classes.flex}>

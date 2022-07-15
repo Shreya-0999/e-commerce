@@ -1,3 +1,4 @@
+import zIndex from '@mui/material/styles/zIndex';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => {
@@ -6,6 +7,19 @@ const useStyles = makeStyles((theme) => {
             minHeight: '90vh',
             width: '70%',
             margin: '0 auto',
+            position: 'relative'
+        },
+        paymentDisplay:{
+            position: 'absolute',
+            top: 0, 
+            left: 0, 
+            height: '100%',
+            width: '100%',
+            background: theme.palette.primary.light,
+            zIndex: '100',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
         },
         cartItemSection: {
             width: '70%',
