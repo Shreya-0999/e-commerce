@@ -60,11 +60,8 @@ const ProductDetail = (props) => {
         let activeUser = JSON.parse(window.localStorage.getItem("activeUser"));
         if (activeUser) {
             let newWishlistArr = activeUser.wishlist?.map(ele => {
-                if (id == ele.id) {
+                if (id === ele.id) {
                     setWishlisted(true);
-                }
-                else {
-                    setWishlisted(false);
                 }
             })
         }

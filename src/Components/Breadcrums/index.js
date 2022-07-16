@@ -2,13 +2,14 @@ import * as React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
 import { useNavigate } from 'react-router-dom';
+import useStyle from './Styles/useStyles.js';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 
 const Breadcrumb = (props) => {
     const navigate = useNavigate();
+    const classes = useStyle();
     const handleBreadcrumb = (item) => {
         if (item === 'Home')
             navigate('/')
@@ -32,6 +33,7 @@ const Breadcrumb = (props) => {
                             key={key}
                             color="secondary.light"
                             onClick={(e) => handleBreadcrumb(item)}
+                            className={classes.breadcrumbLink}
                         >
                             {item}
                         </Link>
